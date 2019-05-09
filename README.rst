@@ -18,7 +18,7 @@ The executable exposes the REST (or other) services from the different engines. 
 .. image:: https://codecov.io/gh/nuts-foundation/nuts-go/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/nuts-foundation/nuts-go
 
-.. image:: https://api.codacy.com/project/badge/Grade/d17595243fd7424fbe743da68c8dcbfc
+.. image:: https://api.codacy.com/project/badge/Grade/272258ac93e847b9b61c08d4144d0538
     :target: https://www.codacy.com/app/woutslakhorst/nuts-go
 
 .. inclusion-marker-for-contribution
