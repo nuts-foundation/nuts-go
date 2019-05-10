@@ -20,6 +20,8 @@
 package cmd
 
 import (
+	"github.com/labstack/echo"
+	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
 )
 
@@ -31,6 +33,15 @@ var rootCmd = &cobra.Command{
 		// start engines & monitoring
 
 		// start interfaces
+		echo := echo.New()
+
+		for _, engine := range pkg.EngineCtl.Engines {
+			for _, hook := range engine.Routes() {
+				echo.GET(hook.Path, hook.Handler)
+			}
+		}
+
+		echo.Logger.Fatal(echo.Start("localhost:5678"))
 	},
 }
 
