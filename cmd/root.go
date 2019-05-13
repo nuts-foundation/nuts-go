@@ -45,6 +45,13 @@ var rootCmd = &cobra.Command{
 	},
 }
 
+func addSubCommands(root *cobra.Command) {
+	for _, e := range pkg.EngineCtl.Engines {
+		root.AddCommand(e.Cmd())
+	}
+}
+
 func Execute() {
+	addSubCommands(rootCmd)
 	rootCmd.Execute()
 }

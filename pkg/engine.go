@@ -20,10 +20,13 @@
 package pkg
 
 import (
+	"fmt"
 	"github.com/labstack/echo"
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"net/http"
 	"reflect"
+	"strings"
 )
 
 // EngineCtl is the control structure where engines are registered. All registered engines are referenced by the EngineCtl
@@ -42,20 +45,24 @@ type EngineAPIRoute struct {
 
 // Engine contains all the functions needed by the executable to configure, start, monitor and shutdown the engines
 type Engine interface {
-	// FlasSet returns all configuration possibilities so they can be displayed through the help command
-	FlagSet() *pflag.FlagSet
+
+	// Cmd gives the optional sub-command for the engine. An engine can only add one sub-command (multiple sub-sub-commands for the sub-command)
+	Cmd() *cobra.Command
 
 	// Configure loads the given configurations in the engine. Any wrong combination will return an error
 	Configure() error
 
+	// FlasSet returns all global configuration possibilities so they can be displayed through the help command
+	FlagSet() *pflag.FlagSet
+
 	// ServerHandlerFunctions gives a list of path, handler functions combinations which should be registered to the echo webserver
 	Routes() []EngineAPIRoute
 
-	// Start the engine, this will spawn any clients, background tasks or active processes.
-	Start() error
-
 	// Shutdown the engine
 	Shutdown() error
+
+	// Start the engine, this will spawn any clients, background tasks or active processes.
+	Start() error
 }
 
 // RegisterEngine is a helper func to add an engine to the list of engines from a different lib/pkg
@@ -79,6 +86,17 @@ func init() {
 // FlagSet returns an empty FlagSet
 func (*StatusEngine) FlagSet() *pflag.FlagSet {
 	return &pflag.FlagSet{}
+}
+
+func (se *StatusEngine) Cmd() *cobra.Command {
+	return &cobra.Command{
+		Use:   "engineStatus",
+		Short: "show the registered engines",
+		Run: func(cmd *cobra.Command, args []string) {
+			names := se.listAllEngines()
+			fmt.Println(strings.Join(names, ","))
+		},
+	}
 }
 
 // Configure does not do anything
@@ -108,11 +126,16 @@ func (*StatusEngine) Shutdown() error {
 
 // ListAllEngines is the handler function for the /status/engines api call
 func (se *StatusEngine) ListAllEngines(ctx echo.Context) error {
-	var names []string
-	for _, e := range EngineCtl.Engines {
-		names = append(names, reflect.TypeOf(e).String())
-	}
+	names := se.listAllEngines()
 
 	// generate output
 	return ctx.JSON(http.StatusOK, names)
+}
+
+func (se *StatusEngine) listAllEngines() []string {
+	var names []string
+	for _, e := range EngineCtl.Engines{
+		names = append(names, reflect.TypeOf(e).String())
+	}
+	return names
 }

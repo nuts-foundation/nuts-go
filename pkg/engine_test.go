@@ -20,6 +20,7 @@
 package pkg
 
 import (
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"testing"
 )
@@ -60,6 +61,17 @@ func TestStatusEngine_Routes(t *testing.T) {
 
 		if routes[0].Path != "/status/engines" {
 			t.Errorf("Expected route to have path /status/engines, Got %s", routes[0].Path)
+		}
+	})
+}
+
+func TestStatusEngine_Cmd(t *testing.T) {
+	t.Run("Cmd returns a cobra command", func(t *testing.T) {
+		se := StatusEngine{}
+
+		e := se.Cmd()
+		if e.Name() != "engineStatus" {
+			t.Errorf("Expected a command with name engineStatus, Got %s", e.Name())
 		}
 	})
 }
@@ -110,6 +122,10 @@ func TestStatusEngine_FlagSet(t *testing.T) {
 
 func (*dummyEngine) FlagSet() *pflag.FlagSet {
 	return &pflag.FlagSet{}
+}
+
+func (*dummyEngine) Cmd() *cobra.Command {
+	return nil
 }
 
 func (*dummyEngine) Configure() error {
