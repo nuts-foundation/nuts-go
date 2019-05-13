@@ -21,6 +21,7 @@ package cmd
 
 import (
 	"github.com/labstack/echo"
+	crypto "github.com/nuts-foundation/nuts-crypto/pkg/engine"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
 )
@@ -36,13 +37,18 @@ var rootCmd = &cobra.Command{
 		echo := echo.New()
 
 		for _, engine := range pkg.EngineCtl.Engines {
-			for _, hook := range engine.Routes() {
-				echo.GET(hook.Path, hook.Handler)
-			}
+			engine.Routes(echo)
 		}
 
 		echo.Logger.Fatal(echo.Start("localhost:5678"))
 	},
+}
+
+func Execute() {
+	registerEngines()
+	configureEngines()
+	addSubCommands(rootCmd)
+	rootCmd.Execute()
 }
 
 func addSubCommands(root *cobra.Command) {
@@ -51,7 +57,14 @@ func addSubCommands(root *cobra.Command) {
 	}
 }
 
-func Execute() {
-	addSubCommands(rootCmd)
-	rootCmd.Execute()
+func registerEngines() {
+	pkg.RegisterEngine(crypto.NewCryptoEngine())
+}
+
+func configureEngines() {
+	for _, e := range pkg.EngineCtl.Engines {
+		if err := e.Configure(); err != nil {
+			panic(err)
+		}
+	}
 }

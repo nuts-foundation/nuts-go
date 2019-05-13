@@ -21,6 +21,7 @@ package pkg
 
 import (
 	"fmt"
+	"github.com/deepmap/oapi-codegen/pkg/runtime"
 	"github.com/labstack/echo"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -37,12 +38,6 @@ type EngineControl struct {
 
 var EngineCtl EngineControl
 
-// EngineAPIRoute is the structure that holds which api call is routed to which go func.
-type EngineAPIRoute struct {
-	Path    string
-	Handler echo.HandlerFunc
-}
-
 // Engine contains all the functions needed by the executable to configure, start, monitor and shutdown the engines
 type Engine interface {
 
@@ -55,8 +50,8 @@ type Engine interface {
 	// FlasSet returns all global configuration possibilities so they can be displayed through the help command
 	FlagSet() *pflag.FlagSet
 
-	// ServerHandlerFunctions gives a list of path, handler functions combinations which should be registered to the echo webserver
-	Routes() []EngineAPIRoute
+	// Routes passes the Echo router to the specific engine for it to register their routes.
+	Routes(router runtime.EchoRouter)
 
 	// Shutdown the engine
 	Shutdown() error
@@ -105,13 +100,9 @@ func (*StatusEngine) Configure() error {
 }
 
 // Routes returns a single endpoint listing all available/active engines on /status/engines
-func (se *StatusEngine) Routes() []EngineAPIRoute {
-	return []EngineAPIRoute{
-		{
-			Path:    "/status/engines",
-			Handler: se.ListAllEngines,
-		},
-	}
+func (se *StatusEngine) Routes(router runtime.EchoRouter) {
+
+	router.GET("/status/engines", se.ListAllEngines)
 }
 
 // Start does not do anything

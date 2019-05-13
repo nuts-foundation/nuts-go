@@ -20,8 +20,12 @@
 package pkg
 
 import (
+	"github.com/deepmap/oapi-codegen/pkg/runtime"
+	"github.com/golang/mock/gomock"
+	mock "github.com/nuts-foundation/nuts-go/mock"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
+	"net/http"
 	"testing"
 )
 
@@ -50,18 +54,15 @@ func TestRegisterEngine(t *testing.T) {
 }
 
 func TestStatusEngine_Routes(t *testing.T) {
-	t.Run("Returns a single route for listing all engines", func(t *testing.T) {
+	t.Run("Registers a single route for listing all engines", func(t *testing.T) {
 		se := StatusEngine{}
+		ctrl := gomock.NewController(t)
+		defer ctrl.Finish()
+		echo := mock.NewMockEchoRouter(ctrl)
 
-		routes := se.Routes()
-		if len(routes) != 1 {
-			t.Errorf("Expected 1 route, Got %d", len(routes))
-			return
-		}
+		echo.EXPECT().GET("/status/engines", gomock.Any())
 
-		if routes[0].Path != "/status/engines" {
-			t.Errorf("Expected route to have path /status/engines, Got %s", routes[0].Path)
-		}
+		se.Routes(echo)
 	})
 }
 
@@ -120,6 +121,19 @@ func TestStatusEngine_FlagSet(t *testing.T) {
 	})
 }
 
+func TestStatusEngine_ListAllEngines(t *testing.T) {
+	t.Run("ListAllEngines renders json output of list of engines", func(t *testing.T) {
+		se := StatusEngine{}
+		ctrl := gomock.NewController(t)
+		defer ctrl.Finish()
+		echo := mock.NewMockContext(ctrl)
+
+		echo.EXPECT().JSON(http.StatusOK, []string{"*pkg.StatusEngine"})
+
+		se.ListAllEngines(echo)
+	})
+}
+
 func (*dummyEngine) FlagSet() *pflag.FlagSet {
 	return &pflag.FlagSet{}
 }
@@ -132,8 +146,8 @@ func (*dummyEngine) Configure() error {
 	return nil
 }
 
-func (*dummyEngine) Routes() []EngineAPIRoute {
-	return nil
+func (*dummyEngine) Routes(echoRouter runtime.EchoRouter) {
+
 }
 
 func (*dummyEngine) Start() error {
