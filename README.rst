@@ -26,10 +26,13 @@ The executable exposes the REST (or other) services from the different engines. 
 Installation
 ------------
 
+.. note::
+
+    Nuts-go uses Go version > `1.12.x` and go modules.
+
 .. code-block:: shell
 
    go get github.com/nuts-foundation/nuts-go
-   make
 
 Configuration
 -------------
@@ -39,6 +42,6 @@ Run:
 
 .. code-block:: shell
 
-   nuts --help
+   run main.go help
 
 for listing the different options
