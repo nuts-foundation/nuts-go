@@ -12,6 +12,8 @@ Using the library
 Building the library
 --------------------
 
+Nuts uses Go modules, check out https://github.com/golang/go/wiki/Modules for more info on Gop modules.
+
 For generating mocks:
 
 .. code-block:: shell
