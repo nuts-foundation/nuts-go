@@ -11,6 +11,8 @@ github.com/fsnotify/fsnotify v1.4.7 h1:IXs+QLmnXW2CcXuY+8Mzv/fWEsPGWxqefPtCP5CnV
 github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMoQvtojpjFo=
 github.com/getkin/kin-openapi v0.1.1-0.20190507152207-d3180292eead h1:WxbVZ8yid/2BVUXwWtTvPSKcSYyfOzxw1XDcqBUPgwg=
 github.com/getkin/kin-openapi v0.1.1-0.20190507152207-d3180292eead/go.mod h1:V1z9xl9oF5Wt7v32ne4FmiF1alpS4dM6mNzoywPOXlk=
+github.com/getkin/kin-openapi v0.2.0 h1:PbHHtYZpjKwZtGlIyELgA2DploRrsaXztoNNx9HjwNY=
+github.com/getkin/kin-openapi v0.2.0/go.mod h1:V1z9xl9oF5Wt7v32ne4FmiF1alpS4dM6mNzoywPOXlk=
 github.com/ghodss/yaml v1.0.0 h1:wQHKEahhL6wmXdzwWG11gIVCkOv05bNOh+Rxn0yngAk=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
@@ -43,6 +45,9 @@ github.com/mitchellh/mapstructure v1.1.2 h1:fmNYVwqnSfB9mZU6OS2O6GsXM+wcskZDuKQz
 github.com/mitchellh/mapstructure v1.1.2/go.mod h1:FVVH3fgwuzCH5S8UJGiWEs2h04kUh9fWfEaFds41c1Y=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-540cb973b331 h1:/TD8Fyjx2tnI6oSpz5uuIsxo56zp6tMUmlZdGD/FJzY=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-540cb973b331/go.mod h1:WYfWFdU0lVkXCBuNNPAPfo6y6xwIEzMpLp3CkfTEto4=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-dc8c617c35ac h1:8fcbL6VnM/B+atodRrMgPKWj0iWyMrXn9dfXlMZqiSE=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-dc8c617c35ac/go.mod h1:odRVRQSK5zrUkhs+ihcNInvhoAg+SKGEuGWDVrZ7CNA=
+github.com/nuts-foundation/nuts-go v0.0.0-20190513130535-6db5fc9f485ca/go.mod h1:vDPY3Qk0A8DfztMw9LukSk60hgG1BpaBV6bhGB/c6rc=
 github.com/pelletier/go-toml v1.2.0 h1:T5zMGML61Wp+FlcbWjRDT7yAxhJNAiPPLOFECq181zc=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
