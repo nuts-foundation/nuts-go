@@ -20,7 +20,7 @@
 package cmd
 
 import (
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	crypto "github.com/nuts-foundation/nuts-crypto/pkg/engine"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
