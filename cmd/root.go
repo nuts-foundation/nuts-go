@@ -22,7 +22,7 @@ package cmd
 import (
 	goflag "flag"
 	"github.com/labstack/echo/v4"
-	crypto "github.com/nuts-foundation/nuts-crypto"
+	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
