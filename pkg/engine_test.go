@@ -77,7 +77,7 @@ func TestListAllEngines(t *testing.T) {
 		defer ctrl.Finish()
 		echo := mock.NewMockContext(ctrl)
 
-		echo.EXPECT().JSON(http.StatusOK, []string{"*pkg.Engine"})
+		echo.EXPECT().JSON(http.StatusOK, []string{"Status"})
 
 		ListAllEngines(echo)
 	})

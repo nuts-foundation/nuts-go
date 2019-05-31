@@ -24,9 +24,6 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
 	"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
-
-	//"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
-	//"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
@@ -54,8 +51,12 @@ func Execute() {
 	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 
 	registerEngines()
-	configureEngines()
 	addSubCommands(rootCmd)
+	addFlagSets()
+
+	flag.Parse()
+
+	configureEngines()
 	rootCmd.Execute()
 }
 
@@ -76,6 +77,14 @@ func configureEngines() {
 			if err := e.Configure(); err != nil {
 				panic(err)
 			}
+		}
+	}
+}
+
+func addFlagSets() {
+	for _, e := range pkg.EngineCtl.Engines {
+		if e.FlagSet != nil {
+			flag.CommandLine.AddFlagSet(e.FlagSet)
 		}
 	}
 }

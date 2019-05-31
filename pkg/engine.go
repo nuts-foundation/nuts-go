@@ -26,7 +26,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"net/http"
-	"reflect"
 	"strings"
 )
 
@@ -40,6 +39,8 @@ var EngineCtl EngineControl
 
 // Engine contains all the configuration options and callbacks needed by the executable to configure, start, monitor and shutdown the engines
 type Engine struct {
+	// Name holds the human readable name of the engine
+	Name string
 
 	// Cmd is the optional sub-command for the engine. An engine can only add one sub-command (but multiple sub-sub-commands for the sub-command)
 	Cmd *cobra.Command
@@ -85,6 +86,7 @@ func NewStatusEngine() *Engine {
 				fmt.Println(strings.Join(names, ","))
 			},
 		},
+		Name: "Status",
 		Routes: func(router runtime.EchoRouter) {
 			router.GET("/status/engines", ListAllEngines)
 		},
@@ -102,7 +104,7 @@ func ListAllEngines(ctx echo.Context) error {
 func listAllEngines() []string {
 	var names []string
 	for _, e := range EngineCtl.Engines{
-		names = append(names, reflect.TypeOf(e).String())
+		names = append(names, e.Name)
 	}
 	return names
 }
