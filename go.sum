@@ -47,6 +47,8 @@ github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-540cb973b331 h1:/TD
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-540cb973b331/go.mod h1:WYfWFdU0lVkXCBuNNPAPfo6y6xwIEzMpLp3CkfTEto4=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-dc8c617c35ac h1:8fcbL6VnM/B+atodRrMgPKWj0iWyMrXn9dfXlMZqiSE=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190514100741-dc8c617c35ac/go.mod h1:odRVRQSK5zrUkhs+ihcNInvhoAg+SKGEuGWDVrZ7CNA=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190528080626-e86cf752a066 h1:mx4VF1Wp9sTqV0sojKoFkOKB7RFWTG4S4LnvGjPJSvA=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190528080626-e86cf752a066/go.mod h1:m1QkgQOor1ntbMGy1un6m+Gc9kFDDr+DwhL8v+sZk4g=
 github.com/nuts-foundation/nuts-go v0.0.0-20190513130535-6db5fc9f485ca/go.mod h1:vDPY3Qk0A8DfztMw9LukSk60hgG1BpaBV6bhGB/c6rc=
 github.com/pelletier/go-toml v1.2.0 h1:T5zMGML61Wp+FlcbWjRDT7yAxhJNAiPPLOFECq181zc=
 github.com/pelletier/go-toml v1.2.0/go.mod h1:5z9KED0ma1S8pY6P1sdut58dfprrGBbd/94hg7ilaic=

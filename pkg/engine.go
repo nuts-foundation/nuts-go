@@ -33,39 +33,39 @@ import (
 // EngineCtl is the control structure where engines are registered. All registered engines are referenced by the EngineCtl
 type EngineControl struct {
 	// Engines is the slice of all registered engines
-	Engines []Engine
+	Engines []*Engine
 }
 
 var EngineCtl EngineControl
 
-// Engine contains all the functions needed by the executable to configure, start, monitor and shutdown the engines
-type Engine interface {
+// Engine contains all the configuration options and callbacks needed by the executable to configure, start, monitor and shutdown the engines
+type Engine struct {
 
-	// Cmd gives the optional sub-command for the engine. An engine can only add one sub-command (multiple sub-sub-commands for the sub-command)
-	Cmd() *cobra.Command
+	// Cmd is the optional sub-command for the engine. An engine can only add one sub-command (but multiple sub-sub-commands for the sub-command)
+	Cmd *cobra.Command
 
 	// Configure loads the given configurations in the engine. Any wrong combination will return an error
-	Configure() error
+	Configure func() error
 
-	// FlasSet returns all global configuration possibilities so they can be displayed through the help command
-	FlagSet() *pflag.FlagSet
+	// FlasSet contains all engine-local configuration possibilities so they can be displayed through the help command
+	FlagSet *pflag.FlagSet
 
 	// Routes passes the Echo router to the specific engine for it to register their routes.
-	Routes(router runtime.EchoRouter)
+	Routes func(router runtime.EchoRouter)
 
 	// Shutdown the engine
-	Shutdown() error
+	Shutdown func() error
 
 	// Start the engine, this will spawn any clients, background tasks or active processes.
-	Start() error
+	Start func() error
 }
 
 // RegisterEngine is a helper func to add an engine to the list of engines from a different lib/pkg
-func RegisterEngine(engine Engine) {
+func RegisterEngine(engine *Engine) {
 	EngineCtl.registerEngine(engine)
 }
 
-func (ec *EngineControl) registerEngine(engine Engine) {
+func (ec *EngineControl) registerEngine(engine *Engine) {
 	ec.Engines = append(ec.Engines, engine)
 }
 
@@ -75,7 +75,24 @@ type StatusEngine struct {
 
 func init() {
 	EngineCtl = EngineControl{}
-	EngineCtl.registerEngine(&StatusEngine{})
+	EngineCtl.registerEngine(NewStatusEngine())
+}
+
+//NewStatusEngine creates a new Engine for viewing all engines
+func NewStatusEngine() *Engine {
+	return &Engine{
+		Cmd: &cobra.Command{
+			Use:   "engineStatus",
+			Short: "show the registered engines",
+			Run: func(cmd *cobra.Command, args []string) {
+				names := listAllEngines()
+				fmt.Println(strings.Join(names, ","))
+			},
+		},
+		Routes: func(router runtime.EchoRouter) {
+			router.GET("/status/engines", ListAllEngines)
+		},
+	}
 }
 
 // FlagSet returns an empty FlagSet
@@ -88,42 +105,21 @@ func (se *StatusEngine) Cmd() *cobra.Command {
 		Use:   "engineStatus",
 		Short: "show the registered engines",
 		Run: func(cmd *cobra.Command, args []string) {
-			names := se.listAllEngines()
+			names := listAllEngines()
 			fmt.Println(strings.Join(names, ","))
 		},
 	}
 }
 
-// Configure does not do anything
-func (*StatusEngine) Configure() error {
-	return nil
-}
-
-// Routes returns a single endpoint listing all available/active engines on /status/engines
-func (se *StatusEngine) Routes(router runtime.EchoRouter) {
-
-	router.GET("/status/engines", se.ListAllEngines)
-}
-
-// Start does not do anything
-func (*StatusEngine) Start() error {
-	return nil
-}
-
-// Shutdown does not do anything
-func (*StatusEngine) Shutdown() error {
-	return nil
-}
-
 // ListAllEngines is the handler function for the /status/engines api call
-func (se *StatusEngine) ListAllEngines(ctx echo.Context) error {
-	names := se.listAllEngines()
+func ListAllEngines(ctx echo.Context) error {
+	names := listAllEngines()
 
 	// generate output
 	return ctx.JSON(http.StatusOK, names)
 }
 
-func (se *StatusEngine) listAllEngines() []string {
+func listAllEngines() []string {
 	var names []string
 	for _, e := range EngineCtl.Engines{
 		names = append(names, reflect.TypeOf(e).String())

@@ -20,10 +20,12 @@
 package cmd
 
 import (
+	goflag "flag"
 	"github.com/labstack/echo/v4"
-	crypto "github.com/nuts-foundation/nuts-crypto/pkg/engine"
+	crypto "github.com/nuts-foundation/nuts-crypto"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
+	flag "github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -45,6 +47,8 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+
 	registerEngines()
 	configureEngines()
 	addSubCommands(rootCmd)
@@ -53,7 +57,7 @@ func Execute() {
 
 func addSubCommands(root *cobra.Command) {
 	for _, e := range pkg.EngineCtl.Engines {
-		root.AddCommand(e.Cmd())
+		root.AddCommand(e.Cmd)
 	}
 }
 
