@@ -22,6 +22,7 @@ package cmd
 import (
 	goflag "flag"
 	"github.com/labstack/echo/v4"
+	"github.com/nuts-foundation/nuts-consent-store/pkg/consent"
 	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
 	"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
 	"github.com/nuts-foundation/nuts-go/pkg"
@@ -43,6 +44,8 @@ var rootCmd = &cobra.Command{
 			engine.Routes(echo)
 		}
 
+		defer shutdownEngines()
+
 		echo.Logger.Fatal(echo.Start("localhost:5678"))
 	},
 }
@@ -57,6 +60,10 @@ func Execute() {
 	flag.Parse()
 
 	configureEngines()
+
+	startEngines()
+
+	// blocking main call
 	rootCmd.Execute()
 }
 
@@ -69,6 +76,7 @@ func addSubCommands(root *cobra.Command) {
 func registerEngines() {
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())
+	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 }
 
 func configureEngines() {
@@ -85,6 +93,23 @@ func addFlagSets() {
 	for _, e := range pkg.EngineCtl.Engines {
 		if e.FlagSet != nil {
 			flag.CommandLine.AddFlagSet(e.FlagSet)
+		}
+	}
+}
+
+func startEngines() {
+	for _, e := range pkg.EngineCtl.Engines {
+		if e.Start != nil {
+			e.Start()
+		}
+	}
+}
+
+
+func shutdownEngines() {
+	for _, e := range pkg.EngineCtl.Engines {
+		if e.Shutdown != nil {
+			e.Shutdown()
 		}
 	}
 }
