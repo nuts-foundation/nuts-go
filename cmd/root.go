@@ -23,6 +23,10 @@ import (
 	goflag "flag"
 	"github.com/labstack/echo/v4"
 	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
+	"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
+
+	//"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
+	//"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
@@ -63,12 +67,15 @@ func addSubCommands(root *cobra.Command) {
 
 func registerEngines() {
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
+	pkg.RegisterEngine(validation.NewValidationEngine())
 }
 
 func configureEngines() {
 	for _, e := range pkg.EngineCtl.Engines {
-		if err := e.Configure(); err != nil {
-			panic(err)
+		if e.Configure != nil {
+			if err := e.Configure(); err != nil {
+				panic(err)
+			}
 		}
 	}
 }

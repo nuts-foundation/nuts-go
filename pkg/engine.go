@@ -69,10 +69,6 @@ func (ec *EngineControl) registerEngine(engine *Engine) {
 	ec.Engines = append(ec.Engines, engine)
 }
 
-// StatusEngine is an engine that comes with the executable and lists installed engines on an endpoint.
-type StatusEngine struct {
-}
-
 func init() {
 	EngineCtl = EngineControl{}
 	EngineCtl.registerEngine(NewStatusEngine())
@@ -91,22 +87,6 @@ func NewStatusEngine() *Engine {
 		},
 		Routes: func(router runtime.EchoRouter) {
 			router.GET("/status/engines", ListAllEngines)
-		},
-	}
-}
-
-// FlagSet returns an empty FlagSet
-func (*StatusEngine) FlagSet() *pflag.FlagSet {
-	return &pflag.FlagSet{}
-}
-
-func (se *StatusEngine) Cmd() *cobra.Command {
-	return &cobra.Command{
-		Use:   "engineStatus",
-		Short: "show the registered engines",
-		Run: func(cmd *cobra.Command, args []string) {
-			names := listAllEngines()
-			fmt.Println(strings.Join(names, ","))
 		},
 	}
 }
