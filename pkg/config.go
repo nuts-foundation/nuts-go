@@ -34,6 +34,7 @@ const defaultPrefix = "NUTS"
 const defaultSeparator = "."
 const defaultConfigFile = "nuts.yaml"
 const configFileFlag = "configfile"
+
 var defaultIgnoredPrefixes = []string{"root"}
 
 // NutsGlobalConfig has the settings which influence all other settings.
@@ -49,6 +50,8 @@ type NutsGlobalConfig struct {
 
 	// IgnoredPrefixes is a slice of prefixes which will not be used to prepend config variables, eg: --logging.verbosity will just be --verbosity
 	IgnoredPrefixes []string
+
+	v *viper.Viper
 }
 
 // NewNutsGlobalConfig creates a NutsGlobalConfig with the following defaults
@@ -61,43 +64,50 @@ func NewNutsGlobalConfig() *NutsGlobalConfig {
 		Prefix:            defaultPrefix,
 		Delimiter:         defaultSeparator,
 		IgnoredPrefixes:   defaultIgnoredPrefixes,
+		v:                 viper.New(),
 	}
 }
 
-// todo: sets global config, so should not a function on a struct?
 // Configure sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
 func (ngc *NutsGlobalConfig) Configure() error {
-	viper.SetEnvPrefix(ngc.Prefix)
-	viper.AutomaticEnv()
-	viper.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
+	ngc.v.SetEnvPrefix(ngc.Prefix)
+	ngc.v.AutomaticEnv()
+	ngc.v.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
 	flagSet := pflag.NewFlagSet("config", pflag.ContinueOnError)
 	flagSet.String(configFileFlag, ngc.DefaultConfigFile, "Nuts config file")
 	pflag.CommandLine.AddFlagSet(flagSet)
 
 	cf := flagSet.Lookup(configFileFlag)
 
-	if err :=viper.BindPFlag(cf.Name, cf); err != nil {
+	if err := ngc.v.BindPFlag(cf.Name, cf); err != nil {
 		return err
 	}
 
-	return viper.BindEnv(cf.Name)
+	if err := ngc.v.BindEnv(cf.Name); err != nil {
+		return err
+	}
+
+	// load flags into viper
+	flag.Parse()
+
+	return nil
 }
 
 // LoadConfigFile load the config from the given config file or from the default config file. If the file does not exist it'll continue with default values.
 func (ngc *NutsGlobalConfig) LoadConfigFile() error {
 	// first load configFile param
-	if !viper.IsSet(configFileFlag) {
+	if !ngc.v.IsSet(configFileFlag) {
 		return types.Error{Msg: "no configFile is set, run Configure before running LoadConfigFile"}
 	}
-	configFile := viper.GetString(configFileFlag)
+	configFile := ngc.v.GetString(configFileFlag)
 
 	// default path, relative paths and absolute paths should work
-	viper.AddConfigPath(".")
-	viper.SetConfigFile(configFile)
+	ngc.v.AddConfigPath(".")
+	ngc.v.SetConfigFile(configFile)
 
 	// if file can not be found, print to stderr and continue
-	err := viper.ReadInConfig()
+	err := ngc.v.ReadInConfig()
 	if err != nil && err.Error() == fmt.Sprintf("open %s: no such file or directory", configFile) {
 		fmt.Fprintf(os.Stderr, "Config file %s not found, using defaults!\n", configFile)
 		return nil
@@ -127,7 +137,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 
 				// field in struct
 				var field *reflect.Value
-				field, err = ngc.findField(e, f.Name)
+				field, err = ngc.findField(e, ngc.fieldName(e, f.Name))
 
 				if err != nil {
 					err = types.Error{Msg: fmt.Sprintf("Problem injecting [%v] for %s: %s", configName, e.Name, err.Error())}
@@ -135,7 +145,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 				}
 
 				// get value
-				val := viper.Get(configName)
+				val := ngc.v.Get(configName)
 
 				if val == nil {
 					err = types.Error{Msg: fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName)}
@@ -154,7 +164,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 	var err error
 
-	for _, configName := range viper.AllKeys() {
+	for _, configName := range ngc.v.AllKeys() {
 		// ignore configFile flag
 		if configName == configFileFlag {
 			continue
@@ -169,7 +179,7 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 		}
 
 		// get value
-		val := viper.Get(configName)
+		val := ngc.v.Get(configName)
 
 		if val == nil {
 			return types.Error{Msg: fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName)}
@@ -188,20 +198,33 @@ func (ngc *NutsGlobalConfig) RegisterFlags(e *Engine) {
 
 		fs.VisitAll(func(f *pflag.Flag) {
 			// prepend with engine.configKey
-			if e.ConfigKey != "" {
+			if e.ConfigKey != "" && !ngc.isIgnoredPrefix(e.ConfigKey) {
 				f.Name = fmt.Sprintf("%s%s%s", e.ConfigKey, ngc.Delimiter, f.Name)
 			}
 
 			// add commandline flag
-			pflag.CommandLine.AddFlag(f)
+			pf := pflag.CommandLine.Lookup(f.Name)
+			if pf == nil {
+				pflag.CommandLine.AddFlag(f)
+				pf = f
+			}
 
 			// some magic for stuff to get combined
-			viper.BindPFlag(f.Name, f)
+			ngc.v.BindPFlag(f.Name, pf)
 
 			// bind environment variable
-			viper.BindEnv(f.Name)
+			ngc.v.BindEnv(f.Name)
 		})
 	}
+}
+
+func (ngc *NutsGlobalConfig) isIgnoredPrefix(prefix string) bool {
+	for _, ip := range ngc.IgnoredPrefixes {
+		if ip == prefix {
+			return true
+		}
+	}
+	return false
 }
 
 // Unmarshal loads config from Env, commandLine and configFile into given struct.
@@ -211,9 +234,6 @@ func (ngc *NutsGlobalConfig) LoadAndUnmarshal(targetCfg interface{}) error {
 	if err := ngc.Configure(); err != nil {
 		return err
 	}
-
-	// load flags into viper
-	flag.Parse()
 
 	// load general config from file
 	if err := ngc.LoadConfigFile(); err != nil {
@@ -243,13 +263,23 @@ func (ngc *NutsGlobalConfig) configName(e *Engine, f *pflag.Flag) string {
 	return fmt.Sprintf("%s%s%s", e.ConfigKey, ngc.Delimiter, f.Name)
 }
 
+func (ngc *NutsGlobalConfig) fieldName(e *Engine, s string) string {
+	if e.ConfigKey != "" && !ngc.isIgnoredPrefix(e.ConfigKey) {
+		if strings.Index(s, e.ConfigKey) == 0 {
+			return s[len(e.ConfigKey)+1:]
+		}
+	}
+
+	return s
+}
+
 // findField returns the Value of the field to inject value into
 // it also checks if the Field can be set
 // it uses findFieldRecursive to find deeper nested struct fields
-func (ngc *NutsGlobalConfig) findField(e *Engine, configName string) (*reflect.Value, error) {
+func (ngc *NutsGlobalConfig) findField(e *Engine, fieldName string) (*reflect.Value, error) {
 	cfgP := reflect.ValueOf(e.Config)
 
-	return ngc.findFieldInStruct(&cfgP, configName)
+	return ngc.findFieldInStruct(&cfgP, fieldName)
 }
 
 func (ngc *NutsGlobalConfig) findFieldInStruct(cfgP *reflect.Value, configName string) (*reflect.Value, error) {
@@ -264,10 +294,10 @@ func (ngc *NutsGlobalConfig) findFieldInStruct(cfgP *reflect.Value, configName s
 
 	spl := strings.Split(configName, ngc.Delimiter)
 
-	return findFieldRecursive(&s, spl)
+	return ngc.findFieldRecursive(&s, spl)
 }
 
-func findFieldRecursive(s *reflect.Value, names []string) (*reflect.Value, error) {
+func (ngc *NutsGlobalConfig) findFieldRecursive(s *reflect.Value, names []string) (*reflect.Value, error) {
 	head := names[0]
 	tail := names[1:]
 
@@ -280,7 +310,7 @@ func findFieldRecursive(s *reflect.Value, names []string) (*reflect.Value, error
 		if len(tail) == 0 {
 			return nil, types.Error{Msg: fmt.Sprintf("incompatible source/target, trying to set value to struct target: %v to %v", strings.Title(head), field.Type())}
 		}
-		return findFieldRecursive(&field, tail)
+		return ngc.findFieldRecursive(&field, tail)
 	case reflect.Map:
 		return nil, types.Error{Msg: fmt.Sprintf("Map values not supported in %v", field.Type())}
 	default:

@@ -68,9 +68,6 @@ func Execute() {
 		panic(err)
 	}
 
-	// load flags into viper
-	flag.Parse()
-
 	// load general config from file
 	if err := cfg.LoadConfigFile(); err != nil {
 		panic(err)

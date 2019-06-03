@@ -50,27 +50,77 @@ func TestNewNutsGlobalConfig(t *testing.T) {
 }
 
 func TestNutsGlobalConfig_Configure(t *testing.T) {
-	if err := NewNutsGlobalConfig().Configure(); err != nil {
+	cfg := NewNutsGlobalConfig()
+
+	if err := cfg.Configure(); err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 
 	t.Run("Sets global Env prefix", func(t *testing.T) {
 		os.Setenv("NUTS_KEY", "value")
-		if value := viper.Get("key"); value != "value" {
+		if value := cfg.v.Get("key"); value != "value" {
 			t.Errorf("Expected key to have [value], got [%v]", value)
 		}
 	})
 
 	t.Run("Sets correct key replacer", func(t *testing.T) {
 		os.Setenv("NUTS_SUB_KEY", "value")
-		if value := viper.Get("sub.key"); value != "value" {
+		if value := cfg.v.Get("sub.key"); value != "value" {
 			t.Errorf("Expected sub.key to have [value], got [%v]", value)
 		}
 	})
 
 	t.Run("Adds configFile flag", func(t *testing.T) {
-		if value := viper.Get(configFileFlag); value != defaultConfigFile {
+		if value := cfg.v.Get(configFileFlag); value != defaultConfigFile {
 			t.Errorf("Expected configFile to be [%s], got [%v]", defaultConfigFile, value)
+		}
+	})
+}
+
+func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
+	t.Run("adds prefix to flag", func(t *testing.T) {
+		e := &Engine{
+			ConfigKey: "pre",
+			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+		}
+		e.FlagSet.String("key", "", "")
+
+		cfg := NewNutsGlobalConfig()
+		cfg.RegisterFlags(e)
+
+		var found bool
+		for _, key := range cfg.v.AllKeys() {
+			if key == "pre.key" {
+				found = true
+			}
+		}
+
+		if !found {
+			t.Errorf("Expected [pre.key] to be available as config")
+		}
+	})
+
+	t.Run("does not add a prefix to flag when prefix is added to ignoredPrefixes", func(t *testing.T) {
+		e := &Engine{
+			ConfigKey: "pre",
+			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+		}
+		e.FlagSet.String("key", "", "")
+
+		cfg := NewNutsGlobalConfig()
+		cfg.IgnoredPrefixes = append(cfg.IgnoredPrefixes, "pre")
+		cfg.RegisterFlags(e)
+
+		var found bool
+		for _, key := range cfg.v.AllKeys() {
+			println(key)
+			if key == "key" {
+				found = true
+			}
+		}
+
+		if !found {
+			t.Errorf("Expected [key] to be available as config")
 		}
 	})
 }
@@ -79,6 +129,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Does not return error on missing file", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "non_existing.yaml",
+			v: viper.New(),
 		}
 		cfg.Configure()
 
@@ -90,6 +141,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Returns error on incorrect file", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "../test/config/corrupt.yaml",
+			v: viper.New(),
 		}
 		cfg.Configure()
 
@@ -107,6 +159,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Loads settings into viper", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "../test/config/dummy.yaml",
+			v: viper.New(),
 		}
 		cfg.Configure()
 
@@ -115,7 +168,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			t.Errorf("Expected no error, got [%v]", err.Error())
 		}
 
-		val := viper.Get("key")
+		val := cfg.v.Get("key")
 		if val != "value" {
 			t.Errorf("Expected value to equals [value], got [%v]", val)
 		}
@@ -132,7 +185,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 			t.Errorf("Expected no error, got [%v]", err.Error())
 		}
 
-		if !viper.IsSet(configFileFlag) {
+		if !cfg.v.IsSet(configFileFlag) {
 			t.Errorf("Expected %s to be set", configFileFlag)
 		}
 	})
@@ -143,7 +196,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 		}{
 			"",
 		}
-		viper.Set("key", "value")
+		cfg.v.Set("key", "value")
 		err := cfg.LoadAndUnmarshal(&s)
 		if err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
@@ -170,7 +223,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}
 		e.FlagSet.String("key", "", "")
 
-		viper.Set("key", "value")
+		cfg.v.Set("key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
@@ -194,7 +247,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		e.FlagSet.String("key", "", "")
 		cfg.RegisterFlags(e)
 
-		viper.Set("pre.key", "value")
+		cfg.v.Set("pre.key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
@@ -216,7 +269,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}
 		e.FlagSet.String("nested.key", "", "")
 
-		viper.Set("nested.key", "value")
+		cfg.v.Set("nested.key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
@@ -240,7 +293,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		e.FlagSet.String("nested.key", "", "")
 		cfg.RegisterFlags(e)
 
-		viper.Set("pre.nested.key", "value")
+		cfg.v.Set("pre.nested.key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
@@ -285,7 +338,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}
 		e.FlagSet.String("nested.key", "", "")
 
-		viper.Set("nested", "value")
+		cfg.v.Set("nested", "value")
 
 		err := cfg.InjectIntoEngine(e)
 		if err == nil {
@@ -309,7 +362,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}
 		e.FlagSet.String("nested.key", "", "")
 
-		viper.Set("nested.key", "value")
+		cfg.v.Set("nested.key", "value")
 
 		err := cfg.InjectIntoEngine(e)
 		if err == nil {
