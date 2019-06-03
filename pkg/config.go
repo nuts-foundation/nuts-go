@@ -68,9 +68,9 @@ func NewNutsGlobalConfig() *NutsGlobalConfig {
 	}
 }
 
-// Configure sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
+// Load sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
-func (ngc *NutsGlobalConfig) Configure() error {
+func (ngc *NutsGlobalConfig) Load() error {
 	ngc.v.SetEnvPrefix(ngc.Prefix)
 	ngc.v.AutomaticEnv()
 	ngc.v.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
@@ -91,14 +91,14 @@ func (ngc *NutsGlobalConfig) Configure() error {
 	// load flags into viper
 	flag.Parse()
 
-	return nil
+	return ngc.loadConfigFile()
 }
 
 // LoadConfigFile load the config from the given config file or from the default config file. If the file does not exist it'll continue with default values.
-func (ngc *NutsGlobalConfig) LoadConfigFile() error {
+func (ngc *NutsGlobalConfig) loadConfigFile() error {
 	// first load configFile param
 	if !ngc.v.IsSet(configFileFlag) {
-		return types.Error{Msg: "no configFile is set, run Configure before running LoadConfigFile"}
+		return types.Error{Msg: "no configFile is set, run Load before running LoadConfigFile"}
 	}
 	configFile := ngc.v.GetString(configFileFlag)
 
@@ -231,12 +231,7 @@ func (ngc *NutsGlobalConfig) isIgnoredPrefix(prefix string) bool {
 // This call is intended to be used outside of the engine structure of Nuts-go.
 // It can be used by the individual repo's, for testing the repo as standalone command.
 func (ngc *NutsGlobalConfig) LoadAndUnmarshal(targetCfg interface{}) error {
-	if err := ngc.Configure(); err != nil {
-		return err
-	}
-
-	// load general config from file
-	if err := ngc.LoadConfigFile(); err != nil {
+	if err := ngc.Load(); err != nil {
 		return err
 	}
 

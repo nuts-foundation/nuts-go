@@ -49,10 +49,10 @@ func TestNewNutsGlobalConfig(t *testing.T) {
 	})
 }
 
-func TestNutsGlobalConfig_Configure(t *testing.T) {
+func TestNutsGlobalConfig_Load(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
 
-	if err := cfg.Configure(); err != nil {
+	if err := cfg.Load(); err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 
@@ -131,9 +131,9 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "non_existing.yaml",
 			v: viper.New(),
 		}
-		cfg.Configure()
+		cfg.Load()
 
-		if err := cfg.LoadConfigFile(); err != nil {
+		if err := cfg.loadConfigFile(); err != nil {
 			t.Errorf("Expected no error, got %v", err)
 		}
 	})
@@ -143,9 +143,9 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "../test/config/corrupt.yaml",
 			v: viper.New(),
 		}
-		cfg.Configure()
+		cfg.Load()
 
-		err := cfg.LoadConfigFile()
+		err := cfg.loadConfigFile()
 		if err == nil {
 			t.Errorf("Expected error, got nothing")
 		}
@@ -161,9 +161,9 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "../test/config/dummy.yaml",
 			v: viper.New(),
 		}
-		cfg.Configure()
+		cfg.Load()
 
-		err := cfg.LoadConfigFile()
+		err := cfg.loadConfigFile()
 		if err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
 		}
@@ -177,7 +177,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 
 func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
-	cfg.Configure()
+	cfg.Load()
 
 	t.Run("Adds configFile flag to Cmd", func(t *testing.T) {
 		err := cfg.LoadAndUnmarshal(&struct{}{})
@@ -210,7 +210,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 
 func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
-	cfg.Configure()
+	cfg.Load()
 
 	t.Run("param is injected into engine without ConfigKey", func(t *testing.T) {
 		c := struct {
