@@ -20,13 +20,9 @@
 package pkg
 
 import (
-	"fmt"
 	"github.com/deepmap/oapi-codegen/pkg/runtime"
-	"github.com/labstack/echo/v4"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
-	"net/http"
-	"strings"
 )
 
 // EngineCtl is the control structure where engines are registered. All registered engines are referenced by the EngineCtl
@@ -45,7 +41,19 @@ type Engine struct {
 	// Cmd is the optional sub-command for the engine. An engine can only add one sub-command (but multiple sub-sub-commands for the sub-command)
 	Cmd *cobra.Command
 
-	// Configure loads the given configurations in the engine. Any wrong combination will return an error
+	// ConfigKey is the root yaml key in the config file or ENV sub-key for all keys used to configure an engine
+	// 	status:
+	//	  key:
+	// and
+	// 	NUTS_STATUS_KEY=
+	// and
+	//	--status-key
+	ConfigKey string
+
+	// Config is the pointer to a config struct. The config will be unmarshalled using the ConfigKey.
+	Config interface{}
+
+	// Configure loads the given configurations into the engine. Any wrong combination will return an error.
 	Configure func() error
 
 	// FlasSet contains all engine-local configuration possibilities so they can be displayed through the help command
@@ -72,39 +80,4 @@ func (ec *EngineControl) registerEngine(engine *Engine) {
 
 func init() {
 	EngineCtl = EngineControl{}
-	EngineCtl.registerEngine(NewStatusEngine())
-}
-
-//NewStatusEngine creates a new Engine for viewing all engines
-func NewStatusEngine() *Engine {
-	return &Engine{
-		Cmd: &cobra.Command{
-			Use:   "engineStatus",
-			Short: "show the registered engines",
-			Run: func(cmd *cobra.Command, args []string) {
-				names := listAllEngines()
-				fmt.Println(strings.Join(names, ","))
-			},
-		},
-		Name: "Status",
-		Routes: func(router runtime.EchoRouter) {
-			router.GET("/status/engines", ListAllEngines)
-		},
-	}
-}
-
-// ListAllEngines is the handler function for the /status/engines api call
-func ListAllEngines(ctx echo.Context) error {
-	names := listAllEngines()
-
-	// generate output
-	return ctx.JSON(http.StatusOK, names)
-}
-
-func listAllEngines() []string {
-	var names []string
-	for _, e := range EngineCtl.Engines{
-		names = append(names, e.Name)
-	}
-	return names
 }

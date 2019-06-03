@@ -35,8 +35,6 @@ var rootCmd = &cobra.Command{
 	Short: "The Nuts service executable",
 	Run: func(cmd *cobra.Command, args []string) {
 
-		// start engines & monitoring
-
 		// start interfaces
 		echo := echo.New()
 
@@ -53,14 +51,38 @@ var rootCmd = &cobra.Command{
 func Execute() {
 	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 
+	// register static set of engines, needed for other commands
 	registerEngines()
-	addSubCommands(rootCmd)
-	addFlagSets()
 
+	// add all commands from registered engines
+	addSubCommands(rootCmd)
+
+	// Load global Nuts config
+	cfg := pkg.NewNutsGlobalConfig()
+
+	// add commandline options and parse commandline
+	addFlagSets(cfg)
+
+	// Load all config and add generic options
+	if err := cfg.Configure(); err != nil {
+		panic(err)
+	}
+
+	// load flags into viper
 	flag.Parse()
 
+	// load general config from file
+	if err := cfg.LoadConfigFile(); err != nil {
+		panic(err)
+	}
+
+	// Load config into engines
+	injectConfig(cfg)
+
+	// check config on all engines
 	configureEngines()
 
+	// start engines
 	startEngines()
 
 	// blocking main call
@@ -79,8 +101,19 @@ func registerEngines() {
 	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 }
 
+func injectConfig(cfg *pkg.NutsGlobalConfig) {
+	// loop through configs and call viper.Get prepended with engine ConfigKey, inject value into struct
+	for _, e := range pkg.EngineCtl.Engines {
+		if err := cfg.InjectIntoEngine(e); err != nil {
+			// todo : replace panic with log fatal
+			panic(err)
+		}
+	}
+}
+
 func configureEngines() {
 	for _, e := range pkg.EngineCtl.Engines {
+		// only if Engine is dynamically configurable
 		if e.Configure != nil {
 			if err := e.Configure(); err != nil {
 				panic(err)
@@ -89,11 +122,9 @@ func configureEngines() {
 	}
 }
 
-func addFlagSets() {
+func addFlagSets(cfg *pkg.NutsGlobalConfig) {
 	for _, e := range pkg.EngineCtl.Engines {
-		if e.FlagSet != nil {
-			flag.CommandLine.AddFlagSet(e.FlagSet)
-		}
+		cfg.RegisterFlags(e)
 	}
 }
 
@@ -104,7 +135,6 @@ func startEngines() {
 		}
 	}
 }
-
 
 func shutdownEngines() {
 	for _, e := range pkg.EngineCtl.Engines {

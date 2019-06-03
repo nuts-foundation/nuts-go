@@ -44,8 +44,8 @@ func TestRegisterEngine(t *testing.T) {
 
 	t.Run("has been called by init to register StatusEngine", func(t *testing.T) {
 
-		if len(EngineCtl.Engines) != 1 {
-			t.Errorf("Expected 1 registered engine, Got %d", len(EngineCtl.Engines))
+		if len(EngineCtl.Engines) != 2 {
+			t.Errorf("Expected 2 registered engine, Got %d", len(EngineCtl.Engines))
 		}
 	})
 }
@@ -77,7 +77,7 @@ func TestListAllEngines(t *testing.T) {
 		defer ctrl.Finish()
 		echo := mock.NewMockContext(ctrl)
 
-		echo.EXPECT().JSON(http.StatusOK, []string{"Status"})
+		echo.EXPECT().JSON(http.StatusOK, []string{"Logging", "Status"})
 
 		ListAllEngines(echo)
 	})
