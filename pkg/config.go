@@ -20,7 +20,6 @@
 package pkg
 
 import (
-	"flag"
 	"fmt"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -89,7 +88,7 @@ func (ngc *NutsGlobalConfig) Load() error {
 	}
 
 	// load flags into viper
-	flag.Parse()
+	pflag.Parse()
 
 	return ngc.loadConfigFile()
 }

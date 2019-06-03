@@ -60,6 +60,7 @@ func Execute() {
 	// Load global Nuts config
 	cfg := pkg.NewNutsGlobalConfig()
 
+	// todo: combine the following 3 calls into 1 passing an array of engines
 	// add commandline options and parse commandline
 	addFlagSets(cfg)
 
