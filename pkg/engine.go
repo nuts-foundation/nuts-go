@@ -53,7 +53,7 @@ type Engine struct {
 	// Config is the pointer to a config struct. The config will be unmarshalled using the ConfigKey.
 	Config interface{}
 
-	// Load loads the given configurations into the engine. Any wrong combination will return an error.
+	// Configure checks if the combination of config parameters is allowed
 	Configure func() error
 
 	// FlasSet contains all engine-local configuration possibilities so they can be displayed through the help command

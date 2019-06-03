@@ -1,4 +1,4 @@
-.. _nuts-crypto-howto:
+.. _nuts-go-howto:
 
 Howto
 =====
