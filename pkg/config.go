@@ -21,18 +21,23 @@ package pkg
 
 import (
 	"fmt"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"go/types"
+	"math"
 	"os"
 	"reflect"
 	"strings"
+	"sync"
 )
 
 const defaultPrefix = "NUTS"
 const defaultSeparator = "."
 const defaultConfigFile = "nuts.yaml"
 const configFileFlag = "configfile"
+const loggerLevelFlag = "verbosity"
+const defaultLogLevel = "info"
 
 var defaultIgnoredPrefixes = []string{"root"}
 
@@ -67,6 +72,17 @@ func NewNutsGlobalConfig() *NutsGlobalConfig {
 	}
 }
 
+var configOnce sync.Once
+var configInstance *NutsGlobalConfig
+
+// NutsGlobalConfig returns a singleton global config
+func NutsConfig() *NutsGlobalConfig {
+	configOnce.Do(func() {
+		configInstance = NewNutsGlobalConfig()
+	})
+	return configInstance
+}
+
 // Load sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
 func (ngc *NutsGlobalConfig) Load() error {
@@ -75,29 +91,84 @@ func (ngc *NutsGlobalConfig) Load() error {
 	ngc.v.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
 	flagSet := pflag.NewFlagSet("config", pflag.ContinueOnError)
 	flagSet.String(configFileFlag, ngc.DefaultConfigFile, "Nuts config file")
+	flagSet.String(loggerLevelFlag, defaultLogLevel, "Log level")
 	pflag.CommandLine.AddFlagSet(flagSet)
 
+	// Bind config flag
 	cf := flagSet.Lookup(configFileFlag)
-
 	if err := ngc.v.BindPFlag(cf.Name, cf); err != nil {
 		return err
 	}
-
 	if err := ngc.v.BindEnv(cf.Name); err != nil {
+		return err
+	}
+
+	// Bind log level flag
+	llf := flagSet.Lookup(loggerLevelFlag)
+	if err := ngc.v.BindPFlag(llf.Name, llf); err != nil {
+		return err
+	}
+	if err := ngc.v.BindEnv(llf.Name); err != nil {
 		return err
 	}
 
 	// load flags into viper
 	pflag.Parse()
 
-	return ngc.loadConfigFile()
+	// load configFile into viper
+	if err := ngc.loadConfigFile(); err != nil {
+		return err
+	}
+
+	// initialize logger, verbosity flag needs to be available
+	level, err := log.ParseLevel(ngc.v.GetString(loggerLevelFlag))
+	if err != nil {
+		return err
+	}
+	log.SetLevel(level)
+
+	return nil
+}
+
+// PrintConfig outputs the current config to the logger on info level
+func (ngc *NutsGlobalConfig) PrintConfig() {
+	title := "Config"
+	var longestKey int
+	var longestValue int
+	for _, k := range ngc.v.AllKeys() {
+		s := fmt.Sprintf("%v", ngc.v.Get(k))
+		if len(s) > longestValue {
+			longestValue = len(s)
+		}
+		if len(k) > longestKey {
+			longestKey = len(k)
+		}
+	}
+
+	totalLength := 7 + longestKey + longestValue
+	stars := strings.Repeat("*", totalLength)
+	sideStarsLeft := int(math.Floor((float64(totalLength) - float64(len(title)))/2.0)) - 1
+	sideStarsRight := int(math.Ceil((float64(totalLength) - float64(len(title)))/2.0)) - 1
+
+	log.Infoln("")
+	log.Infoln(stars)
+	log.Infof("%s %s %s", strings.Repeat("*", sideStarsLeft), title, strings.Repeat("*", sideStarsRight))
+	log.Infoln("")
+
+	f := fmt.Sprintf("%%-%ds%%v\n", 7+longestKey)
+	for _, k := range ngc.v.AllKeys() {
+		log.Infof(f, k, ngc.v.Get(k))
+	}
+	log.Infoln("")
+	log.Infoln(stars)
+	log.Infoln("")
 }
 
 // LoadConfigFile load the config from the given config file or from the default config file. If the file does not exist it'll continue with default values.
 func (ngc *NutsGlobalConfig) loadConfigFile() error {
 	// first load configFile param
 	if !ngc.v.IsSet(configFileFlag) {
-		return types.Error{Msg: "no configFile is set, run Load before running LoadConfigFile"}
+		return types.Error{Msg: "no configFile is set, run parse before running LoadConfigFile"}
 	}
 	configFile := ngc.v.GetString(configFileFlag)
 

@@ -177,11 +177,14 @@ github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190531110356-a3f95f1f47
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190531110356-a3f95f1f47e7/go.mod h1:JXaIzFk8Dhj8atfj1Ipz1pwSQcn8pE0mX3msL4Lkjjc=
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190603114731-170e4d0f8c22 h1:GcjIb+43IuGCtHMVDsFZeB1ftw8CKXkayX/yhwggHig=
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190603114731-170e4d0f8c22/go.mod h1:JXaIzFk8Dhj8atfj1Ipz1pwSQcn8pE0mX3msL4Lkjjc=
+github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604083237-b02c5fce77f0 h1:jnwvbay18X8GDzSzO+Z/B1BUmhjRKXb9tyRAnGfqRG8=
+github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604083237-b02c5fce77f0/go.mod h1:7MwO8BYMikiJq87pbu1Hh5Wi0pvzfkFTaZS0W484mRc=
 github.com/nuts-foundation/nuts-go v0.0.0-20190513130535-6db5fc9f485ca/go.mod h1:vDPY3Qk0A8DfztMw9LukSk60hgG1BpaBV6bhGB/c6rc=
 github.com/nuts-foundation/nuts-go v0.0.0-20190513130535-ed32562df4321/go.mod h1:t2PnZu3V0wFlv2npZvXEC7jhrpDViEGrMYhYy/FMh0U=
 github.com/nuts-foundation/nuts-go v0.0.0-20190531091145-8849e4f78c5a/go.mod h1:AAiSruIx7w+aVvkPmXt5k2v62/QHvBC8/8Sa8EmgQPg=
 github.com/nuts-foundation/nuts-go v0.0.0-20190531110251-4cdd6f59cf74/go.mod h1:pgQb/sYzpjTTOLGWhZkUzIepFMQk10LQD0We/en3rAg=
 github.com/nuts-foundation/nuts-go v0.0.0-20190531110941-7bd66b2a4cfb/go.mod h1:DKfoD7i0DzeSzOE88mW9+owHiVrrqxLlS93exa+ezBQ=
+github.com/nuts-foundation/nuts-go v0.0.0-20190603140836-fb0085c3f6a1/go.mod h1:bLcIHPwO8W6uca+zxdPYnzWduqhXWRenBCwwAPrGJXI=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/gomega v1.4.3/go.mod h1:ex+gbHU/CVuBBDIJjb2X0qEXbFg53c61hWP/1CpauHY=
@@ -206,6 +209,7 @@ github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a/go.mod h1:bCqn
 github.com/satori/go.uuid v1.2.0/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
 github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24/go.mod h1:M+9NzErvs504Cn4c5DxATwIqPbtswREoFCre64PpcG4=
 github.com/sirupsen/logrus v1.2.0/go.mod h1:LxeOpSwHxABJmUn/MG1IvRgCAasNZTLOkJPxbbu5VWo=
+github.com/sirupsen/logrus v1.4.1 h1:GL2rEmy6nsikmW0r8opw9JIRScdMF5hA8cOYLH7In1k=
 github.com/sirupsen/logrus v1.4.1/go.mod h1:ni0Sbl8bgC9z8RoU9G6nDWqqs/fq4eDPysMBDgk/93Q=
 github.com/spf13/afero v1.1.2 h1:m8/z1t7/fwjysjQRYbP0RD+bUIF/8tJwPdEZsI83ACI=
 github.com/spf13/afero v1.1.2/go.mod h1:j4pytiNVoe2o6bmDsKpLACNPDBIoEAkihy7loJ1B0CQ=

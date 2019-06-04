@@ -58,7 +58,7 @@ func Execute() {
 	addSubCommands(rootCmd)
 
 	// Load global Nuts config
-	cfg := pkg.NewNutsGlobalConfig()
+	cfg := pkg.NutsConfig()
 
 	// todo: combine the following 3 calls into 1 passing an array of engines
 	// add commandline options and parse commandline
@@ -68,6 +68,9 @@ func Execute() {
 	if err := cfg.Load(); err != nil {
 		panic(err)
 	}
+
+	// logger is initialized
+	cfg.PrintConfig()
 
 	// Load config into engines
 	injectConfig(cfg)

@@ -20,16 +20,9 @@
 package pkg
 
 import (
-	"fmt"
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"github.com/spf13/pflag"
 )
-
-type loggerConfig struct {
-	Verbosity string
-}
-
-var logConfig = loggerConfig{}
 
 //NewLoggerEngine creates a new Engine for logging
 func NewLoggerEngine() *Engine {
@@ -42,8 +35,6 @@ func NewLoggerEngine() *Engine {
 				printLoggerSetup()
 			},
 		},
-		Config: &logConfig,
-		FlagSet: flagSet(),
 	}
 }
 
@@ -51,14 +42,6 @@ func init() {
 	EngineCtl.registerEngine(NewLoggerEngine())
 }
 
-func flagSet() *pflag.FlagSet {
-	flags := pflag.NewFlagSet("logging", pflag.ContinueOnError)
-
-	flags.String("verbosity", "info", "logger verbosity: trace, debug, info, warn, error, fatal, panic")
-
-	return flags
-}
-
 func printLoggerSetup() {
-	fmt.Printf("Verbosity is set to %s\n", logConfig.Verbosity)
+	log.Infof("Verbosity is set to %s\n", NutsConfig().v.GetString(loggerLevelFlag))
 }
