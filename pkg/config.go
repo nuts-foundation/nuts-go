@@ -193,8 +193,6 @@ func (ngc *NutsGlobalConfig) loadConfigFile() error {
 func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 	var err error
 
-	// todo: trace logging
-
 	// ignore if no target for injection
 	if e.Config != nil {
 		// ignore if no registered flags
@@ -236,7 +234,7 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 
 	for _, configName := range ngc.v.AllKeys() {
 		// ignore configFile flag
-		if configName == configFileFlag {
+		if configName == configFileFlag || configName == loggerLevelFlag {
 			continue
 		}
 

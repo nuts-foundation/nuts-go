@@ -26,6 +26,7 @@ import (
 	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
 	"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
 	"github.com/nuts-foundation/nuts-go/pkg"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	flag "github.com/spf13/pflag"
 )
@@ -44,7 +45,7 @@ var rootCmd = &cobra.Command{
 
 		defer shutdownEngines()
 
-		echo.Logger.Fatal(echo.Start("localhost:5678"))
+		logrus.Fatal(echo.Start("localhost:5678"))
 	},
 }
 
@@ -101,8 +102,7 @@ func injectConfig(cfg *pkg.NutsGlobalConfig) {
 	// loop through configs and call viper.Get prepended with engine ConfigKey, inject value into struct
 	for _, e := range pkg.EngineCtl.Engines {
 		if err := cfg.InjectIntoEngine(e); err != nil {
-			// todo : replace panic with log fatal
-			panic(err)
+			logrus.Fatal(err)
 		}
 	}
 }
@@ -112,7 +112,7 @@ func configureEngines() {
 		// only if Engine is dynamically configurable
 		if e.Configure != nil {
 			if err := e.Configure(); err != nil {
-				panic(err)
+				logrus.Fatal(err)
 			}
 		}
 	}
@@ -127,7 +127,9 @@ func addFlagSets(cfg *pkg.NutsGlobalConfig) {
 func startEngines() {
 	for _, e := range pkg.EngineCtl.Engines {
 		if e.Start != nil {
-			e.Start()
+			if err := e.Start(); err != nil {
+				logrus.Fatal(err)
+			}
 		}
 	}
 }
@@ -135,7 +137,9 @@ func startEngines() {
 func shutdownEngines() {
 	for _, e := range pkg.EngineCtl.Engines {
 		if e.Shutdown != nil {
-			e.Shutdown()
+			if err := e.Shutdown(); err != nil {
+				logrus.Error(err)
+			}
 		}
 	}
 }
