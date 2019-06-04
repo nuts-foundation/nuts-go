@@ -81,7 +81,7 @@ func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 	t.Run("adds prefix to flag", func(t *testing.T) {
 		e := &Engine{
 			ConfigKey: "pre",
-			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
 
@@ -103,7 +103,7 @@ func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 	t.Run("does not add a prefix to flag when prefix is added to ignoredPrefixes", func(t *testing.T) {
 		e := &Engine{
 			ConfigKey: "pre",
-			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
 
@@ -129,7 +129,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Does not return error on missing file", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "non_existing.yaml",
-			v: viper.New(),
+			v:                 viper.New(),
 		}
 		cfg.Load()
 
@@ -141,7 +141,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Returns error on incorrect file", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "../test/config/corrupt.yaml",
-			v: viper.New(),
+			v:                 viper.New(),
 		}
 		cfg.Load()
 
@@ -159,7 +159,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 	t.Run("Loads settings into viper", func(t *testing.T) {
 		cfg := NutsGlobalConfig{
 			DefaultConfigFile: "../test/config/dummy.yaml",
-			v: viper.New(),
+			v:                 viper.New(),
 		}
 		cfg.Load()
 
@@ -191,7 +191,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 	})
 
 	t.Run("Injects custom config into struct", func(t *testing.T) {
-		s := struct{
+		s := struct {
 			Key string
 		}{
 			"",
@@ -218,7 +218,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:  &c,
 			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
@@ -240,9 +240,9 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:    &c,
 			ConfigKey: "pre",
-			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
 		cfg.RegisterFlags(e)
@@ -260,11 +260,11 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 
 	t.Run("nested param is injected into engine without ConfigKey", func(t *testing.T) {
 		c := struct {
-			Nested struct{Key string}
+			Nested struct{ Key string }
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:  &c,
 			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
@@ -282,13 +282,13 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 
 	t.Run("nested param is injected into engine with ConfigKey", func(t *testing.T) {
 		c := struct {
-			Nested struct{Key string}
+			Nested struct{ Key string }
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:    &c,
 			ConfigKey: "pre",
-			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
 		cfg.RegisterFlags(e)
@@ -310,8 +310,8 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}{}
 
 		e := &Engine{
-			Name: "test",
-			Config: &c,
+			Name:    "test",
+			Config:  &c,
 			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
@@ -329,11 +329,11 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 
 	t.Run("returns error on missing default", func(t *testing.T) {
 		c := struct {
-			Nested struct{Key string}
+			Nested struct{ Key string }
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:  &c,
 			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
@@ -357,7 +357,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}{}
 
 		e := &Engine{
-			Config: &c,
+			Config:  &c,
 			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")

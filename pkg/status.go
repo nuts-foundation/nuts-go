@@ -60,9 +60,8 @@ func ListAllEngines(ctx echo.Context) error {
 
 func listAllEngines() []string {
 	var names []string
-	for _, e := range EngineCtl.Engines{
+	for _, e := range EngineCtl.Engines {
 		names = append(names, e.Name)
 	}
 	return names
 }
-

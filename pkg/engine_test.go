@@ -27,7 +27,6 @@ import (
 )
 
 type dummyEngine struct {
-
 }
 
 func TestRegisterEngine(t *testing.T) {

@@ -147,8 +147,8 @@ func (ngc *NutsGlobalConfig) PrintConfig() {
 
 	totalLength := 7 + longestKey + longestValue
 	stars := strings.Repeat("*", totalLength)
-	sideStarsLeft := int(math.Floor((float64(totalLength) - float64(len(title)))/2.0)) - 1
-	sideStarsRight := int(math.Ceil((float64(totalLength) - float64(len(title)))/2.0)) - 1
+	sideStarsLeft := int(math.Floor((float64(totalLength)-float64(len(title)))/2.0)) - 1
+	sideStarsRight := int(math.Ceil((float64(totalLength)-float64(len(title)))/2.0)) - 1
 
 	log.Infoln("")
 	log.Infoln(stars)
