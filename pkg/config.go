@@ -86,35 +86,26 @@ func NutsConfig() *NutsGlobalConfig {
 
 // Load sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
-func (ngc *NutsGlobalConfig) Load(rootCmd *cobra.Command) error {
+func (ngc *NutsGlobalConfig) Load(cmd *cobra.Command) error {
 	ngc.v.SetEnvPrefix(ngc.Prefix)
 	ngc.v.AutomaticEnv()
 	ngc.v.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
 	flagSet := pflag.NewFlagSet("config", pflag.ContinueOnError)
 	flagSet.String(configFileFlag, ngc.DefaultConfigFile, "Nuts config file")
 	flagSet.String(loggerLevelFlag, defaultLogLevel, "Log level")
-	rootCmd.PersistentFlags().AddFlagSet(flagSet)
+	cmd.PersistentFlags().AddFlagSet(flagSet)
 
 	// Bind config flag
-	cf := flagSet.Lookup(configFileFlag)
-	if err := ngc.v.BindPFlag(cf.Name, cf); err != nil {
-		return err
-	}
-	if err := ngc.v.BindEnv(cf.Name); err != nil {
-		return err
-	}
-
 	// Bind log level flag
-	llf := flagSet.Lookup(loggerLevelFlag)
-	if err := ngc.v.BindPFlag(llf.Name, llf); err != nil {
-		return err
-	}
-	if err := ngc.v.BindEnv(llf.Name); err != nil {
-		return err
-	}
+	ngc.bindFlag(flagSet, configFileFlag)
+	ngc.bindFlag(flagSet, loggerLevelFlag)
 
 	// load flags into viper
-	//pflag.Parse()
+	pfs := cmd.PersistentFlags()
+	pfs.ParseErrorsWhitelist.UnknownFlags = true
+	if err := pfs.Parse(os.Args[1:]); err != nil {
+		return err
+	}
 
 	// load configFile into viper
 	if err := ngc.loadConfigFile(); err != nil {
@@ -128,6 +119,17 @@ func (ngc *NutsGlobalConfig) Load(rootCmd *cobra.Command) error {
 	}
 	log.SetLevel(level)
 
+	return nil
+}
+
+func (ngc *NutsGlobalConfig) bindFlag(fs *pflag.FlagSet, name string) error {
+	s := fs.Lookup(name)
+	if err := ngc.v.BindPFlag(s.Name, s); err != nil {
+		return err
+	}
+	if err := ngc.v.BindEnv(s.Name); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -199,6 +201,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 		// ignore if no registered flags
 		if e.FlagSet != nil {
 			fs := e.FlagSet
+			log.Tracef("Injecting values for engine %s\n", e.Name)
 
 			fs.VisitAll(func(f *pflag.Flag) {
 				// config name as used by viper
@@ -223,6 +226,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 
 				// inject value
 				field.Set(reflect.ValueOf(val))
+				log.Tracef("[%s] %s=%v\n", e.Name, f.Name, val)
 			})
 		}
 	}
@@ -261,7 +265,8 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 }
 
 // RegisterFlags adds the flagSet of an engine to the commandline, flag names are prefixed if needed
-func (ngc *NutsGlobalConfig) RegisterFlags(e *Engine) {
+// The passed command must be the root command not the engine.Cmd (unless they are the same)
+func (ngc *NutsGlobalConfig) RegisterFlags(cmd *cobra.Command, e *Engine) {
 	if e.Cmd != nil {
 		if e.FlagSet != nil {
 			fs := e.FlagSet
@@ -273,9 +278,9 @@ func (ngc *NutsGlobalConfig) RegisterFlags(e *Engine) {
 				}
 
 				// add commandline flag
-				pf := e.Cmd.PersistentFlags().Lookup(f.Name)
+				pf := cmd.PersistentFlags().Lookup(f.Name)
 				if pf == nil {
-					e.Cmd.PersistentFlags().AddFlag(f)
+					cmd.PersistentFlags().AddFlag(f)
 					pf = f
 				}
 
@@ -301,8 +306,8 @@ func (ngc *NutsGlobalConfig) isIgnoredPrefix(prefix string) bool {
 // Unmarshal loads config from Env, commandLine and configFile into given struct.
 // This call is intended to be used outside of the engine structure of Nuts-go.
 // It can be used by the individual repo's, for testing the repo as standalone command.
-func (ngc *NutsGlobalConfig) LoadAndUnmarshal(rootCmd *cobra.Command, targetCfg interface{}) error {
-	if err := ngc.Load(rootCmd); err != nil {
+func (ngc *NutsGlobalConfig) LoadAndUnmarshal(cmd *cobra.Command, targetCfg interface{}) error {
+	if err := ngc.Load(cmd); err != nil {
 		return err
 	}
 

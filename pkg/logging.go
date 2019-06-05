@@ -24,6 +24,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
+
 //NewLoggerEngine creates a new Engine for logging
 func NewLoggerEngine() *Engine {
 	return &Engine{

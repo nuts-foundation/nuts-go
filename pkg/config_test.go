@@ -78,6 +78,17 @@ func TestNutsGlobalConfig_Load(t *testing.T) {
 	})
 }
 
+func TestNutsGlobalConfig_Load2(t *testing.T) {
+	cfg := NewNutsGlobalConfig()
+
+	t.Run("Ignores unknown flags when parsing", func(t *testing.T) {
+		os.Args = []string{"executable", "command", "--unknown", "value"}
+		if err := cfg.Load(&cobra.Command{}); err != nil {
+			t.Errorf("Expected no error, got %v", err)
+		}
+	})
+}
+
 func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 	t.Run("adds prefix to flag", func(t *testing.T) {
 		e := &Engine{
@@ -88,7 +99,7 @@ func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 		e.FlagSet.String("key", "", "")
 
 		cfg := NewNutsGlobalConfig()
-		cfg.RegisterFlags(e)
+		cfg.RegisterFlags(e.Cmd, e)
 
 		var found bool
 		for _, key := range cfg.v.AllKeys() {
@@ -112,7 +123,7 @@ func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 
 		cfg := NewNutsGlobalConfig()
 		cfg.IgnoredPrefixes = append(cfg.IgnoredPrefixes, "pre")
-		cfg.RegisterFlags(e)
+		cfg.RegisterFlags(e.Cmd, e)
 
 		var found bool
 		for _, key := range cfg.v.AllKeys() {
@@ -248,7 +259,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
-		cfg.RegisterFlags(e)
+		cfg.RegisterFlags(e.Cmd, e)
 
 		cfg.v.Set("pre.key", "value")
 
@@ -294,7 +305,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
-		cfg.RegisterFlags(e)
+		cfg.RegisterFlags(e.Cmd, e)
 
 		cfg.v.Set("pre.nested.key", "value")
 

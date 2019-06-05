@@ -62,18 +62,17 @@ func Execute() {
 
 	// todo: combine the following 3 calls into 1 passing an array of engines
 	// add commandline options and parse commandline
-	addFlagSets(cfg)
+	addFlagSets(rootCmd, cfg)
 
 	// Load all config and add generic options
 	if err := cfg.Load(rootCmd); err != nil {
 		panic(err)
 	}
 
-	// logger is initialized
-	cfg.PrintConfig()
-
 	// Load config into engines
 	injectConfig(cfg)
+
+	cfg.PrintConfig()
 
 	// check config on all engines
 	configureEngines()
@@ -118,9 +117,9 @@ func configureEngines() {
 	}
 }
 
-func addFlagSets(cfg *pkg.NutsGlobalConfig) {
+func addFlagSets(cmd *cobra.Command, cfg *pkg.NutsGlobalConfig) {
 	for _, e := range pkg.EngineCtl.Engines {
-		cfg.RegisterFlags(e)
+		cfg.RegisterFlags(cmd, e)
 	}
 }
 
