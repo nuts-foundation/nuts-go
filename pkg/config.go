@@ -22,6 +22,7 @@ package pkg
 import (
 	"fmt"
 	log "github.com/sirupsen/logrus"
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"go/types"
@@ -85,14 +86,14 @@ func NutsConfig() *NutsGlobalConfig {
 
 // Load sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
-func (ngc *NutsGlobalConfig) Load() error {
+func (ngc *NutsGlobalConfig) Load(rootCmd *cobra.Command) error {
 	ngc.v.SetEnvPrefix(ngc.Prefix)
 	ngc.v.AutomaticEnv()
 	ngc.v.SetEnvKeyReplacer(strings.NewReplacer(ngc.Delimiter, "_"))
 	flagSet := pflag.NewFlagSet("config", pflag.ContinueOnError)
 	flagSet.String(configFileFlag, ngc.DefaultConfigFile, "Nuts config file")
 	flagSet.String(loggerLevelFlag, defaultLogLevel, "Log level")
-	pflag.CommandLine.AddFlagSet(flagSet)
+	rootCmd.PersistentFlags().AddFlagSet(flagSet)
 
 	// Bind config flag
 	cf := flagSet.Lookup(configFileFlag)
@@ -113,7 +114,7 @@ func (ngc *NutsGlobalConfig) Load() error {
 	}
 
 	// load flags into viper
-	pflag.Parse()
+	//pflag.Parse()
 
 	// load configFile into viper
 	if err := ngc.loadConfigFile(); err != nil {
@@ -298,8 +299,8 @@ func (ngc *NutsGlobalConfig) isIgnoredPrefix(prefix string) bool {
 // Unmarshal loads config from Env, commandLine and configFile into given struct.
 // This call is intended to be used outside of the engine structure of Nuts-go.
 // It can be used by the individual repo's, for testing the repo as standalone command.
-func (ngc *NutsGlobalConfig) LoadAndUnmarshal(targetCfg interface{}) error {
-	if err := ngc.Load(); err != nil {
+func (ngc *NutsGlobalConfig) LoadAndUnmarshal(rootCmd *cobra.Command, targetCfg interface{}) error {
+	if err := ngc.Load(rootCmd); err != nil {
 		return err
 	}
 

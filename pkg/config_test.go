@@ -20,6 +20,7 @@
 package pkg
 
 import (
+	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"os"
@@ -52,7 +53,7 @@ func TestNewNutsGlobalConfig(t *testing.T) {
 func TestNutsGlobalConfig_Load(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
 
-	if err := cfg.Load(); err != nil {
+	if err := cfg.Load(&cobra.Command{}); err != nil {
 		t.Errorf("Expected no error, got %v", err)
 	}
 
@@ -131,7 +132,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "non_existing.yaml",
 			v:                 viper.New(),
 		}
-		cfg.Load()
+		cfg.Load(&cobra.Command{})
 
 		if err := cfg.loadConfigFile(); err != nil {
 			t.Errorf("Expected no error, got %v", err)
@@ -143,7 +144,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "../test/config/corrupt.yaml",
 			v:                 viper.New(),
 		}
-		cfg.Load()
+		cfg.Load(&cobra.Command{})
 
 		err := cfg.loadConfigFile()
 		if err == nil {
@@ -161,7 +162,7 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 			DefaultConfigFile: "../test/config/dummy.yaml",
 			v:                 viper.New(),
 		}
-		cfg.Load()
+		cfg.Load(&cobra.Command{})
 
 		err := cfg.loadConfigFile()
 		if err != nil {
@@ -177,10 +178,10 @@ func TestNutsGlobalConfig_LoadConfigFile(t *testing.T) {
 
 func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
-	cfg.Load()
+	cfg.Load(&cobra.Command{})
 
 	t.Run("Adds configFile flag to Cmd", func(t *testing.T) {
-		err := cfg.LoadAndUnmarshal(&struct{}{})
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &struct{}{})
 		if err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
 		}
@@ -197,7 +198,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 			"",
 		}
 		cfg.v.Set("key", "value")
-		err := cfg.LoadAndUnmarshal(&s)
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
 		if err != nil {
 			t.Errorf("Expected no error, got [%v]", err.Error())
 		}
@@ -210,7 +211,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 
 func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
-	cfg.Load()
+	cfg.Load(&cobra.Command{})
 
 	t.Run("param is injected into engine without ConfigKey", func(t *testing.T) {
 		c := struct {

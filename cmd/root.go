@@ -65,7 +65,7 @@ func Execute() {
 	addFlagSets(cfg)
 
 	// Load all config and add generic options
-	if err := cfg.Load(); err != nil {
+	if err := cfg.Load(rootCmd); err != nil {
 		panic(err)
 	}
 
