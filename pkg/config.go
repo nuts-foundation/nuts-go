@@ -262,28 +262,30 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 
 // RegisterFlags adds the flagSet of an engine to the commandline, flag names are prefixed if needed
 func (ngc *NutsGlobalConfig) RegisterFlags(e *Engine) {
-	if e.FlagSet != nil {
-		fs := e.FlagSet
+	if e.Cmd != nil {
+		if e.FlagSet != nil {
+			fs := e.FlagSet
 
-		fs.VisitAll(func(f *pflag.Flag) {
-			// prepend with engine.configKey
-			if e.ConfigKey != "" && !ngc.isIgnoredPrefix(e.ConfigKey) {
-				f.Name = fmt.Sprintf("%s%s%s", e.ConfigKey, ngc.Delimiter, f.Name)
-			}
+			fs.VisitAll(func(f *pflag.Flag) {
+				// prepend with engine.configKey
+				if e.ConfigKey != "" && !ngc.isIgnoredPrefix(e.ConfigKey) {
+					f.Name = fmt.Sprintf("%s%s%s", e.ConfigKey, ngc.Delimiter, f.Name)
+				}
 
-			// add commandline flag
-			pf := pflag.CommandLine.Lookup(f.Name)
-			if pf == nil {
-				pflag.CommandLine.AddFlag(f)
-				pf = f
-			}
+				// add commandline flag
+				pf := e.Cmd.PersistentFlags().Lookup(f.Name)
+				if pf == nil {
+					e.Cmd.PersistentFlags().AddFlag(f)
+					pf = f
+				}
 
-			// some magic for stuff to get combined
-			ngc.v.BindPFlag(f.Name, pf)
+				// some magic for stuff to get combined
+				ngc.v.BindPFlag(f.Name, pf)
 
-			// bind environment variable
-			ngc.v.BindEnv(f.Name)
-		})
+				// bind environment variable
+				ngc.v.BindEnv(f.Name)
+			})
+		}
 	}
 }
 
