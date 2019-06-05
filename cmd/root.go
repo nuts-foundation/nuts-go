@@ -20,15 +20,14 @@
 package cmd
 
 import (
-	goflag "flag"
 	"github.com/labstack/echo/v4"
-	"github.com/nuts-foundation/nuts-consent-store/pkg/consent"
-	"github.com/nuts-foundation/nuts-crypto/pkg/crypto"
-	"github.com/nuts-foundation/nuts-fhir-validation/pkg/validation"
+	consent "github.com/nuts-foundation/nuts-consent-store/engine"
+	crypto "github.com/nuts-foundation/nuts-crypto/engine"
+	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
 	"github.com/nuts-foundation/nuts-go/pkg"
+	registry "github.com/nuts-foundation/nuts-registry/engine"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	flag "github.com/spf13/pflag"
 )
 
 var rootCmd = &cobra.Command{
@@ -50,7 +49,7 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
-	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
+	//flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 
 	// register static set of engines, needed for other commands
 	registerEngines()
@@ -96,6 +95,7 @@ func registerEngines() {
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())
 	pkg.RegisterEngine(consent.NewConsentStoreEngine())
+	pkg.RegisterEngine(registry.NewRegistryEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {
