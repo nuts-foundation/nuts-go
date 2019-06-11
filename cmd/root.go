@@ -21,6 +21,7 @@ package cmd
 
 import (
 	"github.com/labstack/echo/v4"
+	logic "github.com/nuts-foundation/nuts-consent-logic/engine"
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
 	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
@@ -39,12 +40,14 @@ var rootCmd = &cobra.Command{
 		echo := echo.New()
 
 		for _, engine := range pkg.EngineCtl.Engines {
-			engine.Routes(echo)
+			if engine.Routes != nil {
+				engine.Routes(echo)
+			}
 		}
 
 		defer shutdownEngines()
 
-		logrus.Fatal(echo.Start("localhost:5678"))
+		logrus.Fatal(echo.Start("localhost:1323"))
 	},
 }
 
@@ -95,6 +98,7 @@ func registerEngines() {
 	pkg.RegisterEngine(validation.NewValidationEngine())
 	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 	pkg.RegisterEngine(registry.NewRegistryEngine())
+	pkg.RegisterEngine(logic.NewConsentLogicEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {

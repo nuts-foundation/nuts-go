@@ -92,7 +92,7 @@ func TestNutsGlobalConfig_Load2(t *testing.T) {
 func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 	t.Run("adds prefix to flag", func(t *testing.T) {
 		e := &Engine{
-			Cmd : &cobra.Command{},
+			Cmd:       &cobra.Command{},
 			ConfigKey: "pre",
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
@@ -115,7 +115,7 @@ func TestNutsGlobalConfig_RegisterFlags(t *testing.T) {
 
 	t.Run("does not add a prefix to flag when prefix is added to ignoredPrefixes", func(t *testing.T) {
 		e := &Engine{
-			Cmd : &cobra.Command{},
+			Cmd:       &cobra.Command{},
 			ConfigKey: "pre",
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
