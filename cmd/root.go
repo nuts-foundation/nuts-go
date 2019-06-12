@@ -21,6 +21,7 @@ package cmd
 
 import (
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	logic "github.com/nuts-foundation/nuts-consent-logic/engine"
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
@@ -38,6 +39,8 @@ var rootCmd = &cobra.Command{
 
 		// start interfaces
 		echo := echo.New()
+		echo.HideBanner = true
+		echo.Use(middleware.Logger())
 
 		for _, engine := range pkg.EngineCtl.Engines {
 			if engine.Routes != nil {
