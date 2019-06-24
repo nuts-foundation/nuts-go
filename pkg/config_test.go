@@ -123,7 +123,6 @@ func TestNutsGlobalConfig_Load2(t *testing.T) {
 		}
 	})
 
-
 	t.Run("Returns error for incorrect verbosity", func(t *testing.T) {
 		os.Args = []string{"command", "--verbosity", "hell"}
 		cfg := NewNutsGlobalConfig()
@@ -416,7 +415,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			t.Errorf("Expected error, got nothing")
 		}
 
-		expected := "-: Problem injecting [key] for test: -: inaccessible or invalid field [Key] in struct { key string }"
+		expected := "Problem injecting [key] for test: inaccessible or invalid field [Key] in struct { key string }"
 		if err.Error() != expected {
 			t.Errorf("Expected error [%s], got [%v]", expected, err.Error())
 		}
@@ -440,7 +439,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			t.Errorf("Expected error, got nothing")
 		}
 
-		expected := "-: Nil value for nested.key, forgot to add flag binding?"
+		expected := "Nil value for nested.key, forgot to add flag binding?"
 		if err.Error() != expected {
 			t.Errorf("Expected error [%s], got [%v]", expected, err.Error())
 		}
@@ -464,7 +463,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			t.Errorf("Expected error, got nothing")
 		}
 
-		expected := "-: Problem injecting [nested.key] for : -: incompatible source/target, deeper nested key than target nested.key"
+		expected := "Problem injecting [nested.key] for : incompatible source/target, deeper nested key than target nested.key"
 		if err.Error() != expected {
 			t.Errorf("Expected error [%s], got [%v]", expected, err.Error())
 		}

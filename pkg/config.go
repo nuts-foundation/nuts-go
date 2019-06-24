@@ -20,12 +20,12 @@
 package pkg
 
 import (
+	"errors"
 	"fmt"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
-	"go/types"
 	"math"
 	"os"
 	"reflect"
@@ -167,10 +167,6 @@ func (ngc *NutsGlobalConfig) PrintConfig(logger log.FieldLogger) {
 
 // LoadConfigFile load the config from the given config file or from the default config file. If the file does not exist it'll continue with default values.
 func (ngc *NutsGlobalConfig) loadConfigFile() error {
-	// first load configFile param
-	if !ngc.v.IsSet(configFileFlag) {
-		return types.Error{Msg: "no configFile is set, run parse before running LoadConfigFile"}
-	}
 	configFile := ngc.v.GetString(configFileFlag)
 
 	// default path, relative paths and absolute paths should work
@@ -210,7 +206,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 				field, err = ngc.findField(e, ngc.fieldName(e, f.Name))
 
 				if err != nil {
-					err = types.Error{Msg: fmt.Sprintf("Problem injecting [%v] for %s: %s", configName, e.Name, err.Error())}
+					err = errors.New(fmt.Sprintf("Problem injecting [%v] for %s: %s", configName, e.Name, err.Error()))
 					return
 				}
 
@@ -218,7 +214,7 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 				val := ngc.v.Get(configName)
 
 				if val == nil {
-					err = types.Error{Msg: fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName)}
+					err = errors.New(fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName))
 					return
 				}
 
@@ -246,14 +242,14 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 		field, err = ngc.findFieldInStruct(&sv, configName)
 
 		if err != nil {
-			return types.Error{Msg: fmt.Sprintf("Problem injecting [%v]: %s", configName, err.Error())}
+			return errors.New(fmt.Sprintf("Problem injecting [%v]: %s", configName, err.Error()))
 		}
 
 		// get value
 		val := ngc.v.Get(configName)
 
 		if val == nil {
-			return types.Error{Msg: fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName)}
+			return errors.New(fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName))
 		}
 
 		// inject value
@@ -353,12 +349,12 @@ func (ngc *NutsGlobalConfig) findField(e *Engine, fieldName string) (*reflect.Va
 
 func (ngc *NutsGlobalConfig) findFieldInStruct(cfgP *reflect.Value, configName string) (*reflect.Value, error) {
 	if cfgP.Kind() != reflect.Ptr {
-		return nil, types.Error{Msg: "Only struct pointers are supported to be a Config target"}
+		return nil, errors.New("Only struct pointers are supported to be a Config target")
 	}
 
 	s := cfgP.Elem()
 	if !s.CanSet() {
-		return nil, types.Error{Msg: "Given Engine.Config can not be Altered"}
+		return nil, errors.New("Given Engine.Config can not be Altered")
 	}
 
 	spl := strings.Split(configName, ngc.Delimiter)
@@ -374,23 +370,23 @@ func (ngc *NutsGlobalConfig) findFieldRecursive(s *reflect.Value, names []string
 	field := s.FieldByName(t)
 	switch field.Kind() {
 	case reflect.Invalid:
-		return nil, types.Error{Msg: fmt.Sprintf("inaccessible or invalid field [%v] in %v", t, s.Type())}
+		return nil, errors.New(fmt.Sprintf("inaccessible or invalid field [%v] in %v", t, s.Type()))
 	case reflect.Struct:
 		if len(tail) == 0 {
-			return nil, types.Error{Msg: fmt.Sprintf("incompatible source/target, trying to set value to struct target: %v to %v", strings.Title(head), field.Type())}
+			return nil, errors.New(fmt.Sprintf("incompatible source/target, trying to set value to struct target: %v to %v", strings.Title(head), field.Type()))
 		}
 		return ngc.findFieldRecursive(&field, tail)
 	case reflect.Map:
-		return nil, types.Error{Msg: fmt.Sprintf("Map values not supported in %v", field.Type())}
+		return nil, errors.New(fmt.Sprintf("Map values not supported in %v", field.Type()))
 	default:
 		if len(tail) > 0 {
 			n := fmt.Sprintf("%s.%s", head, strings.Join(tail, "."))
-			return nil, types.Error{Msg: fmt.Sprintf("incompatible source/target, deeper nested key than target %s", n)}
+			return nil, errors.New(fmt.Sprintf("incompatible source/target, deeper nested key than target %s", n))
 		}
 	}
 
 	if !field.CanSet() {
-		return nil, types.Error{Msg: fmt.Sprintf("Field %v can not be Set", t)}
+		return nil, errors.New(fmt.Sprintf("Field %v can not be Set", t))
 	}
 
 	return &field, nil
