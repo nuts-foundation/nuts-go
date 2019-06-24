@@ -297,7 +297,56 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 		}
 
 		if s.Key != "value" {
-			t.Errorf("Expected value for key in struct to equals [value], got %s", s.Key)
+			t.Errorf("Expected value for key in struct to equal [value], got %s", s.Key)
+		}
+	})
+
+	t.Run("returns error on unknown value", func(t *testing.T) {
+		s := struct {}{}
+		cfg.v.Set("key", "value")
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
+
+		if err == nil {
+			t.Errorf("Expected error, got nothing")
+			return
+		}
+
+		expected := "Problem injecting [key]: inaccessible or invalid field [Key] in struct {}"
+		if err.Error() != expected {
+			t.Errorf("Expected error [%s], got [%v]", expected, err)
+		}
+	})
+
+	t.Run("returns error on inaccessible value", func(t *testing.T) {
+		s := struct {
+			key string
+		}{
+			"",
+		}
+		cfg.v.Set("key", "value")
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
+
+		if err == nil {
+			t.Errorf("Expected error, got nothing")
+			return
+		}
+
+		expected := "Problem injecting [key]: inaccessible or invalid field [Key] in struct { key string }"
+		if err.Error() != expected {
+			t.Errorf("Expected error [%s], got [%v]", expected, err)
+		}
+	})
+
+	t.Run("returns error on incorrect argument", func(t *testing.T) {
+		os.Args = []string{"command", "---"}
+		cfg := NewNutsGlobalConfig()
+		s := struct {}{}
+
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
+
+		if err == nil {
+			t.Error("Expected error, got nothing")
+			return
 		}
 	})
 }

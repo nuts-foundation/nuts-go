@@ -245,15 +245,8 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 			return errors.New(fmt.Sprintf("Problem injecting [%v]: %s", configName, err.Error()))
 		}
 
-		// get value
-		val := ngc.v.Get(configName)
-
-		if val == nil {
-			return errors.New(fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName))
-		}
-
 		// inject value
-		field.Set(reflect.ValueOf(val))
+		field.Set(reflect.ValueOf(ngc.v.Get(configName)))
 	}
 	return err
 }
