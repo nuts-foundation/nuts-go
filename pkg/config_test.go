@@ -301,6 +301,42 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 		}
 	})
 
+	t.Run("returns error on incorrect struct argument", func(t *testing.T) {
+		cfg := NewNutsGlobalConfig()
+		s := struct {}{}
+		cfg.v.Set("key", "value")
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, s)
+		if err == nil {
+			t.Errorf("Expected error, got nothing")
+			return
+		}
+
+		expected := "Problem injecting [key]: Only struct pointers are supported to be a Config target"
+		if err.Error() != expected {
+			t.Errorf("Expected error [%s], got [%v]", expected, err.Error())
+		}
+	})
+
+	t.Run("returns error on map argument", func(t *testing.T) {
+		cfg := NewNutsGlobalConfig()
+		s := struct {
+			Key map[string]string
+		}{
+			Key: make(map[string]string),
+		}
+		cfg.v.Set("key", "value")
+		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
+		if err == nil {
+			t.Errorf("Expected error, got nothing")
+			return
+		}
+
+		expected := "Problem injecting [key]: Map values not supported in map[string]string"
+		if err.Error() != expected {
+			t.Errorf("Expected error [%s], got [%v]", expected, err.Error())
+		}
+	})
+
 	t.Run("returns error on unknown value", func(t *testing.T) {
 		s := struct {}{}
 		cfg.v.Set("key", "value")
