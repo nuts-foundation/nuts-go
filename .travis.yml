@@ -1,7 +1,15 @@
 language: go
 
+env:
+  - GO111MODULE=on
+
 go:
   - 1.x
+
+cache:
+  directories:
+    - $HOME/.cache/go-build
+    - $HOME/gopath/pkg/mod
 
 before_install:
   - go get -t -v ./...
