@@ -20,11 +20,14 @@
 package pkg
 
 import (
+	"bytes"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"os"
 	"reflect"
+	"strings"
 	"testing"
 )
 
@@ -46,6 +49,14 @@ func TestNewNutsGlobalConfig(t *testing.T) {
 
 		if !reflect.DeepEqual(c.IgnoredPrefixes, defaultIgnoredPrefixes) {
 			t.Errorf("Expected Prefix to be [%s], got [%s]", defaultIgnoredPrefixes, c.IgnoredPrefixes)
+		}
+	})
+}
+
+func TestNutsConfig(t *testing.T) {
+	t.Run("returns same instance every time", func(t *testing.T) {
+		if NutsConfig() != NutsConfig() {
+			t.Error("Expected instance to be the same")
 		}
 	})
 }
@@ -79,12 +90,82 @@ func TestNutsGlobalConfig_Load(t *testing.T) {
 }
 
 func TestNutsGlobalConfig_Load2(t *testing.T) {
-	cfg := NewNutsGlobalConfig()
+	defer func() {
+		os.Args = []string{"command"}
+	}()
 
 	t.Run("Ignores unknown flags when parsing", func(t *testing.T) {
 		os.Args = []string{"executable", "command", "--unknown", "value"}
+		cfg := NewNutsGlobalConfig()
 		if err := cfg.Load(&cobra.Command{}); err != nil {
 			t.Errorf("Expected no error, got %v", err)
+		}
+	})
+
+	t.Run("Incorrect arguments returns error", func(t *testing.T) {
+		os.Args = []string{"command", "---"}
+		cfg := NewNutsGlobalConfig()
+
+		err := cfg.Load(&cobra.Command{})
+
+		if err == nil {
+			t.Error("Expected error, got nothing")
+			return
+		}
+	})
+
+	t.Run("Ignores --help as incorrect argument", func(t *testing.T) {
+		os.Args = []string{"command", "--help"}
+		cfg := NewNutsGlobalConfig()
+
+		if err := cfg.Load(&cobra.Command{}); err != nil {
+			t.Errorf("Expected no error, got %v", err)
+		}
+	})
+
+
+	t.Run("Returns error for incorrect verbosity", func(t *testing.T) {
+		os.Args = []string{"command", "--verbosity", "hell"}
+		cfg := NewNutsGlobalConfig()
+
+		err := cfg.Load(&cobra.Command{})
+
+		if err == nil {
+			t.Error("Expected error, got nothing")
+			return
+		}
+
+		expected := "not a valid logrus Level: \"hell\""
+		if err.Error() != expected {
+			t.Errorf("Expected error [%s], got [%v]", expected, err)
+		}
+	})
+}
+
+func TestNutsGlobalConfig_PrintConfig(t *testing.T) {
+	cfg := NewNutsGlobalConfig()
+	cfg.v.Set("key", "value")
+	logger := logrus.New()
+	buf := new(bytes.Buffer)
+	logger.Out = buf
+	cfg.PrintConfig(logger)
+	bs := buf.String()
+
+	t.Run("output contains key", func(t *testing.T) {
+		if strings.Index(bs, "key") == -1 {
+			t.Error("Expected key to be in output")
+		}
+	})
+
+	t.Run("output contains some stars", func(t *testing.T) {
+		if strings.Index(bs, "***************") == -1 {
+			t.Error("Expected stars to be in output")
+		}
+	})
+
+	t.Run("output contains header", func(t *testing.T) {
+		if strings.Index(bs, "*** Config ****") == -1 {
+			t.Error("Expected header to be in output")
 		}
 	})
 }

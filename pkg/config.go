@@ -104,7 +104,9 @@ func (ngc *NutsGlobalConfig) Load(cmd *cobra.Command) error {
 	pfs := cmd.PersistentFlags()
 	pfs.ParseErrorsWhitelist.UnknownFlags = true
 	if err := pfs.Parse(os.Args[1:]); err != nil {
-		return err
+		if err != pflag.ErrHelp {
+			return err
+		}
 	}
 
 	// load configFile into viper
@@ -134,7 +136,7 @@ func (ngc *NutsGlobalConfig) bindFlag(fs *pflag.FlagSet, name string) error {
 }
 
 // PrintConfig outputs the current config to the logger on info level
-func (ngc *NutsGlobalConfig) PrintConfig() {
+func (ngc *NutsGlobalConfig) PrintConfig(logger log.FieldLogger) {
 	title := "Config"
 	var longestKey int
 	var longestValue int
@@ -153,18 +155,14 @@ func (ngc *NutsGlobalConfig) PrintConfig() {
 	sideStarsLeft := int(math.Floor((float64(totalLength)-float64(len(title)))/2.0)) - 1
 	sideStarsRight := int(math.Ceil((float64(totalLength)-float64(len(title)))/2.0)) - 1
 
-	log.Infoln("")
-	log.Infoln(stars)
-	log.Infof("%s %s %s", strings.Repeat("*", sideStarsLeft), title, strings.Repeat("*", sideStarsRight))
-	log.Infoln("")
+	logger.Infoln(stars)
+	logger.Infof("%s %s %s", strings.Repeat("*", sideStarsLeft), title, strings.Repeat("*", sideStarsRight))
 
-	f := fmt.Sprintf("%%-%ds%%v\n", 7+longestKey)
+	f := fmt.Sprintf("%%-%ds%%v", 7+longestKey)
 	for _, k := range ngc.v.AllKeys() {
-		log.Infof(f, k, ngc.v.Get(k))
+		logger.Infof(f, k, ngc.v.Get(k))
 	}
-	log.Infoln("")
-	log.Infoln(stars)
-	log.Infoln("")
+	logger.Infoln(stars)
 }
 
 // LoadConfigFile load the config from the given config file or from the default config file. If the file does not exist it'll continue with default values.

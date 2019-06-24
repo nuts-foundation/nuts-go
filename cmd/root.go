@@ -78,7 +78,7 @@ func Execute() {
 	// Load config into engines
 	injectConfig(cfg)
 
-	cfg.PrintConfig()
+	cfg.PrintConfig(logrus.StandardLogger())
 
 	// check config on all engines
 	configureEngines()
