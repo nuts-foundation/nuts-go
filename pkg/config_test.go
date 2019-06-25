@@ -143,15 +143,21 @@ func TestNutsGlobalConfig_Load2(t *testing.T) {
 
 func TestNutsGlobalConfig_PrintConfig(t *testing.T) {
 	cfg := NewNutsGlobalConfig()
-	cfg.v.Set("key", "value")
+	fs := pflag.FlagSet{}
+	fs.String("camelCaseKey", "value", "description")
+	EngineCtl.registerEngine(&Engine{FlagSet: &fs})
 	logger := logrus.New()
 	buf := new(bytes.Buffer)
 	logger.Out = buf
 	cfg.PrintConfig(logger)
 	bs := buf.String()
 
+	defer func() {
+		EngineCtl.Engines = EngineCtl.Engines[:len(EngineCtl.Engines)-1]
+	}()
+
 	t.Run("output contains key", func(t *testing.T) {
-		if strings.Index(bs, "key") == -1 {
+		if strings.Index(bs, "camelCaseKey") == -1 {
 			t.Error("Expected key to be in output")
 		}
 	})

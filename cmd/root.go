@@ -97,11 +97,11 @@ func addSubCommands(root *cobra.Command) {
 }
 
 func registerEngines() {
+	pkg.RegisterEngine(logic.NewConsentLogicEngine())
+	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())
-	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 	pkg.RegisterEngine(registry.NewRegistryEngine())
-	pkg.RegisterEngine(logic.NewConsentLogicEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {

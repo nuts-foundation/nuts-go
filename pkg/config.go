@@ -138,15 +138,19 @@ func (ngc *NutsGlobalConfig) bindFlag(fs *pflag.FlagSet, name string) error {
 // PrintConfig outputs the current config to the logger on info level
 func (ngc *NutsGlobalConfig) PrintConfig(logger log.FieldLogger) {
 	title := "Config"
-	var longestKey int
+	var longestKey = 10
 	var longestValue int
-	for _, k := range ngc.v.AllKeys() {
-		s := fmt.Sprintf("%v", ngc.v.Get(k))
-		if len(s) > longestValue {
-			longestValue = len(s)
-		}
-		if len(k) > longestKey {
-			longestKey = len(k)
+	for _, e := range EngineCtl.Engines {
+		if e.FlagSet != nil {
+			e.FlagSet.VisitAll(func(flag *pflag.Flag) {
+				s := fmt.Sprintf("%v", ngc.v.Get(strings.ToLower(flag.Name)))
+				if len(s) > longestValue {
+					longestValue = len(s)
+				}
+				if len(flag.Name) > longestKey {
+					longestKey = len(flag.Name)
+				}
+			})
 		}
 	}
 
@@ -159,9 +163,17 @@ func (ngc *NutsGlobalConfig) PrintConfig(logger log.FieldLogger) {
 	logger.Infof("%s %s %s", strings.Repeat("*", sideStarsLeft), title, strings.Repeat("*", sideStarsRight))
 
 	f := fmt.Sprintf("%%-%ds%%v", 7+longestKey)
-	for _, k := range ngc.v.AllKeys() {
-		logger.Infof(f, k, ngc.v.Get(k))
+
+	logger.Infof(f, configFileFlag, ngc.v.Get(configFileFlag))
+	logger.Infof(f, loggerLevelFlag, ngc.v.Get(loggerLevelFlag))
+	for _, e := range EngineCtl.Engines {
+		if e.FlagSet != nil {
+			e.FlagSet.VisitAll(func(flag *pflag.Flag) {
+				logger.Infof(f, flag.Name, ngc.v.Get(strings.ToLower(flag.Name)))
+			})
+		}
 	}
+
 	logger.Infoln(stars)
 }
 
