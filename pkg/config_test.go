@@ -430,7 +430,6 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("key", "", "")
-		cfg.RegisterFlags(e.Cmd, e)
 
 		cfg.v.Set("pre.key", "value")
 
@@ -476,8 +475,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
-		cfg.RegisterFlags(e.Cmd, e)
-
+		
 		cfg.v.Set("pre.nested.key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
