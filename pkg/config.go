@@ -222,8 +222,27 @@ func (ngc *NutsGlobalConfig) InjectIntoEngine(e *Engine) error {
 					return
 				}
 
-				// get value
-				val := ngc.v.Get(configName)
+				// test if is set, this can not be done with IsSet, because it doesn't take ENV variables into account.
+				var val interface{}
+				val = ngc.v.Get(configName)
+				if val == nil {
+					err = errors.New(fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName))
+					return
+				}
+
+				// get real value with correct type
+				switch field.Kind() {
+				case reflect.Int:
+					val = ngc.v.GetInt(configName)
+				case reflect.Int32:
+					val = ngc.v.GetInt32(configName)
+				case reflect.Int64:
+					val = ngc.v.GetInt64(configName)
+				case reflect.String:
+					val = ngc.v.GetString(configName)
+				default:
+					val = ngc.v.Get(configName)
+				}
 
 				if val == nil {
 					err = errors.New(fmt.Sprintf("Nil value for %v, forgot to add flag binding?", configName))
