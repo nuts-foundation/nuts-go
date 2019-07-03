@@ -309,7 +309,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 
 	t.Run("returns error on incorrect struct argument", func(t *testing.T) {
 		cfg := NewNutsGlobalConfig()
-		s := struct {}{}
+		s := struct{}{}
 		cfg.v.Set("key", "value")
 		err := cfg.LoadAndUnmarshal(&cobra.Command{}, s)
 		if err == nil {
@@ -344,7 +344,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 	})
 
 	t.Run("returns error on unknown value", func(t *testing.T) {
-		s := struct {}{}
+		s := struct{}{}
 		cfg.v.Set("key", "value")
 		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
 
@@ -382,7 +382,7 @@ func TestNutsGlobalConfig_LoadAndUnmarshal(t *testing.T) {
 	t.Run("returns error on incorrect argument", func(t *testing.T) {
 		os.Args = []string{"command", "---"}
 		cfg := NewNutsGlobalConfig()
-		s := struct {}{}
+		s := struct{}{}
 
 		err := cfg.LoadAndUnmarshal(&cobra.Command{}, &s)
 
@@ -415,6 +415,28 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 		}
 
 		if c.Key != "value" {
+			t.Errorf("Expected value to be injected into struct")
+		}
+	})
+
+	t.Run("int param is injected into engine from env variable", func(t *testing.T) {
+		c := struct {
+			EnvKey int
+		}{}
+
+		e := &Engine{
+			Config:  &c,
+			FlagSet: pflag.NewFlagSet("dummy", pflag.ContinueOnError),
+		}
+		e.FlagSet.Int("envKey", 0, "")
+
+		os.Setenv("NUTS_ENVKEY", "1")
+
+		if err := cfg.InjectIntoEngine(e); err != nil {
+			t.Errorf("Expected no error, got [%v]", err.Error())
+		}
+
+		if c.EnvKey != 1 {
 			t.Errorf("Expected value to be injected into struct")
 		}
 	})
@@ -475,7 +497,7 @@ func TestNutsGlobalConfig_InjectIntoEngine(t *testing.T) {
 			FlagSet:   pflag.NewFlagSet("dummy", pflag.ContinueOnError),
 		}
 		e.FlagSet.String("nested.key", "", "")
-		
+
 		cfg.v.Set("pre.nested.key", "value")
 
 		if err := cfg.InjectIntoEngine(e); err != nil {
