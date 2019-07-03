@@ -22,6 +22,7 @@ package cmd
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	auth "github.com/nuts-foundation/nuts-auth/engine"
 	logic "github.com/nuts-foundation/nuts-consent-logic/engine"
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
@@ -102,6 +103,7 @@ func registerEngines() {
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())
 	pkg.RegisterEngine(registry.NewRegistryEngine())
+	pkg.RegisterEngine(auth.NewAuthEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {

@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+irma_config
+nuts
 
 # Test binary, build with `go test -c`
 *.test
