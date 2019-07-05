@@ -12,7 +12,7 @@ require (
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190613193010-545e56495b81
 	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190701143801-e72e48a124c8
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604130811-15db96a162bd
-	github.com/nuts-foundation/nuts-registry v0.0.0-20190613140256-2e6995af4861
+	github.com/nuts-foundation/nuts-registry v0.0.0-20190705211040-b4d7c533b279
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/spf13/pflag v1.0.3
