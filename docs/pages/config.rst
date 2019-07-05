@@ -38,8 +38,9 @@ The Nuts Global config adds the following options:
 =====================   ====================    =====================   ================================================================
 Name                    commandLine             Env                     Description
 =====================   ====================    =====================   ================================================================
+address                 --address               NUTS_ADDRESS            address and port server will be listening at.
 configfile              --configfile            NUTS_CONFIGFILE         points to the location of the config file to be used.
-More to be added
+verbosity               --verbosity             NUTS_VERBOSITY          Log level ("trace", "debug", "info", "warn", "error")
 =====================   ====================    =====================   ================================================================
 
 

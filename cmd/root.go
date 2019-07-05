@@ -27,6 +27,7 @@ import (
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
 	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
+	octopus "github.com/nuts-foundation/nuts-event-octopus/engine"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	registry "github.com/nuts-foundation/nuts-registry/engine"
 	"github.com/sirupsen/logrus"
@@ -51,7 +52,9 @@ var rootCmd = &cobra.Command{
 
 		defer shutdownEngines()
 
-		logrus.Fatal(echo.Start("localhost:1323"))
+		cfg := pkg.NutsConfig()
+
+		logrus.Fatal(echo.Start(cfg.ServerAddress()))
 	},
 }
 
@@ -93,7 +96,9 @@ func Execute() {
 
 func addSubCommands(root *cobra.Command) {
 	for _, e := range pkg.EngineCtl.Engines {
-		root.AddCommand(e.Cmd)
+		if e.Cmd != nil {
+			root.AddCommand(e.Cmd)
+		}
 	}
 }
 
@@ -104,6 +109,7 @@ func registerEngines() {
 	pkg.RegisterEngine(validation.NewValidationEngine())
 	pkg.RegisterEngine(registry.NewRegistryEngine())
 	pkg.RegisterEngine(auth.NewAuthEngine())
+	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {

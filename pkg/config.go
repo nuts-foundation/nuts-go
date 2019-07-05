@@ -38,7 +38,9 @@ const defaultSeparator = "."
 const defaultConfigFile = "nuts.yaml"
 const configFileFlag = "configfile"
 const loggerLevelFlag = "verbosity"
+const addressFlag = "address"
 const defaultLogLevel = "info"
+const defaultAddress = "localhost:1323"
 
 var defaultIgnoredPrefixes = []string{"root"}
 
@@ -84,6 +86,10 @@ func NutsConfig() *NutsGlobalConfig {
 	return configInstance
 }
 
+func (ngc *NutsGlobalConfig) ServerAddress() string {
+	return ngc.v.GetString(addressFlag)
+}
+
 // Load sets some initial config in order to be able for commands to load the right parameters and to add the configFile Flag.
 // This is mainly spf13/viper related stuff
 func (ngc *NutsGlobalConfig) Load(cmd *cobra.Command) error {
@@ -93,12 +99,14 @@ func (ngc *NutsGlobalConfig) Load(cmd *cobra.Command) error {
 	flagSet := pflag.NewFlagSet("config", pflag.ContinueOnError)
 	flagSet.String(configFileFlag, ngc.DefaultConfigFile, "Nuts config file")
 	flagSet.String(loggerLevelFlag, defaultLogLevel, "Log level")
+	flagSet.String(addressFlag, defaultAddress, "Address and port the server will be listening to")
 	cmd.PersistentFlags().AddFlagSet(flagSet)
 
 	// Bind config flag
 	// Bind log level flag
 	ngc.bindFlag(flagSet, configFileFlag)
 	ngc.bindFlag(flagSet, loggerLevelFlag)
+	ngc.bindFlag(flagSet, addressFlag)
 
 	// load flags into viper
 	pfs := cmd.PersistentFlags()
@@ -164,6 +172,7 @@ func (ngc *NutsGlobalConfig) PrintConfig(logger log.FieldLogger) {
 
 	f := fmt.Sprintf("%%-%ds%%v", 7+longestKey)
 
+	logger.Infof(f, addressFlag, ngc.v.Get(addressFlag))
 	logger.Infof(f, configFileFlag, ngc.v.Get(configFileFlag))
 	logger.Infof(f, loggerLevelFlag, ngc.v.Get(loggerLevelFlag))
 	for _, e := range EngineCtl.Engines {
@@ -264,7 +273,7 @@ func (ngc *NutsGlobalConfig) injectIntoStruct(s interface{}) error {
 
 	for _, configName := range ngc.v.AllKeys() {
 		// ignore configFile flag
-		if configName == configFileFlag || configName == loggerLevelFlag {
+		if configName == configFileFlag || configName == loggerLevelFlag || configName == addressFlag {
 			continue
 		}
 

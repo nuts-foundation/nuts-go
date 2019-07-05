@@ -10,6 +10,7 @@ require (
 	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190613154556-654b05b1478d
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20190617124857-4b1882c21216
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190613193010-545e56495b81
+	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190701143801-e72e48a124c8
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604130811-15db96a162bd
 	github.com/nuts-foundation/nuts-registry v0.0.0-20190613140256-2e6995af4861
 	github.com/sirupsen/logrus v1.4.2
