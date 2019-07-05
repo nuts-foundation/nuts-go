@@ -11,7 +11,7 @@ RUN go mod download
 RUN go build -o /opt/nuts/nuts
 
 FROM debian:stretch
-RUN apt-get update && apt-get install -y libzmq3-dev
+RUN apt-get update && apt-get install -y libzmq3-dev ca-certificates
 COPY --from=builder /opt/nuts/nuts /usr/bin/
 CMD ["nuts"]
 EXPOSE 1323
