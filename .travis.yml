@@ -1,5 +1,5 @@
 language: go
-
+dist: xenial
 env:
   - GO111MODULE=on
 
@@ -12,7 +12,8 @@ cache:
     - $HOME/gopath/pkg/mod
 
 before_install:
-  - go get -t -v ./...
+  - sudo apt-get install libzmq3-dev
+  - go get -v ./...
 
 script:
   - go test ./... -race -coverprofile=coverage.txt -covermode=atomic
