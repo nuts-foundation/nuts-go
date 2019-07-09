@@ -8,7 +8,7 @@ require (
 	github.com/labstack/echo/v4 v4.1.5
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20190709135244-c6cbb64c09eb
 	github.com/nuts-foundation/nuts-auth v0.0.0-20190703140706-f8d19516db12
-	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190709125055-7d06034fb51f
+	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190709141607-031ceafdc4ba
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20190617124857-4b1882c21216
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190709122527-62effe6bbe41
 	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190709092026-43547905a20e
