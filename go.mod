@@ -6,12 +6,12 @@ require (
 	github.com/deepmap/oapi-codegen v1.1.6
 	github.com/golang/mock v1.3.1
 	github.com/labstack/echo/v4 v4.1.5
-	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20190709080837-ad622206ee15 // indirect
+	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20190709081835-0f7dd94533f7
 	github.com/nuts-foundation/nuts-auth v0.0.0-20190703140706-f8d19516db12
 	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190709075143-10f92a4dbf40
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20190617124857-4b1882c21216
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190613193010-545e56495b81
-	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190709075111-dc1a1d1a7a5d
+	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190709082001-381a2245d0aa
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604130811-15db96a162bd
 	github.com/nuts-foundation/nuts-registry v0.0.0-20190705212653-f967ccf4207c
 	github.com/sirupsen/logrus v1.4.2

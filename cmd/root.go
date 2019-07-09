@@ -22,12 +22,13 @@ package cmd
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	bridge "github.com/nuts-foundation/consent-bridge-go-client/engine"
 	auth "github.com/nuts-foundation/nuts-auth/engine"
 	logic "github.com/nuts-foundation/nuts-consent-logic/engine"
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
-	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
 	octopus "github.com/nuts-foundation/nuts-event-octopus/engine"
+	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
 	"github.com/nuts-foundation/nuts-go/pkg"
 	registry "github.com/nuts-foundation/nuts-registry/engine"
 	"github.com/sirupsen/logrus"
@@ -110,6 +111,7 @@ func registerEngines() {
 	pkg.RegisterEngine(registry.NewRegistryEngine())
 	pkg.RegisterEngine(auth.NewAuthEngine())
 	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
+	pkg.RegisterEngine(bridge.NewConsentBridgeClientEngine())
 }
 
 func injectConfig(cfg *pkg.NutsGlobalConfig) {
