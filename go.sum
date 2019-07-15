@@ -281,6 +281,8 @@ github.com/nuts-foundation/nuts-crypto v0.0.0-20190709122312-015ee68a5d88 h1:BFq
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190709122312-015ee68a5d88/go.mod h1:Ddd6SAVsQ+HxN539sY4olW+9q+Loe5Y4woBVEVdCB1I=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190709122527-62effe6bbe41 h1:l2oi3OKETe3a1/Vz288gPq9JnMT0kRBj7vC4tavQFIc=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20190709122527-62effe6bbe41/go.mod h1:SBZGEhqTfL4X1ZMdRdWhzcaMgK1HeFWHjIGNZXOGw2w=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190715192612-2c03690cca83 h1:FsGBo3LfHYPSwUIn67UgRhu7hM3b+w5dH0GtCeD4AQg=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20190715192612-2c03690cca83/go.mod h1:SBZGEhqTfL4X1ZMdRdWhzcaMgK1HeFWHjIGNZXOGw2w=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190701143801-e72e48a124c8 h1:o11BJPUOa2LMRPljH0Exg1G4sqtsmjZR4kMpejviyWc=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190701143801-e72e48a124c8/go.mod h1:+173Ep/pFKsWnjVeLo4vW7nZj9YCQSS4ghL2ScTgvoU=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190709075111-dc1a1d1a7a5d h1:1a6uZ0qZpnNj1qtWfRntSiw+pdgHGopLIQaNX+kElUg=
