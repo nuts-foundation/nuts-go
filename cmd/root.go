@@ -107,7 +107,7 @@ func registerEngines() {
 	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(registry.NewRegistryEngine())
 	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
-	
+
 	pkg.RegisterEngine(logic.NewConsentLogicEngine())
 	pkg.RegisterEngine(consent.NewConsentStoreEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())

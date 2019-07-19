@@ -8,10 +8,10 @@ require (
 	github.com/labstack/echo/v4 v4.1.5
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20190715140225-9b35843b56e4
 	github.com/nuts-foundation/nuts-auth v0.0.0-20190703140706-f8d19516db12
-	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190719081906-e5ea35d00af0
+	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190719090303-ae8e6a7922b1
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20190617124857-4b1882c21216
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190715192612-2c03690cca83
-	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190719081547-2667a1cf5e3e
+	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20190719090211-6c5ad48e80c7
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20190604130811-15db96a162bd
 	github.com/nuts-foundation/nuts-registry v0.0.0-20190715130247-39fb565e3da9
 	github.com/sirupsen/logrus v1.4.2
