@@ -21,7 +21,6 @@ package pkg
 
 import (
 	"fmt"
-	"github.com/deepmap/oapi-codegen/pkg/runtime"
 	"github.com/labstack/echo/v4"
 	"github.com/spf13/cobra"
 	"net/http"
@@ -40,7 +39,7 @@ func NewStatusEngine() *Engine {
 				fmt.Println(strings.Join(names, ","))
 			},
 		},
-		Routes: func(router runtime.EchoRouter) {
+		Routes: func(router EchoRouter) {
 			router.GET("/status/engines", ListAllEngines)
 		},
 	}

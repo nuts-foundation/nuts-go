@@ -20,7 +20,7 @@
 package pkg
 
 import (
-	"github.com/deepmap/oapi-codegen/pkg/runtime"
+	"github.com/labstack/echo/v4"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 )
@@ -32,6 +32,20 @@ type EngineControl struct {
 }
 
 var EngineCtl EngineControl
+
+// EchoRouter adds the Any call to echo
+type EchoRouter interface {
+	CONNECT(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	DELETE(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	GET(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	HEAD(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	OPTIONS(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	PATCH(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	POST(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	PUT(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	TRACE(path string, h echo.HandlerFunc, m ...echo.MiddlewareFunc) *echo.Route
+	Any(path string, h echo.HandlerFunc, mi ...echo.MiddlewareFunc) []*echo.Route
+}
 
 // Engine contains all the configuration options and callbacks needed by the executable to configure, start, monitor and shutdown the engines
 type Engine struct {
@@ -60,7 +74,7 @@ type Engine struct {
 	FlagSet *pflag.FlagSet
 
 	// Routes passes the Echo router to the specific engine for it to register their routes.
-	Routes func(router runtime.EchoRouter)
+	Routes func(router EchoRouter)
 
 	// Shutdown the engine
 	Shutdown func() error
