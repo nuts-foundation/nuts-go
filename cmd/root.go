@@ -104,13 +104,14 @@ func addSubCommands(root *cobra.Command) {
 }
 
 func registerEngines() {
+	pkg.RegisterEngine(crypto.NewCryptoEngine())
+	pkg.RegisterEngine(registry.NewRegistryEngine())
+	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
+
 	pkg.RegisterEngine(logic.NewConsentLogicEngine())
 	pkg.RegisterEngine(consent.NewConsentStoreEngine())
-	pkg.RegisterEngine(crypto.NewCryptoEngine())
 	pkg.RegisterEngine(validation.NewValidationEngine())
-	pkg.RegisterEngine(registry.NewRegistryEngine())
 	pkg.RegisterEngine(auth.NewAuthEngine())
-	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
 	pkg.RegisterEngine(bridge.NewConsentBridgeClientEngine())
 }
 
