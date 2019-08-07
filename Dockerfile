@@ -1,4 +1,5 @@
-FROM golang:alpine as builder
+# golang alpine 1.12.7
+FROM golang@sha256:87e527712342efdb8ec5ddf2d57e87de7bd4d2fedf9f6f3547ee5768bb3c43ff as builder
 
 LABEL maintainer="wout.slakhorst@nuts.nl"
 
@@ -14,7 +15,8 @@ RUN go mod download
 COPY . .
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /opt/nuts/nuts
 
-FROM alpine:latest
+# alpine 3.10.1
+FROM alpine@sha256:6a92cd1fcdc8d8cdec60f33dda4db2cb1fcdcacf3410a8e05b3741f44a9b5998
 RUN apk update && apk add --no-cache ca-certificates && update-ca-certificates
 COPY --from=builder /opt/nuts/nuts /usr/bin/nuts
 EXPOSE 1323 4222
