@@ -277,6 +277,8 @@ github.com/nuts-foundation/nuts-auth v0.0.0-20190703140706-f8d19516db12 h1:qkvfE
 github.com/nuts-foundation/nuts-auth v0.0.0-20190703140706-f8d19516db12/go.mod h1:Ps3MsC6diRRJkImRANrSkPtu3fE46HKUrwiN+KMyIRk=
 github.com/nuts-foundation/nuts-auth v0.0.0-20190812122356-14bd0852beaa h1:SN05t8HQSsuaFFqD0WJ8Gk86u1dA9y2KArq56V2nuUM=
 github.com/nuts-foundation/nuts-auth v0.0.0-20190812122356-14bd0852beaa/go.mod h1:Ps3MsC6diRRJkImRANrSkPtu3fE46HKUrwiN+KMyIRk=
+github.com/nuts-foundation/nuts-auth v0.0.0-20190812143022-f2e07f213e77 h1:RWM4Wg14EFwegCKmnwG2nIOAmZN8Sqo569jXMjF+1zE=
+github.com/nuts-foundation/nuts-auth v0.0.0-20190812143022-f2e07f213e77/go.mod h1:8voL1K4TtKEyF05dX2UP70KVnUcgcGWoqjYT7H+ckfw=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190611125028-90459f4fa533/go.mod h1:n0gCA6ub8bB/oOW6ZHd650sO6jtC67jN05oTpu2b3tE=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190613154556-654b05b1478d h1:DgskgLbeBHG1Np1aL5exyJ958Cl96wXnoN8RWHkP0J8=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190613154556-654b05b1478d/go.mod h1:eoDCkOxTM4ZUnC/Y7CNWuYZXz2SqGwMgi6UozPcZYzE=
@@ -459,6 +461,8 @@ github.com/privacybydesign/gabi v0.0.0-20190503104928-ce779395f4c9 h1:oAuMlkE0np
 github.com/privacybydesign/gabi v0.0.0-20190503104928-ce779395f4c9/go.mod h1:hyxnm8M7jWk3P54LDik5aJD69BLhVRjo/ajrjQBng8k=
 github.com/privacybydesign/irmago v0.2.0 h1:OIkj0BSxEQHenwCNMBDptGoQQldS9E3KqlcC1mLrTkY=
 github.com/privacybydesign/irmago v0.2.0/go.mod h1:hzlZrdhrquTapBHXYU9vmXzRSsKM/Nhtqt1J9ALh59A=
+github.com/privacybydesign/irmago v0.3.1 h1:GZ5T1CoU9YL9+0TEafEfQ5JQLaZXXW5tRP39zydwzXc=
+github.com/privacybydesign/irmago v0.3.1/go.mod h1:hzlZrdhrquTapBHXYU9vmXzRSsKM/Nhtqt1J9ALh59A=
 github.com/prometheus/client_golang v0.9.1/go.mod h1:7SWBe2y4D6OKWSNQJUaRYU/AaXPKyh/dDVn+NZz0KFw=
 github.com/prometheus/client_golang v0.9.2/go.mod h1:OsXs2jCmiKlQ1lTBmv21f2mNfw4xf/QclQDMrYNZzcM=
 github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829/go.mod h1:p2iRAGwDERtqlqzRXnrOVns+ignqQo//hLXqYxZYVNs=

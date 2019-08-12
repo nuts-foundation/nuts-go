@@ -8,7 +8,7 @@ require (
 	github.com/golang/mock v1.3.1
 	github.com/labstack/echo/v4 v4.1.5
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20190731150722-f01025854f51
-	github.com/nuts-foundation/nuts-auth v0.0.0-20190812122356-14bd0852beaa
+	github.com/nuts-foundation/nuts-auth v0.0.0-20190812143022-f2e07f213e77
 	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190807115500-ba445ce85bc2
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20190617124857-4b1882c21216
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20190715192612-2c03690cca83
