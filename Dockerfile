@@ -27,6 +27,7 @@ FROM alpine@sha256:6a92cd1fcdc8d8cdec60f33dda4db2cb1fcdcacf3410a8e05b3741f44a9b5
 RUN apk update \
   && apk add --no-cache \
              ca-certificates=20190108-r0 \
+             tzdata \
   && update-ca-certificates
 COPY --from=builder /opt/nuts/nuts /usr/bin/nuts
 EXPOSE 1323 4222
