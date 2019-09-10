@@ -29,7 +29,7 @@ import (
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
 	octopus "github.com/nuts-foundation/nuts-event-octopus/engine"
 	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
-	"github.com/nuts-foundation/nuts-go/pkg"
+	core "github.com/nuts-foundation/nuts-go-core"
 	registry "github.com/nuts-foundation/nuts-registry/engine"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
@@ -45,7 +45,7 @@ var rootCmd = &cobra.Command{
 		echo.HideBanner = true
 		echo.Use(middleware.Logger())
 
-		for _, engine := range pkg.EngineCtl.Engines {
+		for _, engine := range core.EngineCtl.Engines {
 			if engine.Routes != nil {
 				engine.Routes(echo)
 			}
@@ -53,7 +53,7 @@ var rootCmd = &cobra.Command{
 
 		defer shutdownEngines()
 
-		cfg := pkg.NutsConfig()
+		cfg := core.NutsConfig()
 
 		logrus.Fatal(echo.Start(cfg.ServerAddress()))
 	},
@@ -69,7 +69,7 @@ func Execute() {
 	addSubCommands(rootCmd)
 
 	// Load global Nuts config
-	cfg := pkg.NutsConfig()
+	cfg := core.NutsConfig()
 
 	// todo: combine the following 3 calls into 1 passing an array of engines
 	// add commandline options and parse commandline
@@ -96,7 +96,7 @@ func Execute() {
 }
 
 func addSubCommands(root *cobra.Command) {
-	for _, e := range pkg.EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		if e.Cmd != nil {
 			root.AddCommand(e.Cmd)
 		}
@@ -104,20 +104,20 @@ func addSubCommands(root *cobra.Command) {
 }
 
 func registerEngines() {
-	pkg.RegisterEngine(crypto.NewCryptoEngine())
-	pkg.RegisterEngine(registry.NewRegistryEngine())
-	pkg.RegisterEngine(octopus.NewEventOctopusEngine())
+	core.RegisterEngine(crypto.NewCryptoEngine())
+	core.RegisterEngine(registry.NewRegistryEngine())
+	core.RegisterEngine(octopus.NewEventOctopusEngine())
 
-	pkg.RegisterEngine(logic.NewConsentLogicEngine())
-	pkg.RegisterEngine(consent.NewConsentStoreEngine())
-	pkg.RegisterEngine(validation.NewValidationEngine())
-	pkg.RegisterEngine(auth.NewAuthEngine())
-	pkg.RegisterEngine(bridge.NewConsentBridgeClientEngine())
+	core.RegisterEngine(logic.NewConsentLogicEngine())
+	core.RegisterEngine(consent.NewConsentStoreEngine())
+	core.RegisterEngine(validation.NewValidationEngine())
+	core.RegisterEngine(auth.NewAuthEngine())
+	core.RegisterEngine(bridge.NewConsentBridgeClientEngine())
 }
 
-func injectConfig(cfg *pkg.NutsGlobalConfig) {
+func injectConfig(cfg *core.NutsGlobalConfig) {
 	// loop through configs and call viper.Get prepended with engine ConfigKey, inject value into struct
-	for _, e := range pkg.EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		if err := cfg.InjectIntoEngine(e); err != nil {
 			logrus.Fatal(err)
 		}
@@ -125,7 +125,7 @@ func injectConfig(cfg *pkg.NutsGlobalConfig) {
 }
 
 func configureEngines() {
-	for _, e := range pkg.EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		// only if Engine is dynamically configurable
 		if e.Configure != nil {
 			if err := e.Configure(); err != nil {
@@ -135,14 +135,14 @@ func configureEngines() {
 	}
 }
 
-func addFlagSets(cmd *cobra.Command, cfg *pkg.NutsGlobalConfig) {
-	for _, e := range pkg.EngineCtl.Engines {
+func addFlagSets(cmd *cobra.Command, cfg *core.NutsGlobalConfig) {
+	for _, e := range core.EngineCtl.Engines {
 		cfg.RegisterFlags(cmd, e)
 	}
 }
 
 func startEngines() {
-	for _, e := range pkg.EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		if e.Start != nil {
 			if err := e.Start(); err != nil {
 				logrus.Fatal(err)
@@ -152,7 +152,7 @@ func startEngines() {
 }
 
 func shutdownEngines() {
-	for _, e := range pkg.EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		if e.Shutdown != nil {
 			if err := e.Shutdown(); err != nil {
 				logrus.Error(err)

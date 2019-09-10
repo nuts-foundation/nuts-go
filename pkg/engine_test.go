@@ -21,7 +21,8 @@ package pkg
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/nuts-foundation/nuts-go/mock"
+	"github.com/nuts-foundation/nuts-go-core"
+	"github.com/nuts-foundation/nuts-go-core/mock"
 	"net/http"
 	"testing"
 )
@@ -30,21 +31,10 @@ type dummyEngine struct {
 }
 
 func TestRegisterEngine(t *testing.T) {
-	t.Run("adds an engine to the list", func(t *testing.T) {
-		ctl := EngineControl{
-			Engines: []*Engine{},
-		}
-		ctl.registerEngine(&Engine{})
-
-		if len(ctl.Engines) != 1 {
-			t.Errorf("Expected 1 registered engine, Got %d", len(ctl.Engines))
-		}
-	})
-
 	t.Run("has been called by init to register StatusEngine", func(t *testing.T) {
 
-		if len(EngineCtl.Engines) != 2 {
-			t.Errorf("Expected 2 registered engine, Got %d", len(EngineCtl.Engines))
+		if len(core.EngineCtl.Engines) != 2 {
+			t.Errorf("Expected 2 registered engine, Got %d", len(core.EngineCtl.Engines))
 		}
 	})
 }
