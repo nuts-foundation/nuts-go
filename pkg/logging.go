@@ -20,28 +20,36 @@
 package pkg
 
 import (
+	core "github.com/nuts-foundation/nuts-go-core"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )
 
+type loggerConfig struct {
+	verbosity string
+}
+
 //NewLoggerEngine creates a new Engine for logging
-func NewLoggerEngine() *Engine {
-	return &Engine{
+func NewLoggerEngine() *core.Engine {
+	lc := loggerConfig{}
+
+	return &core.Engine{
 		Name: "Logging",
+		Config: &lc,
 		Cmd: &cobra.Command{
 			Use:   "logStatus",
 			Short: "show the current logging setup",
 			Run: func(cmd *cobra.Command, args []string) {
-				printLoggerSetup()
+				printLoggerSetup(lc)
 			},
 		},
 	}
 }
 
 func init() {
-	EngineCtl.registerEngine(NewLoggerEngine())
+	core.RegisterEngine(NewLoggerEngine())
 }
 
-func printLoggerSetup() {
-	log.Infof("Verbosity is set to %s\n", NutsConfig().v.GetString(loggerLevelFlag))
+func printLoggerSetup(lc loggerConfig) {
+	log.Infof("Verbosity is set to %s\n", lc.verbosity)
 }

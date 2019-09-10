@@ -23,14 +23,15 @@ import (
 	"fmt"
 	"github.com/deepmap/oapi-codegen/pkg/runtime"
 	"github.com/labstack/echo/v4"
+	core "github.com/nuts-foundation/nuts-go-core"
 	"github.com/spf13/cobra"
 	"net/http"
 	"strings"
 )
 
 //NewStatusEngine creates a new Engine for viewing all engines
-func NewStatusEngine() *Engine {
-	return &Engine{
+func NewStatusEngine() *core.Engine {
+	return &core.Engine{
 		Name: "Status",
 		Cmd: &cobra.Command{
 			Use:   "engineStatus",
@@ -47,7 +48,7 @@ func NewStatusEngine() *Engine {
 }
 
 func init() {
-	EngineCtl.registerEngine(NewStatusEngine())
+	core.RegisterEngine(NewStatusEngine())
 }
 
 // ListAllEngines is the handler function for the /status/engines api call
@@ -60,7 +61,7 @@ func ListAllEngines(ctx echo.Context) error {
 
 func listAllEngines() []string {
 	var names []string
-	for _, e := range EngineCtl.Engines {
+	for _, e := range core.EngineCtl.Engines {
 		names = append(names, e.Name)
 	}
 	return names
