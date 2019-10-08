@@ -358,6 +358,10 @@ github.com/mattn/go-sqlite3 v1.10.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsO
 github.com/mattn/go-sqlite3 v1.11.0 h1:LDdKkqtYlom37fkvqs8rMPFKAMe8+SgjbwZ6ex1/A/Q=
 github.com/mattn/go-sqlite3 v1.11.0/go.mod h1:FPy6KqzDD04eiIsT53CuJW3U88zkxoIYsOqkbpncsNc=
 github.com/matttproud/golang_protobuf_extensions v1.0.1/go.mod h1:D8He9yQNgCq6Z5Ld7szi9bcBfOoFv/3dc6xSMkL2PC0=
+github.com/mdp/qrterminal v1.0.1 h1:07+fzVDlPuBlXS8tB0ktTAyf+Lp1j2+2zK3fBOL5b7c=
+github.com/mdp/qrterminal v1.0.1/go.mod h1:Z33WhxQe9B6CdW37HaVqcRKzP+kByF3q/qLxOGe12xQ=
+github.com/mdp/qrterminal/v3 v3.0.0 h1:ywQqLRBXWTktytQNDKFjhAvoGkLVN3J2tAFZ0kMd9xQ=
+github.com/mdp/qrterminal/v3 v3.0.0/go.mod h1:NJpfAs7OAm77Dy8EkWrtE4aq+cE6McoLXlBqXQEwvE0=
 github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b h1:j7+1HpAFS1zy5+Q4qx1fWh90gTKwiN4QCGoY9TWyyO4=
 github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b/go.mod h1:01TrycV0kFyexm33Z7vhZRXopbI8J3TDReVlkTgMUxE=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
@@ -433,6 +437,8 @@ github.com/nuts-foundation/nuts-auth v0.0.0-20190910105603-ae761a398153 h1:eBfJV
 github.com/nuts-foundation/nuts-auth v0.0.0-20190910105603-ae761a398153/go.mod h1:d4JtZ5aG1IIO8Iw8bALmu/qhjWCz1MVSDU6CCyMvmBY=
 github.com/nuts-foundation/nuts-auth v0.0.0-20190911122342-f8d7727fb1b2 h1:Odp24wOTMuoBgd1MXG8u744QHvdeFhGijHv54YlXwzo=
 github.com/nuts-foundation/nuts-auth v0.0.0-20190911122342-f8d7727fb1b2/go.mod h1:d4JtZ5aG1IIO8Iw8bALmu/qhjWCz1MVSDU6CCyMvmBY=
+github.com/nuts-foundation/nuts-auth v0.0.0-20191007143139-f98e81856cfa h1:UuTQXYhIMA22dO5hj/hJ1ngvIGjC53GoePXLMLopbOc=
+github.com/nuts-foundation/nuts-auth v0.0.0-20191007143139-f98e81856cfa/go.mod h1:GxkyDu1c9vcDCKQCvEC2wqeBuuFzxvfxl7IkWN2q30E=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190611125028-90459f4fa533/go.mod h1:n0gCA6ub8bB/oOW6ZHd650sO6jtC67jN05oTpu2b3tE=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190613154556-654b05b1478d h1:DgskgLbeBHG1Np1aL5exyJ958Cl96wXnoN8RWHkP0J8=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20190613154556-654b05b1478d/go.mod h1:eoDCkOxTM4ZUnC/Y7CNWuYZXz2SqGwMgi6UozPcZYzE=
@@ -948,3 +954,5 @@ honnef.co/go/tools v0.0.1-2019.2.3/go.mod h1:a3bituU0lyd329TUQxRnasdCoJDkEUEAqEt
 istio.io/gogo-genproto v0.0.0-20190731221249-06e20ada0df2/go.mod h1:IjvrbUlRbbw4JCpsgvgihcz9USUwEoNTL/uwMtyV5yk=
 istio.io/gogo-genproto v0.0.0-20190906190748-4801a8955c3d/go.mod h1:uKtbae4K9k2rjjX4ToV0l6etglbc1i7gqQ94XdkshzY=
 rsc.io/binaryregexp v0.2.0/go.mod h1:qTv7/COck+e2FymRvadv62gMdZztPaShugOCi3I+8D8=
+rsc.io/qr v0.2.0 h1:6vBLea5/NRMVTz8V66gipeLycZMl/+UlFmk8DvqQ6WY=
+rsc.io/qr v0.2.0/go.mod h1:IF+uZjkb9fqyeF/4tlBoynqmQxUoPfWEKh921coOuXs=
