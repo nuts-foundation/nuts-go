@@ -34,7 +34,7 @@ func NewLoggerEngine() *core.Engine {
 	lc := loggerConfig{}
 
 	return &core.Engine{
-		Name: "Logging",
+		Name:   "Logging",
 		Config: &lc,
 		Cmd: &cobra.Command{
 			Use:   "logStatus",
