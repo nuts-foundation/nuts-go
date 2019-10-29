@@ -293,6 +293,8 @@ github.com/nuts-foundation/nuts-auth v0.0.2-0.20191015071430-f80c4719d80b h1:8fK
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20191015071430-f80c4719d80b/go.mod h1:7iSRAKXboycZXF0snqLhTQxm7mFfpTXgRRrlkJMHgC8=
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20191029102804-7178da2d69f8 h1:CRUh9rYW92+ZiD/kDu5DhhNvttlWKJ9PJ0FTOv8SDnU=
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20191029102804-7178da2d69f8/go.mod h1:K9anirhCzG8woz1P33KKSrgEH+9Mj4yRlg7TQt0OQgE=
+github.com/nuts-foundation/nuts-auth v0.0.2-0.20191029150607-c527a889e5ac h1:FSDWKmiXG54yHQYVBlX3tDZwoLuiryToGDzFQcrHidE=
+github.com/nuts-foundation/nuts-auth v0.0.2-0.20191029150607-c527a889e5ac/go.mod h1:UrUvNh+GhMYbDJ3DFaV8pVlz5txrLT6VYdbUZXSI78k=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191015073848-b84511a7885a h1:aGrZZT+T2ihBJBREg4+uZPh3zBrxhJnRIyJOXXmEF80=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191015073848-b84511a7885a/go.mod h1:PrQTtMcMHK0b72wlkwtYzZ1SdW+4JhVJdzw37I2/4v8=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191022094037-c087fe748187 h1:O09p8gw4VDsL5HJAy2Yi54jyFU1nosWipn+ieM0FVs8=
@@ -350,6 +352,8 @@ github.com/privacybydesign/gabi v0.0.0-20190503104928-ce779395f4c9 h1:oAuMlkE0np
 github.com/privacybydesign/gabi v0.0.0-20190503104928-ce779395f4c9/go.mod h1:hyxnm8M7jWk3P54LDik5aJD69BLhVRjo/ajrjQBng8k=
 github.com/privacybydesign/irmago v0.4.0 h1:+HY0RbCD5itiaYzIUm4EbtceRxDLKAOKcL/IEA5YSBc=
 github.com/privacybydesign/irmago v0.4.0/go.mod h1:hzlZrdhrquTapBHXYU9vmXzRSsKM/Nhtqt1J9ALh59A=
+github.com/privacybydesign/irmago v0.4.1 h1:IsTiTUAWwrQwqI2QF3mxtqGW4QD87yUWOLONFGyE8Go=
+github.com/privacybydesign/irmago v0.4.1/go.mod h1:hzlZrdhrquTapBHXYU9vmXzRSsKM/Nhtqt1J9ALh59A=
 github.com/prometheus/client_golang v0.9.1/go.mod h1:7SWBe2y4D6OKWSNQJUaRYU/AaXPKyh/dDVn+NZz0KFw=
 github.com/prometheus/client_golang v0.9.2/go.mod h1:OsXs2jCmiKlQ1lTBmv21f2mNfw4xf/QclQDMrYNZzcM=
 github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829/go.mod h1:p2iRAGwDERtqlqzRXnrOVns+ignqQo//hLXqYxZYVNs=
