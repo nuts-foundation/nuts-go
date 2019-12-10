@@ -16,7 +16,7 @@ require (
 	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20191029153434-8e47d64e4f2b
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20191203114751-5322dfe1d71d
 	github.com/nuts-foundation/nuts-go-core v0.0.0-20191028170600-66675906a53a
-	github.com/nuts-foundation/nuts-registry v0.0.0-20191128091042-807cfaf67305
+	github.com/nuts-foundation/nuts-registry v0.0.0-20191209153959-67dd0910b057
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/timshannon/bolthold v0.0.0-20191009161117-ccb01ed9dec4 // indirect

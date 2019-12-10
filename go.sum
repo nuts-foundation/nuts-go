@@ -348,6 +348,8 @@ github.com/nuts-foundation/nuts-registry v0.0.0-20191016145829-6bcaa08ad25d h1:0
 github.com/nuts-foundation/nuts-registry v0.0.0-20191016145829-6bcaa08ad25d/go.mod h1:GoIUJryOXBLSYV1d5gOG3+ksRA2qyVvN2fI67YIWI8g=
 github.com/nuts-foundation/nuts-registry v0.0.0-20191128091042-807cfaf67305 h1:ezT85t2vwJQlhyIU27rYW107BvLpjzzTLPx2UBxu+jE=
 github.com/nuts-foundation/nuts-registry v0.0.0-20191128091042-807cfaf67305/go.mod h1:zj8lpRLEYlJkC7fo+c8NO7pjkSXR3DvvpyyJ2YSiBKU=
+github.com/nuts-foundation/nuts-registry v0.0.0-20191209153959-67dd0910b057 h1:kn5VkvVJWdf0suyC2AO6QlGEK+0V62Vv6B54mINecmo=
+github.com/nuts-foundation/nuts-registry v0.0.0-20191209153959-67dd0910b057/go.mod h1:zj8lpRLEYlJkC7fo+c8NO7pjkSXR3DvvpyyJ2YSiBKU=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
