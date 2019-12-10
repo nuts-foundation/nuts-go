@@ -314,6 +314,10 @@ github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191209125229-8914fe3e5adc
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191209125229-8914fe3e5adc/go.mod h1:2ZZ/onE0kjsXwRX5pIN6Ml/9DVpENIxk2NzTFjGUwsQ=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191209131032-644c1cc0052b h1:gw3uSQ9XJA2W88mSXfWnfG7YpHPCclTcEjFRxxwQ5wo=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191209131032-644c1cc0052b/go.mod h1:KR9lHtYb4Fi7nLyB1GrOuGgV1bOSoKJt60Rg9luya8A=
+github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191210144037-79b471699142 h1:Jqu7E3zm9iaMuoJAygfcg4EVBCB1qPR7Eh0EO952nRg=
+github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191210144037-79b471699142/go.mod h1:KR9lHtYb4Fi7nLyB1GrOuGgV1bOSoKJt60Rg9luya8A=
+github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191210151106-7b74a08e55af h1:c8VR6iHZXwq4OItXIgLrLKa7Up7DCSidOp+baGBaLp0=
+github.com/nuts-foundation/nuts-consent-logic v0.0.0-20191210151106-7b74a08e55af/go.mod h1:Fnxjfm61UYW3rFzMPbkqLrQ0w9LNkb5t9Dn+lVuu4Bc=
 github.com/nuts-foundation/nuts-consent-store v0.0.0-20191015073411-949b9210b40c h1:x5eY7XnF78bdvsALlNsx5eWDLqAeQYEKH6vSC0mGblg=
 github.com/nuts-foundation/nuts-consent-store v0.0.0-20191015073411-949b9210b40c/go.mod h1:bH5JYC0NLMaqskVEciW30DDTyrsco9jg2V1FmGJAUls=
 github.com/nuts-foundation/nuts-consent-store v0.0.0-20191203141943-57b769643dc2/go.mod h1:Q1WEjEHULIDmaP+JiX9Iw1L6HOF9J9eDHbXHnmMv8Q8=
