@@ -62,7 +62,7 @@ func ListAllEngines(ctx echo.Context) error {
 
 // StatusOK returns 200 OK with a zero length body
 func StatusOK(ctx echo.Context) error {
-	return ctx.String(http.StatusOK, "")
+	return ctx.String(http.StatusOK, "OK")
 }
 
 func listAllEngines() []string {

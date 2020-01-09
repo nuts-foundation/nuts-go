@@ -78,7 +78,7 @@ func TestStatusOK(t *testing.T) {
 	defer ctrl.Finish()
 	echo := mock.NewMockContext(ctrl)
 
-	echo.EXPECT().String(http.StatusOK, "")
+	echo.EXPECT().String(http.StatusOK, "OK")
 
 	StatusOK(echo)
 }

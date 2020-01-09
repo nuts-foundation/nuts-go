@@ -15,4 +15,4 @@ The main goal of the service is to give a YES/NO answer for if the service is ru
 
     GET /status
 
-It'll return an empty response with a 200 status code.
+It'll return an "OK" response and a 200 status code.
