@@ -8,7 +8,7 @@ Nuts service executable development
 Dependencies
 ************
 
-This projects is using go modules, so version > 1.12 is recommended. 1.10 would be a minimum.
+Go version => 1.13 is required.
 
 Running tests
 *************
