@@ -24,7 +24,7 @@ The executable exposes the REST (or other) services from the different engines. 
 Dependencies
 ************
 
-This projects is using go modules, so version > 1.12 is recommended. 1.10 would be a minimum.
+Go version => 1.13 is required.
 
 Running tests
 *************
