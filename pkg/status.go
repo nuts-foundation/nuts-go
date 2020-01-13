@@ -43,6 +43,7 @@ func NewStatusEngine() *core.Engine {
 		},
 		Routes: func(router runtime.EchoRouter) {
 			router.GET("/status/engines", ListAllEngines)
+			router.GET("/status", StatusOK)
 		},
 	}
 }
@@ -57,6 +58,11 @@ func ListAllEngines(ctx echo.Context) error {
 
 	// generate output
 	return ctx.JSON(http.StatusOK, names)
+}
+
+// StatusOK returns 200 OK with a zero length body
+func StatusOK(ctx echo.Context) error {
+	return ctx.String(http.StatusOK, "OK")
 }
 
 func listAllEngines() []string {

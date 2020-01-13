@@ -46,6 +46,7 @@ func TestNewStatusEngine_Routes(t *testing.T) {
 		echo := mock.NewMockEchoRouter(ctrl)
 
 		echo.EXPECT().GET("/status/engines", gomock.Any())
+		echo.EXPECT().GET("/status", gomock.Any())
 
 		NewStatusEngine().Routes(echo)
 	})
@@ -70,4 +71,14 @@ func TestListAllEngines(t *testing.T) {
 
 		ListAllEngines(echo)
 	})
+}
+
+func TestStatusOK(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+	echo := mock.NewMockContext(ctrl)
+
+	echo.EXPECT().String(http.StatusOK, "OK")
+
+	StatusOK(echo)
 }
