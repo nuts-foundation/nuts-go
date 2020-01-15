@@ -104,6 +104,8 @@ func addSubCommands(root *cobra.Command) {
 }
 
 func registerEngines() {
+	core.RegisterEngine(core.NewStatusEngine())
+	core.RegisterEngine(core.NewLoggerEngine())
 	core.RegisterEngine(crypto.NewCryptoEngine())
 	core.RegisterEngine(registry.NewRegistryEngine())
 	core.RegisterEngine(octopus.NewEventOctopusEngine())
