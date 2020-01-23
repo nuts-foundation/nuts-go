@@ -44,6 +44,7 @@ var rootCmd = &cobra.Command{
 		echo := echo.New()
 		echo.HideBanner = true
 		echo.Use(middleware.Logger())
+		echo.Use(core.DecodeURIPath)
 
 		for _, engine := range core.EngineCtl.Engines {
 			if engine.Routes != nil {

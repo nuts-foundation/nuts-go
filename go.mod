@@ -4,7 +4,9 @@ go 1.13
 
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
-	github.com/labstack/echo/v4 v4.1.11
+	github.com/deepmap/oapi-codegen v1.3.4 // indirect
+	github.com/labstack/echo/v4 v4.1.13
+	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20200108100158-fc7764776ade
 	github.com/nuts-foundation/nuts-auth v0.0.2-0.20200114082850-9fd7f5336ee9
 	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20200108104842-7dead69f7e77
@@ -12,9 +14,17 @@ require (
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20200108100158-4428c745d113
 	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20200108100158-d97ffd8b5dc7
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200108104034-2a3b8cc778c3
-	github.com/nuts-foundation/nuts-go-core v0.0.0-20200121092218-8206844d5854
+	github.com/nuts-foundation/nuts-go-core v0.0.0-20200123163809-9d326fc9c802
 	github.com/nuts-foundation/nuts-registry v0.0.0-20200108100157-f61ac82980f3
+	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
+	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/cobra v0.0.5
+	github.com/spf13/viper v1.6.2 // indirect
 	github.com/timshannon/bolthold v0.0.0-20191009161117-ccb01ed9dec4 // indirect
+	golang.org/x/crypto v0.0.0-20200117160349-530e935923ad // indirect
+	golang.org/x/net v0.0.0-20200114155413-6afb5195e5aa // indirect
+	golang.org/x/sys v0.0.0-20200122134326-e047566fdf82 // indirect
+	gopkg.in/ini.v1 v1.51.1 // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )
