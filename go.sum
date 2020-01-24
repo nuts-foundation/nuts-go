@@ -329,6 +329,8 @@ github.com/nuts-foundation/nuts-go-core v0.0.0-20191218133145-27ebcf628fab h1:Dx
 github.com/nuts-foundation/nuts-go-core v0.0.0-20191218133145-27ebcf628fab/go.mod h1:+IeGzu5J8qlF4Jcol+mY+MRcLDIfJ8OQnQV4wDp887o=
 github.com/nuts-foundation/nuts-go-core v0.0.0-20200123163809-9d326fc9c802 h1:x+ZOBSZfCJwXvrpMP/C9rMZhkJT7tP4yKTU60YXScuU=
 github.com/nuts-foundation/nuts-go-core v0.0.0-20200123163809-9d326fc9c802/go.mod h1:xltL3S+vqhSMYkTRIWyaVgtDk7y8KIENZmTbVIPIMcw=
+github.com/nuts-foundation/nuts-go-core v0.0.0-20200124081635-dd44e5ddd298 h1:GDr4gXx2plSbcW4xlGbJK+iJKcavOl9aMgae+Ay9/ok=
+github.com/nuts-foundation/nuts-go-core v0.0.0-20200124081635-dd44e5ddd298/go.mod h1:xltL3S+vqhSMYkTRIWyaVgtDk7y8KIENZmTbVIPIMcw=
 github.com/nuts-foundation/nuts-registry v0.0.0-20191209153959-67dd0910b057 h1:kn5VkvVJWdf0suyC2AO6QlGEK+0V62Vv6B54mINecmo=
 github.com/nuts-foundation/nuts-registry v0.0.0-20191209153959-67dd0910b057/go.mod h1:zj8lpRLEYlJkC7fo+c8NO7pjkSXR3DvvpyyJ2YSiBKU=
 github.com/nuts-foundation/nuts-registry v0.0.0-20200108100157-f61ac82980f3 h1:voUFUGUDXBEYX8wJKzHRAYcOH/rc5VIaRPWwg3wmP90=
