@@ -5,7 +5,8 @@ go 1.13
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
 	github.com/deepmap/oapi-codegen v1.3.4 // indirect
-	github.com/labstack/echo/v4 v4.1.13
+	github.com/labstack/echo v3.3.10+incompatible // indirect
+	github.com/labstack/echo/v4 v4.1.14
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20200121093403-d1ec6e23ab2d
 	github.com/nuts-foundation/nuts-auth v0.0.2-0.20200114082850-9fd7f5336ee9
