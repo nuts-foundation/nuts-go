@@ -348,6 +348,8 @@ github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200106133706-43690c029d
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200106133706-43690c029d3d/go.mod h1:cKPyoodDvPAjDhW4Q/BtM2NWPgOoGFol1JzT6eWNXcQ=
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200108104034-2a3b8cc778c3 h1:CKe8U3xEGMkZLVXRACIR+Szd507HrOmxcYIcVGGs5Us=
 github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200108104034-2a3b8cc778c3/go.mod h1:cKPyoodDvPAjDhW4Q/BtM2NWPgOoGFol1JzT6eWNXcQ=
+github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200212102712-c0c46c3062c4 h1:Ph+axyIbzgyequKeD29pDtlD8R+10iyednBsuow6I3A=
+github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200212102712-c0c46c3062c4/go.mod h1:xpNYWp1jpBnJMK120r6Aa6Jre7ZcgRPqfB6XNkGZhfk=
 github.com/nuts-foundation/nuts-go-core v0.0.0-20191028170600-66675906a53a h1:0r1YHKAMSiP6yFy322lNclOU53LVfdkuRFsdQBJ/NU0=
 github.com/nuts-foundation/nuts-go-core v0.0.0-20191028170600-66675906a53a/go.mod h1:+IeGzu5J8qlF4Jcol+mY+MRcLDIfJ8OQnQV4wDp887o=
 github.com/nuts-foundation/nuts-go-core v0.0.0-20191218133145-27ebcf628fab h1:Dxjdaw+HToUVmh2H1/pg+BFNzNWm72bqVlA3LqcCiGs=
