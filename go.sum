@@ -311,6 +311,8 @@ github.com/nuts-foundation/nuts-auth v0.0.2-0.20200114082850-9fd7f5336ee9 h1:nlL
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20200114082850-9fd7f5336ee9/go.mod h1:34vQnfeeC+u1M6XdlsDF6QoGdBumIOy/+vc4V65bO4U=
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20200206083733-f3b8b887b466 h1:VqD4qjFxklPmRqQ6pPnoAOL794BcdUO2fkuYXZWJTY8=
 github.com/nuts-foundation/nuts-auth v0.0.2-0.20200206083733-f3b8b887b466/go.mod h1:vTcw5FkBXNnq+358CTp5P5SE7DGKfJGldNEuEy1bySo=
+github.com/nuts-foundation/nuts-auth v0.0.2-0.20200212101636-7478ba87e314 h1:pTNLz0VW1ews1oPwJTfGpwsww6YsWjYCfhaEh4sXYfY=
+github.com/nuts-foundation/nuts-auth v0.0.2-0.20200212101636-7478ba87e314/go.mod h1:vTcw5FkBXNnq+358CTp5P5SE7DGKfJGldNEuEy1bySo=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20200108104842-7dead69f7e77 h1:i/D9/Trpc4kR/S181L+p+gMMLk93Vn641/Ai/pHx0JY=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20200108104842-7dead69f7e77/go.mod h1:M4VLBZdWhSAPh4CuXM2n1NLpMg1rBiC9f7sCYQM/HNM=
 github.com/nuts-foundation/nuts-consent-logic v0.0.0-20200124143712-6764185c064c h1:EvRhYjJdO2pacZHa6wy1N85rZifkO7pV0GBI1h9odtg=

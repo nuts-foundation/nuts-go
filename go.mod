@@ -9,7 +9,7 @@ require (
 	github.com/labstack/echo/v4 v4.1.14
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/nuts-foundation/consent-bridge-go-client v0.0.0-20200121093403-d1ec6e23ab2d
-	github.com/nuts-foundation/nuts-auth v0.0.2-0.20200206083733-f3b8b887b466
+	github.com/nuts-foundation/nuts-auth v0.0.2-0.20200212101636-7478ba87e314
 	github.com/nuts-foundation/nuts-consent-logic v0.0.0-20200130105206-3855170c055f
 	github.com/nuts-foundation/nuts-consent-store v0.0.0-20200206083919-07f174baa8e2
 	github.com/nuts-foundation/nuts-crypto v0.0.0-20200127075335-afcefe897a71
