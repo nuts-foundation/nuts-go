@@ -16,3 +16,22 @@ The main goal of the service is to give a YES/NO answer for if the service is ru
     GET /status
 
 It'll return an "OK" response and a 200 status code.
+
+Basic diagnostics
+*****************
+
+.. code-block:: text
+
+    GET /status/diagnostics
+
+It'll return some text displaying the current status of the various services
+
+.. code-block:: text
+
+Status
+	Registered engines: Status,Logging,Crypto,Registry,Events octopus,ConsentLogicInstance,ConsentStore,Validation,Auth,ConsentBridgeClient
+Logging
+	verbosity:
+Events octopus
+	Nats streaming server: mode: STANDALONE @ 0.0.0.0:4222, ID: nuts, last error: NONE
+	DB: ping: true
