@@ -25,7 +25,7 @@ RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /opt/nuts/nuts
 FROM alpine:3.11
 RUN apk update \
   && apk add --no-cache \
-             ca-certificates=20191127-r0 \
+             ca-certificates=20191127-r1 \
              tzdata \
   && update-ca-certificates
 COPY --from=builder /opt/nuts/nuts /usr/bin/nuts
