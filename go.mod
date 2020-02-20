@@ -16,7 +16,7 @@ require (
 	github.com/nuts-foundation/nuts-event-octopus v0.0.0-20200206083853-1b0a343c1495
 	github.com/nuts-foundation/nuts-fhir-validation v0.0.0-20200212102712-c0c46c3062c4
 	github.com/nuts-foundation/nuts-go-core v0.0.0-20200130105519-4620adf455e9
-	github.com/nuts-foundation/nuts-registry v0.0.0-20200211142433-9d1d2985be8e
+	github.com/nuts-foundation/nuts-registry v0.0.0-20200220105236-2e3446fbe24f
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cast v1.3.1 // indirect
