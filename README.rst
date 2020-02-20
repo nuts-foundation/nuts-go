@@ -104,5 +104,8 @@ Name                    commandLine             Env                     Descript
 address                 --address               NUTS_ADDRESS            address and port server will be listening at.
 configfile              --configfile            NUTS_CONFIGFILE         points to the location of the config file to be used.
 verbosity               --verbosity             NUTS_VERBOSITY          Log level ("trace", "debug", "info", "warn", "error")
+mode                    --mode                  NUTS_MODE               Mode the application will run in. When 'cli' it can be used to
+                                                                        administer a remote Nuts node. When 'server' it will start a Nuts node.
+                                                                        Defaults to 'server'.
 =====================   ====================    =====================   ================================================================
 

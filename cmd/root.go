@@ -39,7 +39,12 @@ var rootCmd = &cobra.Command{
 	Use:   "nuts",
 	Short: "The Nuts service executable",
 	Run: func(cmd *cobra.Command, args []string) {
-
+		cfg := core.NutsConfig()
+		if cfg.Mode() != core.GlobalServerMode {
+			logrus.Error("Please specify a sub command when running in CLI mode")
+			_ = cmd.Help()
+			return
+		}
 		// start interfaces
 		echo := echo.New()
 		echo.HideBanner = true
@@ -53,9 +58,6 @@ var rootCmd = &cobra.Command{
 		}
 
 		defer shutdownEngines()
-
-		cfg := core.NutsConfig()
-
 		logrus.Fatal(echo.Start(cfg.ServerAddress()))
 	},
 }
