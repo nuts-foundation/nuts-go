@@ -1,0 +1,35 @@
+<IssueSpecification version="4">
+	<Name>
+		<en>Telephone number</en>
+		<nl>Telefoonnummer</nl>
+	</Name>
+	<ShortName>
+		<en>Phone</en>
+		<nl>Telefoon</nl>
+	</ShortName>
+	<SchemeManager>pbdf</SchemeManager>
+	<IssuerID>pbdf</IssuerID>
+	<CredentialID>mobilenumber</CredentialID>
+	<Description>
+		<en>Your verified mobile phone number</en>
+		<nl>Uw geverifieerde mobiel telefoonnummer</nl>
+	</Description>
+	<ShouldBeSingleton>false</ShouldBeSingleton>
+	<IssueURL>
+		<en>https://privacybydesign.foundation/issuance/phonenumber/</en>
+		<nl>https://privacybydesign.foundation/uitgifte/telefoonnummer/</nl>
+	</IssueURL>
+
+	<Attributes>
+		<Attribute id="mobilenumber">
+			<Name>
+				<en>Phone number</en>
+				<nl>Telefoonnummer</nl>
+			</Name>
+			<Description>
+				<en>Your verified mobile phone number</en>
+				<nl>Uw geverifieerde mobiel telefoonnummer</nl>
+			</Description>
+		</Attribute>
+	</Attributes>
+</IssueSpecification>

@@ -1,0 +1,45 @@
+<IssueSpecification version="4">
+	<Name>
+		<en>Email address</en>
+		<nl>E-mailadres</nl>
+	</Name>
+	<ShortName>
+		<en>Email</en>
+		<nl>E-mail</nl>
+	</ShortName>
+	<SchemeManager>pbdf</SchemeManager>
+	<IssuerID>pbdf</IssuerID>
+	<CredentialID>email</CredentialID>
+	<Description>
+		<en>Your verified email address</en>
+		<nl>Uw geverifieerde e-mailadres</nl>
+	</Description>
+	<ShouldBeSingleton>false</ShouldBeSingleton>
+	<IssueURL>
+		<en>https://privacybydesign.foundation/issuance/email/</en>
+		<nl>https://privacybydesign.foundation/uitgifte/email/</nl>
+	</IssueURL>
+
+	<Attributes>
+		<Attribute id="email">
+			<Name>
+				<en>Email address</en>
+				<nl>E-mailadres</nl>
+			</Name>
+			<Description>
+				<en>Your verified email address</en>
+				<nl>Uw geverifieerde e-mailadres</nl>
+			</Description>
+		</Attribute>
+		<Attribute id="domain" optional="true">
+			<Name>
+				<en>Email domain name</en>
+				<nl>E-mail domeinnaam</nl>
+			</Name>
+			<Description>
+				<en>The domain name of your email address</en>
+				<nl>De domeinnaam van uw e-mailadres</nl>
+			</Description>
+		</Attribute>
+	</Attributes>
+</IssueSpecification>

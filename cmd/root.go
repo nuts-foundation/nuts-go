@@ -62,7 +62,7 @@ var rootCmd = &cobra.Command{
 	},
 }
 
-func Execute() {
+func Execute() error {
 	//flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 
 	// register static set of engines, needed for other commands
@@ -95,7 +95,7 @@ func Execute() {
 	startEngines()
 
 	// blocking main call
-	rootCmd.Execute()
+	return rootCmd.Execute()
 }
 
 func addSubCommands(root *cobra.Command) {
@@ -164,4 +164,5 @@ func shutdownEngines() {
 			}
 		}
 	}
+	core.EngineCtl.Engines = []*core.Engine{}
 }
