@@ -123,6 +123,7 @@ github.com/golang/mock v1.1.1/go.mod h1:oTYuIxOrZwtPieC+H1uAHpcLFnEyAGVDL/k47Jfb
 github.com/golang/mock v1.2.0/go.mod h1:oTYuIxOrZwtPieC+H1uAHpcLFnEyAGVDL/k47Jfbm0A=
 github.com/golang/mock v1.3.1 h1:qGJ6qTW+x6xX/my+8YUVl4WNpX9B7+/l2tRsHGZ7f2s=
 github.com/golang/mock v1.3.1/go.mod h1:sBzyDLLjw3U8JLTeZvSv8jJB+tU5PVekmnlKIyFUx0Y=
+github.com/golang/mock v1.4.0/go.mod h1:UOMv5ysSaYNkG+OFQykRIcU/QvvxJf3p21QfJ2Bt3cw=
 github.com/golang/protobuf v1.2.0/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.3.1 h1:YF8+flBXS5eO826T4nzqPrxfhQThhXl0YzfuUPu4SBg=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
@@ -342,6 +343,10 @@ github.com/nuts-foundation/nuts-crypto v0.0.0-20200127075335-afcefe897a71 h1:xa6
 github.com/nuts-foundation/nuts-crypto v0.0.0-20200127075335-afcefe897a71/go.mod h1:uIe/1AW3Zpm3xcxlK5+jLIbU2ksE6UM68mMb/IYahDo=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20200212103614-2acc644ddfed h1:xE3xIC7pNfbFo2hE2Ed/Y65XgGHYlmUKNZ1SYO/q2xg=
 github.com/nuts-foundation/nuts-crypto v0.0.0-20200212103614-2acc644ddfed/go.mod h1:txNGo50DqgKh6PLgBHaaen4BUyi/aEohxOWnOvLIndU=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20200220100700-279fd5def20c h1:U/L57L2B8njO9ASmL/gWvp5dUOafEhqlVnxSYWkQ4T4=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20200220100700-279fd5def20c/go.mod h1:txNGo50DqgKh6PLgBHaaen4BUyi/aEohxOWnOvLIndU=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20200302080751-2e08794e51fd h1:V8vwJQOmEC9pfFsCTfEgkNkT4LxhsGx8vrCT9IAmVT4=
+github.com/nuts-foundation/nuts-crypto v0.0.0-20200302080751-2e08794e51fd/go.mod h1:txNGo50DqgKh6PLgBHaaen4BUyi/aEohxOWnOvLIndU=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20191029153434-8e47d64e4f2b h1:NyxZreMSn+spCRsRu+v/2P3BuQv8xa51RDpODFVJDHk=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20191029153434-8e47d64e4f2b/go.mod h1:DjmX+RVdGVYAtwIR9Z2cjKOzkvh0Dpy299GfPO5uimc=
 github.com/nuts-foundation/nuts-event-octopus v0.0.0-20200108100158-d97ffd8b5dc7 h1:otao7WvJcQDi0kCh+HCwrhdxO8YJdlbvV13ymZlA/5M=
@@ -392,6 +397,8 @@ github.com/nuts-foundation/nuts-registry v0.0.0-20200211142433-9d1d2985be8e h1:G
 github.com/nuts-foundation/nuts-registry v0.0.0-20200211142433-9d1d2985be8e/go.mod h1:CbF87EcYRywizqTybDTzYwCi3uRbP3jYaFJBxMJpRaU=
 github.com/nuts-foundation/nuts-registry v0.0.0-20200221092912-d62eff310549 h1:l31t2Ozo299vtonZ35yxqsqtGqUFwGXyXCGUy+hDaqw=
 github.com/nuts-foundation/nuts-registry v0.0.0-20200221092912-d62eff310549/go.mod h1:s07mLtaw5dE5UWTPFOPgZGeOHa82lZ7Gdt+ltmF1fmw=
+github.com/nuts-foundation/nuts-registry v0.0.0-20200228080902-b0a75edd095d h1:aMqtMMLRXsAL5GwLBO9cKyRb+ndUJg8sgEMEu1TgqNk=
+github.com/nuts-foundation/nuts-registry v0.0.0-20200228080902-b0a75edd095d/go.mod h1:r9BSXzelB0EXkMN5wLcYoLzuwGRtIgR1JHxi7fXm3aw=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
@@ -625,6 +632,7 @@ golang.org/x/sys v0.0.0-20191228213918-04cbcbbfeed8/go.mod h1:h1NjWce9XRLGQEsW7w
 golang.org/x/sys v0.0.0-20200116001909-b77594299b42/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
 golang.org/x/sys v0.0.0-20200122134326-e047566fdf82 h1:ywK/j/KkyTHcdyYSZNXGjMwgmDSfjglYZ3vStQ/gSCU=
 golang.org/x/sys v0.0.0-20200122134326-e047566fdf82/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.0/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.1-0.20180807135948-17ff2d5776d2/go.mod h1:NqM8EUOU14njkJ3fqMW+pc6Ldnwhi/IjpwHt7yyuwOQ=
 golang.org/x/text v0.3.2 h1:tW2bmiBqwgJj/UpqtC8EpXEZVYOwU0yG4iWbprSVAcs=
@@ -701,3 +709,5 @@ honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWh
 honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 rsc.io/qr v0.2.0 h1:6vBLea5/NRMVTz8V66gipeLycZMl/+UlFmk8DvqQ6WY=
 rsc.io/qr v0.2.0/go.mod h1:IF+uZjkb9fqyeF/4tlBoynqmQxUoPfWEKh921coOuXs=
+rsc.io/quote/v3 v3.1.0/go.mod h1:yEA65RcK8LyAZtP9Kv3t0HmxON59tX3rD+tICJqUlj0=
+rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9JXDnKaTXpA=
