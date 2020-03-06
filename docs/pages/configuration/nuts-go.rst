@@ -40,6 +40,9 @@ The Nuts Global config adds the following options:
 =====================   ====================    =====================   ================================================================
 Name                    commandLine             Env                     Description
 =====================   ====================    =====================   ================================================================
+identity                --identity              NUTS_IDENTITY           Mandatory vendor identity (Vendor ID) of this node. It is the URN-encoded
+                                                                        Chamber of Commerce registration no. of the vendor, e.g.:
+                                                                        urn:oid:1.3.6.1.4.1.54851.4:12345678
 address                 --address               NUTS_ADDRESS            address and port server will be listening at.
 configfile              --configfile            NUTS_CONFIGFILE         points to the location of the config file to be used.
 verbosity               --verbosity             NUTS_VERBOSITY          Log level ("trace", "debug", "info", "warn", "error")
