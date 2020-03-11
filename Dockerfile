@@ -27,7 +27,12 @@ RUN apk update \
   && apk add --no-cache \
              ca-certificates=20191127-r1 \
              tzdata \
+             curl \
   && update-ca-certificates
 COPY --from=builder /opt/nuts/nuts /usr/bin/nuts
+
+HEALTHCHECK --start-period=30s --timeout=5s --interval=10s \
+    CMD curl -f http://localhost:1323/status || exit 1
+
 EXPOSE 1323 4222
 ENTRYPOINT ["/usr/bin/nuts"]
