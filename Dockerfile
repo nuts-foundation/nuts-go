@@ -6,8 +6,8 @@ LABEL maintainer="wout.slakhorst@nuts.nl"
 RUN apk update \
  && apk add --no-cache \
             git=2.24.1-r0 \
-            gcc=9.2.0-r3 \
-            musl-dev=1.1.24-r0 \
+            gcc=9.2.0-r4 \
+            musl-dev=1.1.24-r2 \
  && update-ca-certificates
 
 ENV GO111MODULE on
