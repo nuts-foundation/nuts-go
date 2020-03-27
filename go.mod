@@ -20,7 +20,7 @@ require (
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cast v1.3.1 // indirect
-	github.com/spf13/cobra v0.0.5
+	github.com/spf13/cobra v0.0.6
 	github.com/spf13/viper v1.6.2 // indirect
 	github.com/stretchr/testify v1.4.0
 	github.com/timshannon/bolthold v0.0.0-20191009161117-ccb01ed9dec4 // indirect
