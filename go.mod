@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
-	github.com/deepmap/oapi-codegen v1.3.4
+	github.com/deepmap/oapi-codegen v1.3.6
 	github.com/labstack/echo v3.3.10+incompatible // indirect
 	github.com/labstack/echo/v4 v4.1.14
 	github.com/mattn/go-isatty v0.0.12 // indirect
