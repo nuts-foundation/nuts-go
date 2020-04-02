@@ -396,6 +396,8 @@ github.com/nuts-foundation/nuts-consent-store v0.13.0 h1:ufj2fZY7i48tkex1Q48zreh
 github.com/nuts-foundation/nuts-consent-store v0.13.0/go.mod h1:Xt4taVtQPmV1u6KxceSiQRkkQVZlN6jyYnIu03flYZY=
 github.com/nuts-foundation/nuts-crypto v0.13.0 h1:szSHnYpK+0ORHNpeBdhPocVoukp9oxZWowKF4YCaPlI=
 github.com/nuts-foundation/nuts-crypto v0.13.0/go.mod h1:2JTdNvxWBbqv/VWQw3PazNNjY4FlbDf6LAyv2u2vtGo=
+github.com/nuts-foundation/nuts-crypto v0.13.1 h1:c3B9vrFX7WINToLHUAC7mdjfzahVMqlnjcXWLR7LMKE=
+github.com/nuts-foundation/nuts-crypto v0.13.1/go.mod h1:A+8TA3p+b73Bc1Hx8TFods389I3hWmJ9oXMtS7KE1w0=
 github.com/nuts-foundation/nuts-event-octopus v0.13.0 h1:nTSpWUhgwc/YmnsIgqK8L8hB2TzYj3d1Z1ss3lrwoe4=
 github.com/nuts-foundation/nuts-event-octopus v0.13.0/go.mod h1:zVNeYF75YcHjRfycY4OjQObjJ1HaqZpGft7BiSDT/8E=
 github.com/nuts-foundation/nuts-fhir-validation v0.13.0 h1:Qjdyc2cHaW1sB2jp4DGJdDsy67+8Y5VhLgFk//cRGWw=
