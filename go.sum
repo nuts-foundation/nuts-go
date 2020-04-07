@@ -398,6 +398,8 @@ github.com/nuts-foundation/nuts-crypto v0.13.0 h1:szSHnYpK+0ORHNpeBdhPocVoukp9ox
 github.com/nuts-foundation/nuts-crypto v0.13.0/go.mod h1:2JTdNvxWBbqv/VWQw3PazNNjY4FlbDf6LAyv2u2vtGo=
 github.com/nuts-foundation/nuts-crypto v0.13.1-0.20200402090327-2ec6f557b445 h1:lgK+JXUAomfpLn4yPuqgmMXIMuKZ9HU/FbWhVWRJw8I=
 github.com/nuts-foundation/nuts-crypto v0.13.1-0.20200402090327-2ec6f557b445/go.mod h1:A+8TA3p+b73Bc1Hx8TFods389I3hWmJ9oXMtS7KE1w0=
+github.com/nuts-foundation/nuts-crypto v0.13.2 h1:BoQ8qCILtEuC+firfYOIiZocLU5WO7RK5gyYTsZVSF0=
+github.com/nuts-foundation/nuts-crypto v0.13.2/go.mod h1:2JTdNvxWBbqv/VWQw3PazNNjY4FlbDf6LAyv2u2vtGo=
 github.com/nuts-foundation/nuts-event-octopus v0.13.0 h1:nTSpWUhgwc/YmnsIgqK8L8hB2TzYj3d1Z1ss3lrwoe4=
 github.com/nuts-foundation/nuts-event-octopus v0.13.0/go.mod h1:zVNeYF75YcHjRfycY4OjQObjJ1HaqZpGft7BiSDT/8E=
 github.com/nuts-foundation/nuts-fhir-validation v0.13.0 h1:Qjdyc2cHaW1sB2jp4DGJdDsy67+8Y5VhLgFk//cRGWw=
@@ -410,6 +412,8 @@ github.com/nuts-foundation/nuts-registry v0.13.1 h1:gRWq54cYC/EaniPkbGYEupXcZRbz
 github.com/nuts-foundation/nuts-registry v0.13.1/go.mod h1:rqHcXmi4Rj51s7peXot/ZjldQNRvSpWoNS2heJrRAqc=
 github.com/nuts-foundation/nuts-registry v0.13.2 h1:X4LfCpimWnB17hTdwp7YIsZ4JHU98/fvcXAKasyxvFI=
 github.com/nuts-foundation/nuts-registry v0.13.2/go.mod h1:MZRLBtlzLBLlVUUBPDCXOvH7Djom0JM4vNZt706C5Vk=
+github.com/nuts-foundation/nuts-registry v0.13.5 h1:+rP1ApnZ8s/Env3URvCcYJZ7LXa54d+amKEmcJC+FUk=
+github.com/nuts-foundation/nuts-registry v0.13.5/go.mod h1:ktTP8nbHEiE8yOxV5NcyDyZ84IG/RdBbLME0D+EpCcE=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
