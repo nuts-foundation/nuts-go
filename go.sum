@@ -390,6 +390,8 @@ github.com/nuts-foundation/consent-bridge-go-client v0.13.0 h1:OMZaPpC50ozfjJjEr
 github.com/nuts-foundation/consent-bridge-go-client v0.13.0/go.mod h1:3PoD6RpKb5var3DuFWS10FI6h997S+Ni4FHoZk5ziLw=
 github.com/nuts-foundation/nuts-auth v0.13.0 h1:WuiVZUTA9c8rIVI9rEfbrNUweqnoYtE+mruBje2ULp4=
 github.com/nuts-foundation/nuts-auth v0.13.0/go.mod h1:3+PiMDlFUw7hZygoqcurt0AOZCNd9waISL2DSNztRaM=
+github.com/nuts-foundation/nuts-auth v0.13.1 h1:Q/3RSRVJfKQPzulFzm1B6h3h3WCjTQaE9uYccvtdqwo=
+github.com/nuts-foundation/nuts-auth v0.13.1/go.mod h1:Ar/odc1hHAoHzU4n5Y9T2VMlhOjrPc6PLFFl0ZH2YtA=
 github.com/nuts-foundation/nuts-consent-logic v0.13.0 h1:bgKPyPu1lZwdELTklSccPYX5UGDN/uQ84kOAqKLRzE0=
 github.com/nuts-foundation/nuts-consent-logic v0.13.0/go.mod h1:eaQYTuHWDyt/OMtD06gWoT8BGyB1pVl0vnBa/TAPVZc=
 github.com/nuts-foundation/nuts-consent-logic v0.13.1 h1:XMoFHp8mRPRyk577nbZ2SvPlEWxxOv2Dfpk5v48tidw=
