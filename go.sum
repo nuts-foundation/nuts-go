@@ -88,6 +88,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/deepmap/oapi-codegen v1.3.6 h1:Wj44p9A0V0PJ+AUg0BWdyGcsS1LY18U+0rCuPQgK0+o=
 github.com/deepmap/oapi-codegen v1.3.6/go.mod h1:aBozjEveG+33xPiP55Iw/XbVkhtZHEGLq3nxlX0+hfU=
+github.com/deepmap/oapi-codegen v1.3.7 h1:sAr028WbNs/ijxQyRozRu8173xaDuRYNv+a5ly9QSA4=
+github.com/deepmap/oapi-codegen v1.3.7/go.mod h1:kmvHN8Gd6to5zLS+P8mhUYJI+Lmn4h7NH00s/5erjd8=
 github.com/denisenkom/go-mssqldb v0.0.0-20190515213511-eb9f6a1743f3 h1:tkum0XDgfR0jcVVXuTsYv/erY2NnEDqwRojbxR1rBYA=
 github.com/denisenkom/go-mssqldb v0.0.0-20190515213511-eb9f6a1743f3/go.mod h1:zAg7JM8CkOJ43xKXIj7eRO9kmWm/TW578qo+oDO6tuM=
 github.com/denisenkom/go-mssqldb v0.0.0-20191124224453-732737034ffd h1:83Wprp6ROGeiHFAP8WJdI2RoxALQYgdllERc3N5N2DM=
