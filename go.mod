@@ -13,8 +13,8 @@ require (
 	github.com/nuts-foundation/nuts-fhir-validation v0.13.1-0.20200423143736-b361356ab2f2
 	github.com/nuts-foundation/nuts-go-core v0.13.1-0.20200422145233-a9d171e8b054
 	github.com/spf13/cobra v1.0.0
-	github.com/nuts-foundation/nuts-auth v0.13.2
-	github.com/nuts-foundation/nuts-registry v0.13.7
+	github.com/nuts-foundation/nuts-auth v0.13.1-0.20200430093418-7d653d50d55d
+	github.com/nuts-foundation/nuts-registry v0.13.3-0.20200430090733-54fcff4de427
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cast v1.3.1 // indirect
