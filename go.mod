@@ -9,7 +9,7 @@ require (
 	github.com/nuts-foundation/consent-bridge-go-client v0.13.0
 	github.com/nuts-foundation/nuts-auth v0.13.2
 	github.com/nuts-foundation/nuts-consent-logic v0.13.1
-	github.com/nuts-foundation/nuts-consent-store v0.13.0
+	github.com/nuts-foundation/nuts-consent-store v0.13.1
 	github.com/nuts-foundation/nuts-crypto v0.13.2
 	github.com/nuts-foundation/nuts-event-octopus v0.13.0
 	github.com/nuts-foundation/nuts-fhir-validation v0.13.0

@@ -392,6 +392,8 @@ github.com/nuts-foundation/nuts-consent-logic v0.13.1 h1:XMoFHp8mRPRyk577nbZ2SvP
 github.com/nuts-foundation/nuts-consent-logic v0.13.1/go.mod h1:+jb/kKX5OyzyZXFq4d4JZcRUfuIPvfjsr11U+almRF0=
 github.com/nuts-foundation/nuts-consent-store v0.13.0 h1:ufj2fZY7i48tkex1Q48zrehyJvXelq29YflVq+KsQs0=
 github.com/nuts-foundation/nuts-consent-store v0.13.0/go.mod h1:Xt4taVtQPmV1u6KxceSiQRkkQVZlN6jyYnIu03flYZY=
+github.com/nuts-foundation/nuts-consent-store v0.13.1 h1:L/3JHImmZnTGzfhfIe4R4c3ezGMDZ0e8oxXB/TCIjxs=
+github.com/nuts-foundation/nuts-consent-store v0.13.1/go.mod h1:Xt4taVtQPmV1u6KxceSiQRkkQVZlN6jyYnIu03flYZY=
 github.com/nuts-foundation/nuts-crypto v0.13.2 h1:BoQ8qCILtEuC+firfYOIiZocLU5WO7RK5gyYTsZVSF0=
 github.com/nuts-foundation/nuts-crypto v0.13.2/go.mod h1:2JTdNvxWBbqv/VWQw3PazNNjY4FlbDf6LAyv2u2vtGo=
 github.com/nuts-foundation/nuts-event-octopus v0.13.0 h1:nTSpWUhgwc/YmnsIgqK8L8hB2TzYj3d1Z1ss3lrwoe4=
@@ -406,6 +408,7 @@ github.com/nuts-foundation/nuts-registry v0.13.6 h1:c1AGikOOqrcVc+d0xl77buS0ozdh
 github.com/nuts-foundation/nuts-registry v0.13.6/go.mod h1:ktTP8nbHEiE8yOxV5NcyDyZ84IG/RdBbLME0D+EpCcE=
 github.com/nuts-foundation/nuts-registry v0.13.7 h1:3NyzFWsOdvOINwbs2y6fWRsKjXDN532RHr8tjp+RhaE=
 github.com/nuts-foundation/nuts-registry v0.13.7/go.mod h1:ktTP8nbHEiE8yOxV5NcyDyZ84IG/RdBbLME0D+EpCcE=
+github.com/nuts-foundation/nuts-registry v0.13.8/go.mod h1:ktTP8nbHEiE8yOxV5NcyDyZ84IG/RdBbLME0D+EpCcE=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
