@@ -28,6 +28,7 @@ import (
 	consent "github.com/nuts-foundation/nuts-consent-store/engine"
 	crypto "github.com/nuts-foundation/nuts-crypto/engine"
 	octopus "github.com/nuts-foundation/nuts-event-octopus/engine"
+	network "github.com/nuts-foundation/nuts-network/engine"
 	validation "github.com/nuts-foundation/nuts-fhir-validation/engine"
 	core "github.com/nuts-foundation/nuts-go-core"
 	registry "github.com/nuts-foundation/nuts-registry/engine"
@@ -110,6 +111,7 @@ func registerEngines() {
 	core.RegisterEngine(core.NewStatusEngine())
 	core.RegisterEngine(core.NewLoggerEngine())
 	core.RegisterEngine(crypto.NewCryptoEngine())
+	core.RegisterEngine(network.NewNetworkEngine())
 	core.RegisterEngine(registry.NewRegistryEngine())
 	core.RegisterEngine(octopus.NewEventOctopusEngine())
 
