@@ -449,6 +449,8 @@ github.com/nuts-foundation/nuts-go-core v0.14.0 h1:P1KWhm/ky48qOo5vWUA5ht6uFYnDs
 github.com/nuts-foundation/nuts-go-core v0.14.0/go.mod h1:zn4htpIzJ9ap5HYF8l4enNsf75Bq83kK/+B1pd/kflU=
 github.com/nuts-foundation/nuts-registry v0.14.1 h1:EsenFeXTi4tNAgBP/rDbnrxWyxJkm1Na8HjMl14DUAw=
 github.com/nuts-foundation/nuts-registry v0.14.1/go.mod h1:cPJjxyRgq+5OeOFuv7EuAcEBwSHtgZd2RmF7aDQYbNA=
+github.com/nuts-foundation/nuts-registry v0.14.2 h1:XHLawGaeaNp9Zt09POCVHjQ5aQ6/jXB0P8E0nq7f09U=
+github.com/nuts-foundation/nuts-registry v0.14.2/go.mod h1:cPJjxyRgq+5OeOFuv7EuAcEBwSHtgZd2RmF7aDQYbNA=
 github.com/oklog/ulid v1.3.1/go.mod h1:CirwcVhetQ6Lv90oh/F+FBtV6XMibvdAFo93nm5qn4U=
 github.com/onsi/ginkgo v1.6.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
 github.com/onsi/ginkgo v1.7.0/go.mod h1:lLunBs/Ym6LB5Z9jYTR76FiuTmxDTDusOGeTQH+WWjE=
