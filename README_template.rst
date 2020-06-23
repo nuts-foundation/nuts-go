@@ -30,3 +30,6 @@ Configuration
 
 .. include:: docs/pages/configuration/nuts-go.rst
     :start-after: .. marker-for-readme
+    :end-before: .. marker-for-config-options
+
+.. include:: docs/pages/configuration/options.rst

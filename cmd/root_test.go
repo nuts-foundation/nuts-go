@@ -17,7 +17,7 @@ func Test_rootCmd(t *testing.T) {
 		})
 		os.Setenv("NUTS_MODE", core.GlobalCLIMode)
 		defer os.Unsetenv("NUTS_MODE")
-		assert.NoError(t, rootCmd.Execute())
+		assert.NoError(t, CreateCommand().Execute())
 		assert.False(t, routesCalled, "engine.Routes was called")
 	})
 }

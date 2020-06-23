@@ -12,12 +12,13 @@ require (
 	github.com/nuts-foundation/nuts-crypto v0.13.2-0.20200608062925-fa04f1c3af00
 	github.com/nuts-foundation/nuts-event-octopus v0.13.1-0.20200602070058-d30eda6d97ad
 	github.com/nuts-foundation/nuts-fhir-validation v0.13.1-0.20200608062851-25213d9d38bf
-	github.com/nuts-foundation/nuts-go-core v0.13.1-0.20200608062917-617887e58873
+	github.com/nuts-foundation/nuts-go-core v0.14.1-0.20200623092324-c35eb9844bfb
 	github.com/nuts-foundation/nuts-registry v0.13.3-0.20200608062908-543e07d7cf1b
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/cobra v1.0.0
+	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.6.1
 	github.com/timshannon/bolthold v0.0.0-20191009161117-ccb01ed9dec4 // indirect
 )
