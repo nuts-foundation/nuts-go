@@ -18,8 +18,9 @@ The executable exposes the REST (or other) services from the different engines. 
 .. image:: https://codecov.io/gh/nuts-foundation/nuts-go/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/nuts-foundation/nuts-go
 
-.. image:: https://api.codacy.com/project/badge/Grade/272258ac93e847b9b61c08d4144d0538
-    :target: https://www.codacy.com/app/woutslakhorst/nuts-go
+.. image:: https://api.codeclimate.com/v1/badges/2706f4616dbae18e8ea6/maintainability
+   :target: https://codeclimate.com/github/nuts-foundation/nuts-go/maintainability
+   :alt: Maintainability
 
 Dependencies
 ************
@@ -101,6 +102,9 @@ The Nuts Global config adds the following options:
 =====================   ====================    =====================   ================================================================
 Name                    commandLine             Env                     Description
 =====================   ====================    =====================   ================================================================
+identity                --identity              NUTS_IDENTITY           Mandatory vendor identity (Vendor ID) of this node. It is the URN-encoded
+                                                                        Chamber of Commerce registration no. of the vendor, e.g.:
+                                                                        urn:oid:1.3.6.1.4.1.54851.4:12345678
 address                 --address               NUTS_ADDRESS            address and port server will be listening at.
 configfile              --configfile            NUTS_CONFIGFILE         points to the location of the config file to be used.
 verbosity               --verbosity             NUTS_VERBOSITY          Log level ("trace", "debug", "info", "warn", "error")
