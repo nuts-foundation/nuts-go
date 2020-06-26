@@ -55,7 +55,15 @@ This script uses ``rst_include`` which is installed as part of the dependencies 
 Documentation
 *************
 
-To generate the documentation, you'll need python3, sphinx and a bunch of other stuff. See :ref:`nuts-documentation-development-documentation`
+The configuration options documentation is generated from the actual flags provided by the engines. When engines
+are updated, this documentation should be regenerated to reflect any changes in provided flags. To regenerate the
+configuration documentation run the following command from the project root:
+
+.. code-block:: shell
+
+    make generate-config-docs
+
+To build the documentation, you'll need python3, sphinx and a bunch of other stuff. See :ref:`nuts-documentation-development-documentation`
 The documentation can be build by running
 
 .. code-block:: shell
@@ -94,22 +102,57 @@ Config parameters for engines are prepended by the ``engine.ConfigKey`` by defau
 is equal to ``$ nuts --engine.nested.parameter X`` is equal to ``$ NUTS_ENGINE_NESTED_PARAMETER=X nuts``
 
 
-Added options
-*************
+Options
+*******
 
-The Nuts Global config adds the following options:
+The following options can be configured:
 
-=====================   ====================    =====================   ================================================================
-Name                    commandLine             Env                     Description
-=====================   ====================    =====================   ================================================================
-identity                --identity              NUTS_IDENTITY           Mandatory vendor identity (Vendor ID) of this node. It is the URN-encoded
-                                                                        Chamber of Commerce registration no. of the vendor, e.g.:
-                                                                        urn:oid:1.3.6.1.4.1.54851.4:12345678
-address                 --address               NUTS_ADDRESS            address and port server will be listening at.
-configfile              --configfile            NUTS_CONFIGFILE         points to the location of the config file to be used.
-verbosity               --verbosity             NUTS_VERBOSITY          Log level ("trace", "debug", "info", "warn", "error")
-mode                    --mode                  NUTS_MODE               Mode the application will run in. When 'cli' it can be used to
-                                                                        administer a remote Nuts node. When 'server' it will start a Nuts node.
-                                                                        Defaults to 'server'.
-=====================   ====================    =====================   ================================================================
+========================================  ===================================================================================  ============================================================================================================================================================
+Key                                       Default                                                                              Description
+========================================  ===================================================================================  ============================================================================================================================================================
+address                                   localhost:1323                                                                       Address and port the server will be listening to
+configfile                                nuts.yaml                                                                            Nuts config file
+identity                                                                                                                       Vendor identity for the node, mandatory when running in server mode. Must be in the format: urn:oid:1.3.6.1.4.1.54851.4:<number>
+mode                                      server                                                                               Mode the application will run in. When 'cli' it can be used to administer a remote Nuts node. When 'server' it will start a Nuts node. Defaults to 'server'.
+strictmode                                false                                                                                When set, insecure settings are forbidden.
+verbosity                                 info                                                                                 Log level (trace, debug, info, warn, error)
+**Auth**
+auth.actingPartyCn                                                                                                             The acting party Common name used in contracts
+auth.address                              localhost:1323                                                                       Interface and port for http server to bind to
+auth.enableCORS                           false                                                                                Set if you want to allow CORS requests. This is useful when you want browsers to directly communicate with the nuts node.
+auth.irmaConfigPath                                                                                                            path to IRMA config folder. If not set, a tmp folder is created.
+auth.irmaSchemeManager                    pbdf                                                                                 The IRMA schemeManager to use for attributes. Can be either 'pbdf' or 'irma-demo'
+auth.mode                                                                                                                      server or client, when client it does not start any services so that CLI commands can be used.
+auth.publicUrl                                                                                                                 Public URL which can be reached by a users IRMA client
+auth.skipAutoUpdateIrmaSchemas            false                                                                                set if you want to skip the auto download of the irma schemas every 60 minutes.
+**ConsentBridgeClient**
+cbridge.address                           http://localhost:8080                                                                API Address of the consent bridge
+**ConsentStore**
+cstore.address                            localhost:1323                                                                       Address of the server when in client mode
+cstore.connectionstring                   \:memory:                                                                             Db connectionString
+cstore.mode                                                                                                                    server or client, when client it uses the HttpClient
+**Crypto**
+crypto.fspath                             ./                                                                                   when file system is used as storage, this configures the path where keys are stored (default .)
+crypto.keysize                            2048                                                                                 number of bits to use when creating new RSA keys
+crypto.storage                            fs                                                                                   storage to use, 'fs' for file system (default)
+**Events octopus**
+events.autoRecover                        false                                                                                Republish unfinished events at startup
+events.connectionstring                   file::memory:?cache=shared                                                           db connection string for event store
+events.incrementalBackoff                 8                                                                                    Incremental backoff per retry queue, queue 0 retries after 1 second, queue 1 after {incrementalBackoff} * {previousDelay}
+events.maxRetryCount                      5                                                                                    Max number of retries for events before giving up (only for recoverable errors
+events.natsPort                           4222                                                                                 Port for Nats to bind on
+events.purgeCompleted                     false                                                                                Purge completed events at startup
+events.retryInterval                      60                                                                                   Retry delay in seconds for reconnecting
+**Registry**
+registry.address                          localhost:1323                                                                       Interface and port for http server to bind to
+registry.clientTimeout                    10                                                                                   Time-out for the client in seconds (e.g. when using the CLI).
+registry.datadir                          ./data                                                                               Location of data files
+registry.mode                                                                                                                  server or client, when client it uses the HttpClient
+registry.organisationCertificateValidity  365                                                                                  Number of days organisation certificates are valid, defaults to 1 year.
+registry.syncAddress                      https://codeload.github.com/nuts-foundation/nuts-registry-development/tar.gz/master  The remote url to download the latest registry data from github
+registry.syncInterval                     30                                                                                   The interval in minutes between looking for updated registry files on github
+registry.syncMode                         fs                                                                                   The method for updating the data, 'fs' for a filesystem watch or 'github' for a periodic download from github
+**Validation**
+fhir.schemapath                                                                                                                location of json schema, default nested Asset
+========================================  ===================================================================================  ============================================================================================================================================================
 

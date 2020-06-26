@@ -35,56 +35,57 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var rootCmd = &cobra.Command{
-	Use:   "nuts",
-	Short: "The Nuts service executable",
-	Run: func(cmd *cobra.Command, args []string) {
-		cfg := core.NutsConfig()
-		if cfg.Mode() != core.GlobalServerMode {
-			logrus.Error("Please specify a sub command when running in CLI mode")
-			_ = cmd.Help()
-			return
-		}
-		// start interfaces
-		echo := echo.New()
-		echo.HideBanner = true
-		echo.Use(middleware.Logger())
-
-		for _, engine := range core.EngineCtl.Engines {
-			if engine.Routes != nil {
-				engine.Routes(echo)
+func createRootCommand() *cobra.Command {
+	return &cobra.Command{
+		Use:   "nuts",
+		Short: "The Nuts service executable",
+		Run: func(cmd *cobra.Command, args []string) {
+			cfg := core.NutsConfig()
+			if cfg.Mode() != core.GlobalServerMode {
+				logrus.Error("Please specify a sub command when running in CLI mode")
+				_ = cmd.Help()
+				return
 			}
-		}
+			// start interfaces
+			echo := echo.New()
+			echo.HideBanner = true
+			echo.Use(middleware.Logger())
 
-		defer shutdownEngines()
-		logrus.Fatal(echo.Start(cfg.ServerAddress()))
-	},
+			for _, engine := range core.EngineCtl.Engines {
+				if engine.Routes != nil {
+					engine.Routes(echo)
+				}
+			}
+
+			defer shutdownEngines()
+			logrus.Fatal(echo.Start(cfg.ServerAddress()))
+		},
+	}
+}
+
+func CreateCommand() *cobra.Command {
+	if core.EngineCtl.Engines == nil {
+		registerEngines()
+	}
+	command := createRootCommand()
+	addSubCommands(command)
+	addFlagSets(command, core.NutsConfig())
+	return command
 }
 
 func Execute() {
-	//flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
-
-	// register static set of engines, needed for other commands
-	registerEngines()
-
-	// add all commands from registered engines
-	addSubCommands(rootCmd)
+	command := CreateCommand()
 
 	// Load global Nuts config
 	cfg := core.NutsConfig()
 
-	// todo: combine the following 3 calls into 1 passing an array of engines
-	// add commandline options and parse commandline
-	addFlagSets(rootCmd, cfg)
-
 	// Load all config and add generic options
-	if err := cfg.Load(rootCmd); err != nil {
+	if err := cfg.Load(command); err != nil {
 		panic(err)
 	}
 
 	// Load config into engines
 	injectConfig(cfg)
-
 	cfg.PrintConfig(logrus.StandardLogger())
 
 	// check config on all engines
@@ -94,7 +95,7 @@ func Execute() {
 	startEngines()
 
 	// blocking main call
-	rootCmd.Execute()
+	command.Execute()
 }
 
 func addSubCommands(root *cobra.Command) {

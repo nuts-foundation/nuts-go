@@ -38,7 +38,15 @@ This script uses ``rst_include`` which is installed as part of the dependencies 
 Documentation
 *************
 
-To generate the documentation, you'll need python3, sphinx and a bunch of other stuff. See :ref:`nuts-documentation-development-documentation`
+The configuration options documentation is generated from the actual flags provided by the engines. When engines
+are updated, this documentation should be regenerated to reflect any changes in provided flags. To regenerate the
+configuration documentation run the following command from the project root:
+
+.. code-block:: shell
+
+    make update-docs
+
+To build the documentation, you'll need python3, sphinx and a bunch of other stuff. See :ref:`nuts-documentation-development-documentation`
 The documentation can be build by running
 
 .. code-block:: shell
@@ -46,3 +54,4 @@ The documentation can be build by running
     /docs $ make html
 
 The resulting html will be available from ``docs/_build/html/index.html``
+
