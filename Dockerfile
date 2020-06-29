@@ -6,7 +6,7 @@ LABEL maintainer="wout.slakhorst@nuts.nl"
 RUN apk update \
  && apk add --no-cache \
             gcc=9.3.0-r2 \
-            musl-dev=1.1.24-r8 \
+            musl-dev=1.1.24-r9 \
  && update-ca-certificates
 
 ENV GO111MODULE on
@@ -20,11 +20,11 @@ RUN go mod download && go mod verify
 COPY . .
 RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /opt/nuts/nuts
 
-# alpine 3.11.x
-FROM alpine:3.11
+# alpine 3.12.x
+FROM alpine:3.12
 RUN apk update \
   && apk add --no-cache \
-             ca-certificates=20191127-r2 \
+             ca-certificates=20191127-r4 \
              tzdata \
              curl \
   && update-ca-certificates
