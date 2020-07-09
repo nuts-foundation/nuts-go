@@ -61,7 +61,7 @@ configuration documentation run the following command from the project root:
 
 .. code-block:: shell
 
-    make generate-config-docs
+    make update-docs
 
 To build the documentation, you'll need python3, sphinx and a bunch of other stuff. See :ref:`nuts-documentation-development-documentation`
 The documentation can be build by running
@@ -107,9 +107,10 @@ Options
 
 The following options can be configured:
 
-========================================  ===================================================================================  ============================================================================================================================================================
+========================================  ===================================================================================  ================================================================================================================================================================================
 Key                                       Default                                                                              Description
-========================================  ===================================================================================  ============================================================================================================================================================
+========================================  ===================================================================================  ================================================================================================================================================================================
+****
 address                                   localhost:1323                                                                       Address and port the server will be listening to
 configfile                                nuts.yaml                                                                            Nuts config file
 identity                                                                                                                       Vendor identity for the node, mandatory when running in server mode. Must be in the format: urn:oid:1.3.6.1.4.1.54851.4:<number>
@@ -143,16 +144,26 @@ events.maxRetryCount                      5                                     
 events.natsPort                           4222                                                                                 Port for Nats to bind on
 events.purgeCompleted                     false                                                                                Purge completed events at startup
 events.retryInterval                      60                                                                                   Retry delay in seconds for reconnecting
+**Network**
+network.address                                                                                                                Interface and port for http server to bind to, defaults to global Nuts address.
+network.bootstrapNodes                                                                                                         Space-separated list of bootstrap nodes (`<host>:<port>`) which the node initially connect to.
+network.certFile                                                                                                               PEM file containing the certificate this node will identify itself with to other nodes. If not set, the Nuts node will attempt to load a TLS certificate from the crypto module.
+network.certKeyFile                                                                                                            PEM file containing the key belonging to this node's certificate. If not set, the Nuts node will attempt to load a TLS certificate from the crypto module.
+network.grpcAddr                          \:5555                                                                                Local address for gRPC to listen on.
+network.mode                                                                                                                   server or client, when client it uses the HttpClient
+network.nodeID                                                                                                                 Instance ID of this node under which the public address is registered on the nodelist. If not set, the Nuts node's identity will be used.
+network.publicAddr                                                                                                             Public address (of this node) other nodes can use to connect to it. If set, it is registered on the nodelist.
 **Registry**
-registry.address                          localhost:1323                                                                       Interface and port for http server to bind to
-registry.clientTimeout                    10                                                                                   Time-out for the client in seconds (e.g. when using the CLI).
-registry.datadir                          ./data                                                                               Location of data files
-registry.mode                                                                                                                  server or client, when client it uses the HttpClient
-registry.organisationCertificateValidity  365                                                                                  Number of days organisation certificates are valid, defaults to 1 year.
-registry.syncAddress                      https://codeload.github.com/nuts-foundation/nuts-registry-development/tar.gz/master  The remote url to download the latest registry data from github
-registry.syncInterval                     30                                                                                   The interval in minutes between looking for updated registry files on github
-registry.syncMode                         fs                                                                                   The method for updating the data, 'fs' for a filesystem watch or 'github' for a periodic download from github
+registry.address                          localhost:1323                                                                       Interface and port for http server to bind to, default: localhost:1323
+registry.clientTimeout                    10                                                                                   Time-out for the client in seconds (e.g. when using the CLI), default: 10
+registry.datadir                          ./data                                                                               Location of data files, default: ./data
+registry.mode                             server                                                                               server or client, when client it uses the HttpClient, default: server
+registry.organisationCertificateValidity  365                                                                                  Number of days organisation certificates are valid, default: 365
+registry.syncAddress                      https://codeload.github.com/nuts-foundation/nuts-registry-development/tar.gz/master  The remote url to download the latest registry data from, default: https://codeload.github.com/nuts-foundation/nuts-registry-development/tar.gz/master
+registry.syncInterval                     30                                                                                   The interval in minutes between looking for updated registry files on github, default: 30
+registry.syncMode                         fs                                                                                   The method for updating the data, 'fs' for a filesystem watch or 'github' for a periodic download, default: fs
+registry.vendorCACertificateValidity      1095                                                                                 Number of days vendor CA certificates are valid, default: 1095
 **Validation**
 fhir.schemapath                                                                                                                location of json schema, default nested Asset
-========================================  ===================================================================================  ============================================================================================================================================================
+========================================  ===================================================================================  ================================================================================================================================================================================
 
