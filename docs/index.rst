@@ -11,4 +11,4 @@ Welcome to Nuts go's documentation!
    :caption: Contents:
    :glob:
 
-   pages/*
+   pages/**/*
