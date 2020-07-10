@@ -4,7 +4,6 @@ go 1.13
 
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
-	github.com/gibson042/canonicaljson-go v1.0.3 // indirect
 	github.com/labstack/echo/v4 v4.1.16
 	github.com/nuts-foundation/consent-bridge-go-client v0.14.0
 	github.com/nuts-foundation/nuts-auth v0.14.0
@@ -13,10 +12,11 @@ require (
 	github.com/nuts-foundation/nuts-crypto v0.14.0
 	github.com/nuts-foundation/nuts-event-octopus v0.14.0
 	github.com/nuts-foundation/nuts-fhir-validation v0.14.0
-	github.com/nuts-foundation/nuts-go-core v0.14.1-0.20200624131634-75b5f59c0b8e
+	github.com/nuts-foundation/nuts-go-core v0.14.1-0.20200708152915-d32573b952db
 	github.com/nuts-foundation/nuts-network v0.0.0-20200707124441-dc9b91a1a7bf
 	github.com/nuts-foundation/nuts-registry v0.14.2
 	github.com/pelletier/go-toml v1.6.0 // indirect
+	github.com/prometheus/client_golang v1.7.1 // indirect
 	github.com/sirupsen/logrus v1.6.0
 	github.com/spf13/cast v1.3.1 // indirect
 	github.com/spf13/cobra v1.0.0

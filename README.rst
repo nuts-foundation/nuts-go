@@ -153,6 +153,7 @@ network.grpcAddr                          \:5555                                
 network.mode                                                                                                                   server or client, when client it uses the HttpClient
 network.nodeID                                                                                                                 Instance ID of this node under which the public address is registered on the nodelist. If not set, the Nuts node's identity will be used.
 network.publicAddr                                                                                                             Public address (of this node) other nodes can use to connect to it. If set, it is registered on the nodelist.
+network.storageConnectionString           file:network.db                                                                      SQLite3 connection string to the database where the network should persist its documents.
 **Registry**
 registry.address                          localhost:1323                                                                       Interface and port for http server to bind to, default: localhost:1323
 registry.clientTimeout                    10                                                                                   Time-out for the client in seconds (e.g. when using the CLI), default: 10
