@@ -13,11 +13,11 @@ require (
 	github.com/nuts-foundation/nuts-auth v0.13.1-0.20200806082320-5dec200783b5
 	github.com/nuts-foundation/nuts-consent-logic v0.13.1-0.20200807091225-744f02d1880a
 	github.com/nuts-foundation/nuts-consent-store v0.14.0
-	github.com/nuts-foundation/nuts-crypto v0.13.2-0.20200806080556-29f6331938cf
+	github.com/nuts-foundation/nuts-crypto v0.13.2-0.20200818075139-da1ac9eaff3c
 	github.com/nuts-foundation/nuts-event-octopus v0.14.0
 	github.com/nuts-foundation/nuts-fhir-validation v0.14.1-0.20200804064647-9ed4246ec74f
 	github.com/nuts-foundation/nuts-go-core v0.14.1-0.20200803140648-33ac5360e61d
-	github.com/nuts-foundation/nuts-network v0.0.0-20200806071245-5b12ac465a57
+	github.com/nuts-foundation/nuts-network v0.0.0-20200814090925-01efd32f911b
 	github.com/nuts-foundation/nuts-registry v0.13.3-0.20200806080525-77738a584d53
 	github.com/pelletier/go-toml v1.6.0 // indirect
 	github.com/prometheus/client_golang v1.7.1 // indirect
