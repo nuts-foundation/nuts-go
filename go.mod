@@ -6,9 +6,7 @@ require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
 	github.com/coreos/go-etcd v2.0.0+incompatible // indirect
 	github.com/cpuguy83/go-md2man v1.0.10 // indirect
-	github.com/cyberphone/json-canonicalization v0.0.0-20200417180520-cd6247b5f11e // indirect
-	github.com/gibson042/canonicaljson-go v1.0.3 // indirect
-	github.com/labstack/echo/v4 v4.1.16
+	github.com/labstack/echo/v4 v4.1.17
 	github.com/nuts-foundation/consent-bridge-go-client v0.14.1-0.20200807082655-106abf054a4e
 	github.com/nuts-foundation/nuts-auth v0.13.1-0.20200806082320-5dec200783b5
 	github.com/nuts-foundation/nuts-consent-logic v0.13.1-0.20200807091225-744f02d1880a
