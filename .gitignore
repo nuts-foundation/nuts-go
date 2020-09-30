@@ -21,5 +21,6 @@ conf
 #sphinx
 _build
 *.pem
+!system-test/**
+system-test/**/data
 *.Db
-nuts.yaml

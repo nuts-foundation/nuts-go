@@ -1,0 +1,1 @@
+This directory contains the Root CA and server certificates to be used by Nuts nodes' gRPC servers for TLS.

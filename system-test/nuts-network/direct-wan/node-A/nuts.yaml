@@ -1,0 +1,19 @@
+identity: urn:oid:1.3.6.1.4.1.54851.4:00000001
+verbosity: debug
+address: :1323
+auth:
+  actingPartyCn: Node A
+  publicUrl: http://node-A
+  irmaConfigPath: /opt/nuts/irma
+  enableCORS: true
+  irmaSchemeManager: irma-demo
+  skipAutoUpdateIrmaSchemas: true
+crypto:
+  fspath: /opt/nuts/keys
+network:
+  bootstrapNodes: nodeB:5555
+  publicAddr: nodeA:5555
+  grpcAddr:	:5555
+  certFile: /opt/keys/server-certificate.pem
+  certKeyFile: /opt/keys/server-certificate_key.pem
+  enableTLS: true

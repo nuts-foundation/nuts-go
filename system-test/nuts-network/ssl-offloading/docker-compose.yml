@@ -1,0 +1,29 @@
+version: "3.7"
+services:
+  nodeA-backend:
+    image: nutsfoundation/nuts-service-space:local
+    ports:
+      - "11323:1323"
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    volumes:
+      - "./node-A/nuts.yaml:/opt/nuts/nuts.yaml:ro"
+      - "../../irma:/opt/nuts/irma:ro"
+  nodeA:
+    image: nginx:1.18
+    volumes:
+      - "./node-A/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "../../keys/nodeA_certificate.pem:/etc/nginx/ssl/server.pem:ro"
+      - "../../keys/nodeA_key.pem:/etc/nginx/ssl/key.pem:ro"
+  nodeB:
+    image: nutsfoundation/nuts-service-space:local
+    ports:
+      - "21323:1323"
+    environment:
+      NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    volumes:
+      - "./node-B/nuts.yaml:/opt/nuts/nuts.yaml:ro"
+      - "./node-B/data/keys:/opt/nuts/keys"
+      - "../../keys/nodeB_certificate.pem:/opt/keys/server-certificate.pem:ro"
+      - "../../keys/nodeB_key.pem:/opt/keys/server-certificate_key.pem:ro"
+      - "../../irma:/opt/nuts/irma:ro"
