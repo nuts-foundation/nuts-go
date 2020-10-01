@@ -4,16 +4,21 @@ services:
     image: nutsfoundation/nuts-service-space:local
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    ports:
+      - "11323:1323"
     volumes:
       - "./node-A/nuts.yaml:/opt/nuts/nuts.yaml:ro"
       - "./node-A/data/keys:/opt/nuts/keys"
       - "../../keys/nodeA_certificate.pem:/opt/keys/server-certificate.pem:ro"
       - "../../keys/nodeA_key.pem:/opt/keys/server-certificate_key.pem:ro"
       - "../../irma:/opt/nuts/irma:ro"
+
   nodeB:
     image: nutsfoundation/nuts-service-space:local
     environment:
       NUTS_CONFIGFILE: /opt/nuts/nuts.yaml
+    ports:
+      - "21323:1323"
     volumes:
       - "./node-B/nuts.yaml:/opt/nuts/nuts.yaml:ro"
       - "./node-B/data/keys:/opt/nuts/keys"

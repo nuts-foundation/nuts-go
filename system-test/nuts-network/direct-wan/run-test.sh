@@ -29,7 +29,7 @@ docker-compose exec -e NUTS_MODE=cli nodeB nuts crypto selfsign-vendor-cert "Ven
 docker-compose exec -e NUTS_MODE=cli nodeB nuts registry register-vendor /opt/nuts/keys/vendor_certificate.pem
 
 # Since node B connects to A's gRPC server, so A needs to trust B's Vendor CA certificate since it's used to issue the client certificate
-cat ../../keys/nodeB_certificate.pem >> ./node-A/data/keys/truststore.pem
+cat ./node-B/data/keys/vendor_certificate.pem >> ./node-A/data/keys/truststore.pem
 # This also means that B must trust A's server certificate (by trusting our custom Root CA)
 docker cp ../../keys/ca-certificate.pem $(docker-compose ps -q nodeB):/usr/local/share/ca-certificates/rootca.crt
 docker-compose exec nodeB update-ca-certificates

@@ -11,7 +11,6 @@ auth:
 crypto:
   fspath: /opt/nuts/keys
 network:
-  bootstrapNodes: nodeB:5555
   publicAddr: nodeA:5555
   grpcAddr:	:5555
   certFile: /opt/keys/server-certificate.pem
