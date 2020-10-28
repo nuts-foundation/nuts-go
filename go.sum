@@ -640,6 +640,8 @@ github.com/nuts-foundation/consent-bridge-go-client v0.15.0 h1:cUfBzLKkSCvAbMSbi
 github.com/nuts-foundation/consent-bridge-go-client v0.15.0/go.mod h1:NqhsibfM+u1jNxMmqZHrbVGTsvuEnvTKQyyaaETEMBY=
 github.com/nuts-foundation/nuts-auth v0.15.0 h1:LZKvjoO1dV3P6JVrR92JTKC4ffc5MJ9L+dzHLO4A1uM=
 github.com/nuts-foundation/nuts-auth v0.15.0/go.mod h1:Qtf4CEEr4M/Njwsh9D9orxhKTpZLhzsAKrRuGnC4Wss=
+github.com/nuts-foundation/nuts-auth v0.15.1 h1:ZZZjf8HboQFoH2roE2Vjd2hJB2YzEvtBRIDptG0bfJE=
+github.com/nuts-foundation/nuts-auth v0.15.1/go.mod h1:Qtf4CEEr4M/Njwsh9D9orxhKTpZLhzsAKrRuGnC4Wss=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0 h1:dr12pU24LRNg/QJsQccHkJ+KbluC6ZfpfBNUOM5czos=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0/go.mod h1:OKCjQ5bMUDyF9KaRqhn7uSmYKOrIg5E0LgveYiUShYg=
 github.com/nuts-foundation/nuts-consent-store v0.15.0 h1:wHiAMiFZ5V/sPdTmVz3p10PlEcKm9nvVM+IMxD9F1gM=
