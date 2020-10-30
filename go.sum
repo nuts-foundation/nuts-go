@@ -154,6 +154,8 @@ github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec h1:NfhRXXFDP
 github.com/denisenkom/go-mssqldb v0.0.0-20200620013148-b91950f658ec/go.mod h1:xbL0rPBG9cCiLr28tMa8zpbdarY27NDyej4t/EjAShU=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
+github.com/dgrijalva/jwt-go v3.2.1-0.20200107013213-dc14462fd587+incompatible h1:CiQ/hJK0Lsc/2Gm9uMSIe7cFE+h0sbTwHuTGQkIZpio=
+github.com/dgrijalva/jwt-go v3.2.1-0.20200107013213-dc14462fd587+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/dhui/dktest v0.3.2/go.mod h1:l1/ib23a/CmxAe7yixtrYPc8Iy90Zy2udyaHINM5p58=
 github.com/docker/distribution v2.7.0+incompatible/go.mod h1:J2gT2udsDAN96Uj4KfcMRqY0/ypR+oyYUYmja8H+y+w=
@@ -169,6 +171,8 @@ github.com/eapache/queue v1.1.0/go.mod h1:6eCeP0CKFpHLu8blIFXhExK/dRa7WDZfr6jVFP
 github.com/edsrzf/mmap-go v0.0.0-20170320065105-0bce6a688712/go.mod h1:YO35OhQPt3KJa3ryjFM5Bs14WD66h8eGKpfaBNrHW5M=
 github.com/edsrzf/mmap-go v1.0.0 h1:CEBF7HpRnUCSJgGUb5h1Gm7e3VkmVDrR8lvWVLtrOFw=
 github.com/edsrzf/mmap-go v1.0.0/go.mod h1:YO35OhQPt3KJa3ryjFM5Bs14WD66h8eGKpfaBNrHW5M=
+github.com/eknkc/basex v1.0.0 h1:R2zGRGJAcqEES03GqHU9leUF5n4Pg6ahazPbSTQWCWc=
+github.com/eknkc/basex v1.0.0/go.mod h1:k/F/exNEHFdbs3ZHuasoP2E7zeWwZblG84Y7Z59vQRo=
 github.com/envoyproxy/go-control-plane v0.9.0/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.1-0.20191026205805-5f8ba28d4473/go.mod h1:YTl/9mNaCwkRvm6d1a2C3ymFceY/DCBVvsKhRF0iEA4=
 github.com/envoyproxy/go-control-plane v0.9.4/go.mod h1:6rpuAdCZL397s3pYoYcLgu1mIlRU8Am5FuJP05cCM98=
@@ -183,6 +187,7 @@ github.com/fsnotify/fsnotify v1.4.7/go.mod h1:jwhsz4b93w/PPRr/qN1Yymfu8t87LnFCMo
 github.com/fsouza/fake-gcs-server v1.17.0/go.mod h1:D1rTE4YCyHFNa99oyJJ5HyclvN/0uQR+pM/VdlL83bw=
 github.com/fxamacker/cbor v1.5.0 h1:idAiyeNSq/jeG9FPbCLVZLFJjsxP+g40a3UrXFapumw=
 github.com/fxamacker/cbor v1.5.0/go.mod h1:UjdWSysJckWsChYy9I5zMbkGvK4xXDR+LmDb8kPGYgA=
+github.com/gbrlsnchs/jwt v1.1.0/go.mod h1:p5fttBhRV34dmDL7zpqJ2ctL8yaWm5DJTtBm/evgQ/c=
 github.com/getkin/kin-openapi v0.3.0 h1:xsQ4mA20YJDMgIHdHqMKZ66QUe6/hi+x6yLsTTz8xyQ=
 github.com/getkin/kin-openapi v0.3.0/go.mod h1:W8dhxZgpE84ciM+VIItFqkmZ4eHtuomrdIHtASQIqi0=
 github.com/getkin/kin-openapi v0.13.0/go.mod h1:WGRs2ZMM1Q8LR1QBEwUxC6RJEfaBcD0s+pcEVXFuAjw=
@@ -640,12 +645,16 @@ github.com/nuts-foundation/consent-bridge-go-client v0.15.0 h1:cUfBzLKkSCvAbMSbi
 github.com/nuts-foundation/consent-bridge-go-client v0.15.0/go.mod h1:NqhsibfM+u1jNxMmqZHrbVGTsvuEnvTKQyyaaETEMBY=
 github.com/nuts-foundation/nuts-auth v0.15.0 h1:LZKvjoO1dV3P6JVrR92JTKC4ffc5MJ9L+dzHLO4A1uM=
 github.com/nuts-foundation/nuts-auth v0.15.0/go.mod h1:Qtf4CEEr4M/Njwsh9D9orxhKTpZLhzsAKrRuGnC4Wss=
+github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1 h1:vwUxslR6GCHabsiMrMAZ7mU7Iz94DltKkkh5lQ66lMY=
+github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1/go.mod h1:QDexgBoDLlijd0FnwcQyupqNuQ3BD7/OXOLroBJr+K0=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0 h1:dr12pU24LRNg/QJsQccHkJ+KbluC6ZfpfBNUOM5czos=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0/go.mod h1:OKCjQ5bMUDyF9KaRqhn7uSmYKOrIg5E0LgveYiUShYg=
 github.com/nuts-foundation/nuts-consent-store v0.15.0 h1:wHiAMiFZ5V/sPdTmVz3p10PlEcKm9nvVM+IMxD9F1gM=
 github.com/nuts-foundation/nuts-consent-store v0.15.0/go.mod h1:wvmEUp9/lNO9uLLy6/8mm/BlHSdGaVYwW20BlsX/8pU=
 github.com/nuts-foundation/nuts-crypto v0.15.0 h1:C3E2NSXD1t3G1pPBOWtIr/V2r+y638Q7twOq+qPXb1w=
 github.com/nuts-foundation/nuts-crypto v0.15.0/go.mod h1:xz02sBTLi8w38xAGCpEV1jxhSd8r0/SviELIS3Ety0s=
+github.com/nuts-foundation/nuts-crypto v0.15.1-0.20201008093701-3776f2936ef8 h1:McT3A0kcrRrMUIyLEqBlWbeeGhemUvhO92ZkaXUYgnQ=
+github.com/nuts-foundation/nuts-crypto v0.15.1-0.20201008093701-3776f2936ef8/go.mod h1:8Q6c33DldilQbUzw8UEeL6bwCxTGSxxRlrTMF9BntGg=
 github.com/nuts-foundation/nuts-event-octopus v0.15.0 h1:6ggtWSh/lUCzRv1ttoItw017VwTnXkOd4pgnkkXqXEQ=
 github.com/nuts-foundation/nuts-event-octopus v0.15.0/go.mod h1:m53vhX6yMYMIxaKqlmlQfjW0yN2e84wtoXbMtDza8N0=
 github.com/nuts-foundation/nuts-fhir-validation v0.15.0 h1:O9qSMtRDUNMSFfyX6jruqA2j2WpNAeu4njlCrd8wAZQ=
@@ -699,8 +708,12 @@ github.com/posener/complete v1.1.1/go.mod h1:em0nMJCgc9GFtwrmVmEMR/ZL6WyhyjMBndr
 github.com/privacybydesign/gabi v0.0.0-20200729124802-5828bcd24dfd/go.mod h1:XJRlG8/PARHx6Fbv0nVIIhmLFCXwp2gG2h8ZqqeW8x0=
 github.com/privacybydesign/gabi v0.0.0-20200805114803-588904629b25 h1:x2D/AmZi2OAgHttqC3GCNyaOOzhE7yWUZVug8sgBiRw=
 github.com/privacybydesign/gabi v0.0.0-20200805114803-588904629b25/go.mod h1:XJRlG8/PARHx6Fbv0nVIIhmLFCXwp2gG2h8ZqqeW8x0=
+github.com/privacybydesign/gabi v0.0.0-20200823153621-467696543652 h1:cglj/IsZVPAWPf90gZ6N9uFo+Wc7h0bmC6k/6bgAKuw=
+github.com/privacybydesign/gabi v0.0.0-20200823153621-467696543652/go.mod h1:HQ6L5rKBY7qaqcheK6zpaVf7fhGWD0PvUAXJTDws+0M=
 github.com/privacybydesign/irmago v0.5.1 h1:v6A08EEId3HVwvxZzJKDxKJ0lLUeNb6/581icChV2xg=
 github.com/privacybydesign/irmago v0.5.1/go.mod h1:ESsOWiBetZKX52J3bKlr1Zf+sqZut8QEsXL6UIJ2TCQ=
+github.com/privacybydesign/irmago v0.6.0 h1:DbaJWtSEVsULKnZaADusSTLdjODSBouQzWC2Lj9Y9lU=
+github.com/privacybydesign/irmago v0.6.0/go.mod h1:S5eKWg1bk0y8x3UBzDPqUNx3wweU/V6RG1JzK742kAc=
 github.com/prometheus/client_golang v0.9.1/go.mod h1:7SWBe2y4D6OKWSNQJUaRYU/AaXPKyh/dDVn+NZz0KFw=
 github.com/prometheus/client_golang v0.9.2/go.mod h1:OsXs2jCmiKlQ1lTBmv21f2mNfw4xf/QclQDMrYNZzcM=
 github.com/prometheus/client_golang v0.9.3-0.20190127221311-3c4408c8b829/go.mod h1:p2iRAGwDERtqlqzRXnrOVns+ignqQo//hLXqYxZYVNs=
@@ -800,6 +813,7 @@ github.com/spf13/cast v1.3.1/go.mod h1:Qx5cxh0v+4UWYiBimWS+eyWzqEqokIECu5etghLkU
 github.com/spf13/cobra v0.0.7/go.mod h1:/6GTrnGXV9HjY+aR4k0oJ5tcvakLuG6EuKReYlHNrgE=
 github.com/spf13/cobra v1.0.0 h1:6m/oheQuQ13N9ks4hubMG6BnvwOeaJrqSPLahSnczz8=
 github.com/spf13/cobra v1.0.0/go.mod h1:/6GTrnGXV9HjY+aR4k0oJ5tcvakLuG6EuKReYlHNrgE=
+github.com/spf13/cobra v1.1.1 h1:KfztREH0tPxJJ+geloSLaAkaPkr4ki2Er5quFV1TDo4=
 github.com/spf13/cobra v1.1.1/go.mod h1:WnodtKOvamDL/PwE2M4iKs8aMDBZ5Q5klgD3qfVJQMI=
 github.com/spf13/jwalterweatherman v1.0.0/go.mod h1:cQK4TGJAtQXfYWX+Ddv3mKDzgVb68N+wFjFa4jdeBTo=
 github.com/spf13/jwalterweatherman v1.1.0 h1:ue6voC5bR5F8YxI5S67j9i582FU4Qvo2bmqnqMYADFk=

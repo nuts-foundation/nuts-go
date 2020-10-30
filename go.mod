@@ -6,10 +6,10 @@ require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
 	github.com/labstack/echo/v4 v4.1.17
 	github.com/nuts-foundation/consent-bridge-go-client v0.15.0
-	github.com/nuts-foundation/nuts-auth v0.15.0
+	github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1
 	github.com/nuts-foundation/nuts-consent-logic v0.15.0
 	github.com/nuts-foundation/nuts-consent-store v0.15.0
-	github.com/nuts-foundation/nuts-crypto v0.15.0
+	github.com/nuts-foundation/nuts-crypto v0.15.1-0.20201008093701-3776f2936ef8
 	github.com/nuts-foundation/nuts-event-octopus v0.15.0
 	github.com/nuts-foundation/nuts-fhir-validation v0.15.0
 	github.com/nuts-foundation/nuts-go-core v0.15.0
