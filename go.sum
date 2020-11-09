@@ -652,10 +652,14 @@ github.com/nuts-foundation/nuts-auth v0.15.0 h1:LZKvjoO1dV3P6JVrR92JTKC4ffc5MJ9L
 github.com/nuts-foundation/nuts-auth v0.15.0/go.mod h1:Qtf4CEEr4M/Njwsh9D9orxhKTpZLhzsAKrRuGnC4Wss=
 github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1 h1:vwUxslR6GCHabsiMrMAZ7mU7Iz94DltKkkh5lQ66lMY=
 github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1/go.mod h1:QDexgBoDLlijd0FnwcQyupqNuQ3BD7/OXOLroBJr+K0=
+github.com/nuts-foundation/nuts-auth v0.15.1-0.20201103120155-159436263d59 h1:Rcupzo5hIixEtxb73PsqA/Zq3nVnl9SuDYtmPSlJGs4=
+github.com/nuts-foundation/nuts-auth v0.15.1-0.20201103120155-159436263d59/go.mod h1:55hGvEjwGQiHBaQqYBG3ZDTNezmFEphPaIqVjr7qhH0=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0 h1:dr12pU24LRNg/QJsQccHkJ+KbluC6ZfpfBNUOM5czos=
 github.com/nuts-foundation/nuts-consent-logic v0.15.0/go.mod h1:OKCjQ5bMUDyF9KaRqhn7uSmYKOrIg5E0LgveYiUShYg=
 github.com/nuts-foundation/nuts-consent-store v0.15.0 h1:wHiAMiFZ5V/sPdTmVz3p10PlEcKm9nvVM+IMxD9F1gM=
 github.com/nuts-foundation/nuts-consent-store v0.15.0/go.mod h1:wvmEUp9/lNO9uLLy6/8mm/BlHSdGaVYwW20BlsX/8pU=
+github.com/nuts-foundation/nuts-consent-store v0.15.1-0.20200929093957-21ccf5e25c74 h1:L/04QWugehrnQoaH/IEFoe1uRDsjnyrTpCyTdEYTuOU=
+github.com/nuts-foundation/nuts-consent-store v0.15.1-0.20200929093957-21ccf5e25c74/go.mod h1:0FOZfmKzPvn+lTYUPGW5sm7L/g6MsSLw53R6Vy+8Ep8=
 github.com/nuts-foundation/nuts-crypto v0.15.0 h1:C3E2NSXD1t3G1pPBOWtIr/V2r+y638Q7twOq+qPXb1w=
 github.com/nuts-foundation/nuts-crypto v0.15.0/go.mod h1:xz02sBTLi8w38xAGCpEV1jxhSd8r0/SviELIS3Ety0s=
 github.com/nuts-foundation/nuts-crypto v0.15.1-0.20201008093701-3776f2936ef8 h1:McT3A0kcrRrMUIyLEqBlWbeeGhemUvhO92ZkaXUYgnQ=

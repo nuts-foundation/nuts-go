@@ -4,11 +4,12 @@ go 1.14
 
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
+	github.com/gbrlsnchs/jwt v1.1.0 // indirect
 	github.com/labstack/echo/v4 v4.1.17
 	github.com/nuts-foundation/consent-bridge-go-client v0.15.0
-	github.com/nuts-foundation/nuts-auth v0.15.1-0.20201027161511-60f71b6bb1f1
+	github.com/nuts-foundation/nuts-auth v0.15.1-0.20201103120155-159436263d59
 	github.com/nuts-foundation/nuts-consent-logic v0.15.0
-	github.com/nuts-foundation/nuts-consent-store v0.15.0
+	github.com/nuts-foundation/nuts-consent-store v0.15.1-0.20200929093957-21ccf5e25c74
 	github.com/nuts-foundation/nuts-crypto v0.15.1-0.20201015073554-cbeeb24605c8
 	github.com/nuts-foundation/nuts-event-octopus v0.15.0
 	github.com/nuts-foundation/nuts-fhir-validation v0.15.0
