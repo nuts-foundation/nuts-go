@@ -6,6 +6,7 @@ require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
 	github.com/gbrlsnchs/jwt v1.1.0 // indirect
 	github.com/labstack/echo/v4 v4.1.17
+	github.com/lestrrat-go/jwx v1.0.6-0.20201127121120-26218808f029 // indirect
 	github.com/nuts-foundation/consent-bridge-go-client v0.15.0
 	github.com/nuts-foundation/nuts-auth v0.15.1-0.20201103120155-159436263d59
 	github.com/nuts-foundation/nuts-consent-logic v0.15.0
