@@ -686,6 +686,8 @@ github.com/nuts-foundation/nuts-go-core v0.15.0 h1:ntyeTTK+z/2Bj2Tajab6wcEimkh+1
 github.com/nuts-foundation/nuts-go-core v0.15.0/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
 github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201130071943-d2f8937d30a0 h1:8+encAyUoeNW4QRGOx9ONtKVPqUNRpdJJsxXG++cYbA=
 github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201130071943-d2f8937d30a0/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
+github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201203095959-f9c2380f8935 h1:NzNuQeRM3DhDs313/hyE17RJmG4oS9ckLsPihVirrWE=
+github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201203095959-f9c2380f8935/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
 github.com/nuts-foundation/nuts-go-test v0.15.0 h1:rf47jTpki2du+BEiUcRnDdajp0cU6Nbe+9C2Sn97DpY=
 github.com/nuts-foundation/nuts-go-test v0.15.0/go.mod h1:aZ5Urj7v1lH8AD2TIejEiPhRX8t6YG9PVXhuRyNIAII=
 github.com/nuts-foundation/nuts-network v0.15.0 h1:nq9P34KvYxBi5aOeYZ3jNAVArJnH4h2asVm3P8LA/ng=
