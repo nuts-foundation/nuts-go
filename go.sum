@@ -654,6 +654,7 @@ github.com/nishanths/exhaustive v0.0.0-20200525081945-8e46705b6132 h1:NjznefjSrr
 github.com/nishanths/exhaustive v0.0.0-20200525081945-8e46705b6132/go.mod h1:wBEpHwM2OdmeNpdCvRPUlkEbBuaFmcK4Wv8Q7FuGW3c=
 github.com/nuts-foundation/consent-bridge-go-client v0.15.0 h1:cUfBzLKkSCvAbMSbiSwRu04VDonmkE92E6g4/foxRas=
 github.com/nuts-foundation/consent-bridge-go-client v0.15.0/go.mod h1:NqhsibfM+u1jNxMmqZHrbVGTsvuEnvTKQyyaaETEMBY=
+github.com/nuts-foundation/consent-bridge-go-client v0.16.0/go.mod h1:cm5i1zFX45oHlDaBCS/WZ1vqJK5unmWcTdPbsuh3IvI=
 github.com/nuts-foundation/nuts-auth v0.15.1-0.20201130155353-613e4f763897 h1:dJlb8KPU/teOSdc5WFCfQBRQ7MZcLwY/j3OyLNLxS1o=
 github.com/nuts-foundation/nuts-auth v0.15.1-0.20201130155353-613e4f763897/go.mod h1:FzBrCCmJP/DFh9Ujhyc4BZmZ1KM86j1QL9edoIaT8KM=
 github.com/nuts-foundation/nuts-auth v0.15.1-0.20201130163121-34751a194b9c/go.mod h1:FzBrCCmJP/DFh9Ujhyc4BZmZ1KM86j1QL9edoIaT8KM=
@@ -688,6 +689,7 @@ github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201130071943-d2f8937d30a0 h1
 github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201130071943-d2f8937d30a0/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
 github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201203095959-f9c2380f8935 h1:NzNuQeRM3DhDs313/hyE17RJmG4oS9ckLsPihVirrWE=
 github.com/nuts-foundation/nuts-go-core v0.15.1-0.20201203095959-f9c2380f8935/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
+github.com/nuts-foundation/nuts-go-core v0.16.0/go.mod h1:biWHwDgHorQ6diimNbfFFqM/bub27g5/a6IZdUdojS4=
 github.com/nuts-foundation/nuts-go-test v0.15.0 h1:rf47jTpki2du+BEiUcRnDdajp0cU6Nbe+9C2Sn97DpY=
 github.com/nuts-foundation/nuts-go-test v0.15.0/go.mod h1:aZ5Urj7v1lH8AD2TIejEiPhRX8t6YG9PVXhuRyNIAII=
 github.com/nuts-foundation/nuts-network v0.15.0 h1:nq9P34KvYxBi5aOeYZ3jNAVArJnH4h2asVm3P8LA/ng=
