@@ -4,7 +4,7 @@ go 1.15
 
 require (
 	github.com/bwesterb/go-xmssmt v1.0.4 // indirect
-	github.com/labstack/echo/v4 v4.1.17
+	github.com/labstack/echo/v4 v4.2.0
 	github.com/nuts-foundation/consent-bridge-go-client v0.16.0
 	github.com/nuts-foundation/nuts-auth v0.16.0
 	github.com/nuts-foundation/nuts-consent-logic v0.16.0
